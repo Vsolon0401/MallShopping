@@ -1,6 +1,10 @@
 import { searchSwiper, classifyTitle, swiperImage, activityTitle, ActivityTitleModel } from '../viewmodel/HomeDataMock';
 import { LocalDataManager, CommodityList, Commodity, StyleConstants, BreakpointConstants } from '@ohos/common';
 
+// todo: 联调
+@Preview({
+  title: 'home'
+})
 @Component
 export struct Home {
   @StorageProp('currentBreakpoint') currentBreakpoint: string = 'sm';
@@ -17,26 +21,11 @@ export struct Home {
   @Builder
   SearchTitle() {
     Column() {
-      Flex({ justifyContent: FlexAlign.SpaceBetween }) {
-        Image($r('app.media.ic_eshop'))
-          .height(StyleConstants.FULL_HEIGHT)
-          .aspectRatio(1)
-        Image($r('app.media.ic_scan'))
-          .height(StyleConstants.FULL_HEIGHT)
-          .aspectRatio(1)
-      }
-      .height($r('app.float.vp_twenty_four'))
-      .width(StyleConstants.FULL_WIDTH)
-      .margin({ bottom: $r('app.float.vp_eight') })
-
-      Row() {
+      // todo: 样式调整
+      Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceAround }) {
         Image($r('app.media.ic_search'))
           .width($r('app.float.vp_twenty'))
           .height($r('app.float.vp_twenty'))
-          .margin({
-            left: $r('app.float.vp_twelve'),
-            right: $r('app.float.vp_eight')
-          })
         Swiper() {
           ForEach(searchSwiper, (item: Resource) => {
             Column() {
@@ -51,6 +40,26 @@ export struct Home {
         .loop(true)
         .vertical(true)
         .indicator(false)
+        .offset({
+          x: '-5%'
+        })
+
+        Image($r('app.media.ic_scan_code'))
+          .width($r('app.float.vp_twenty_four'))
+          .height($r('app.float.vp_twenty_four'))
+          .objectFit(ImageFit.Contain)
+          .offset({
+            x: '8%'
+          })
+
+        Text($r('app.string.swiper_model_search_placeholder'))
+          .height($r('app.float.vp_twenty_four'))
+          .width($r('app.float.search_button_width'))
+          .textAlign(TextAlign.Center)
+          .fontColor(Color.White)
+          .fontSize($r('app.float.small_font_size'))
+          .backgroundColor($r('app.color.theme_color'))
+          .borderRadius($r('app.float.vp_twenty'))
       }
       .height($r('app.float.search_swiper_height'))
       .width(StyleConstants.FULL_WIDTH)
@@ -61,46 +70,47 @@ export struct Home {
     .padding({ top: $r('app.float.vp_twelve'), bottom: $r('app.float.vp_twelve') })
   }
 
-  @Builder
-  ClassifyTitle() {
-    Flex({ justifyContent: FlexAlign.SpaceBetween }) {
-      ForEach(classifyTitle, (item: Resource, index?: number) => {
-        Text(item)
-          .fontSize($r('app.float.middle_font_size'))
-          .opacity(this.titleIndex === index ? StyleConstants.FULL_OPACITY : StyleConstants.EIGHTY_OPACITY)
-          .fontWeight(this.titleIndex === index ? StyleConstants.FONT_WEIGHT_SEVEN : StyleConstants.FONT_WEIGHT_FOUR)
-          .fontColor(Color.White)
-          .onClick(() => {
-            if (index !== undefined) {
-              this.titleIndex = index;
-            }
-          })
-      }, (item: Resource) => JSON.stringify(item))
-      Row() {
-        Image($r('app.media.ic_split_line'))
-          .width($r('app.float.vp_one'))
-          .height($r('app.float.vp_fourteen'))
-        Image($r('app.media.ic_more'))
-          .width($r('app.float.vp_sixteen'))
-          .height($r('app.float.vp_sixteen'))
-          .margin({
-            left: $r('app.float.vp_two'),
-            right: $r('app.float.vp_two')
-          })
-        Text($r('app.string.title_bar_classification'))
-          .fontSize($r('app.float.middle_font_size'))
-          .fontColor(Color.White)
-          .opacity(this.titleIndex === undefined ? StyleConstants.FULL_OPACITY : StyleConstants.EIGHTY_OPACITY)
-          .fontWeight(this.titleIndex === undefined ?
-          StyleConstants.FONT_WEIGHT_SEVEN : StyleConstants.FONT_WEIGHT_FOUR)
-      }
-      .onClick(() => {
-        this.titleIndex = 0;
-      })
-    }
-    .margin({ top: $r('app.float.vp_eight') })
-    .width(StyleConstants.FULL_WIDTH)
-  }
+  // todo: 去掉，单独做tab页
+  // @Builder
+  // ClassifyTitle() {
+  //   Flex({ justifyContent: FlexAlign.SpaceBetween }) {
+  //     ForEach(classifyTitle, (item: Resource, index?: number) => {
+  //       Text(item)
+  //         .fontSize($r('app.float.middle_font_size'))
+  //         .opacity(this.titleIndex === index ? StyleConstants.FULL_OPACITY : StyleConstants.EIGHTY_OPACITY)
+  //         .fontWeight(this.titleIndex === index ? StyleConstants.FONT_WEIGHT_SEVEN : StyleConstants.FONT_WEIGHT_FOUR)
+  //         .fontColor(Color.White)
+  //         .onClick(() => {
+  //           if (index !== undefined) {
+  //             this.titleIndex = index;
+  //           }
+  //         })
+  //     }, (item: Resource) => JSON.stringify(item))
+  //     Row() {
+  //       Image($r('app.media.ic_split_line'))
+  //         .width($r('app.float.vp_one'))
+  //         .height($r('app.float.vp_fourteen'))
+  //       Image($r('app.media.ic_more'))
+  //         .width($r('app.float.vp_sixteen'))
+  //         .height($r('app.float.vp_sixteen'))
+  //         .margin({
+  //           left: $r('app.float.vp_two'),
+  //           right: $r('app.float.vp_two')
+  //         })
+  //       Text($r('app.string.title_bar_classification'))
+  //         .fontSize($r('app.float.middle_font_size'))
+  //         .fontColor(Color.White)
+  //         .opacity(this.titleIndex === undefined ? StyleConstants.FULL_OPACITY : StyleConstants.EIGHTY_OPACITY)
+  //         .fontWeight(this.titleIndex === undefined ?
+  //         StyleConstants.FONT_WEIGHT_SEVEN : StyleConstants.FONT_WEIGHT_FOUR)
+  //     }
+  //     .onClick(() => {
+  //       this.titleIndex = 0;
+  //     })
+  //   }
+  //   .margin({ top: $r('app.float.vp_eight') })
+  //   .width(StyleConstants.FULL_WIDTH)
+  // }
 
   @Builder
   CustomSwiper() {
@@ -169,7 +179,7 @@ export struct Home {
         this.SearchTitle()
         Scroll() {
           Column() {
-            this.ClassifyTitle()
+            // this.ClassifyTitle()
             this.CustomSwiper()
             this.ActivityTitle()
 

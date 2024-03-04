@@ -12,7 +12,7 @@ struct SplashPage {
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center }) {
       Column() {
-        Image($r('app.media.ic_shop_app'))
+        Image($r('app.media.ic_eshop'))
           .width(new BreakPointType({
             sm: $r('app.float.splash_image_size'),
             md: $r('app.float.splash_image_size'),
@@ -43,6 +43,7 @@ struct SplashPage {
   aboutToAppear() {
     this.breakpointSystem.register();
     this.timeoutId = setTimeout(() => {
+      // todo: 调整跳转到登录页
       router.replaceUrl({ url: PageConstants.MAIN_PAGE_URL })
     }, PageConstants.DELAY_TIME);
   }

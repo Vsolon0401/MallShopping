@@ -17,6 +17,10 @@
       "value": "XXXX7 Pro"
     },
     {
+      "name": "swiper_model_search_placeholder",
+      "value": "Search"
+    },
+    {
       "name": "title_bar_homepage",
       "value": "Home"
     },

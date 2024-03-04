@@ -79,6 +79,10 @@
     {
       "name": "activity_title_affordable_desc",
       "value": "便宜好货"
+    },
+    {
+      "name": "swiper_model_search_placeholder",
+      "value": "搜索"
     }
   ]
 }

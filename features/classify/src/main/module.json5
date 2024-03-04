@@ -1,0 +1,10 @@
+{
+  "module": {
+    "name": "classify",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ]
+  }
+}

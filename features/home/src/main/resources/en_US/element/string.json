@@ -79,6 +79,10 @@
     {
       "name": "activity_title_affordable_desc",
       "value": "Cheap good"
+    },
+    {
+      "name": "swiper_model_search_placeholder",
+      "value": "Search"
     }
   ]
 }

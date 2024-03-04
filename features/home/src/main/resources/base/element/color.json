@@ -3,6 +3,10 @@
     {
       "name": "indicator_select",
       "value": "#F74E42"
+    },
+    {
+      "name": "theme_color",
+      "value": "#F34248"
     }
   ]
 }

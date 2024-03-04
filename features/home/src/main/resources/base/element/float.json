@@ -11,6 +11,10 @@
     {
       "name": "image_background_height",
       "value": "222vp"
+    },
+    {
+      "name": "search_button_width",
+      "value": "54vp"
     }
   ]
 }
