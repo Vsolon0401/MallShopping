@@ -31,6 +31,14 @@
     {
       "name": "splash_desc",
       "value": "购物总有新玩法"
+    },
+    {
+      "name": "phone_login_placeholder",
+      "value": "请输入手机号"
+    },
+    {
+      "name": "password_login_placeholder",
+      "value": "请输入密码"
     }
   ]
 }
