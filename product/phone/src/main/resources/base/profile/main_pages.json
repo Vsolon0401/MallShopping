@@ -1,0 +1,11 @@
+{
+  "src": [
+    "pages/SplashPage",
+    "pages/MainPage",
+    "pages/CommodityDetailPage",
+    "pages/ConfirmOrderPage",
+    "pages/PayOrderPage",
+    "pages/OrderDetailListPage",
+    "pages/LoginPage"
+  ]
+}

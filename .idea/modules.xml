@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MultiShopping.iml" filepath="$PROJECT_DIR$/.idea/modules/MultiShopping.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/commoditydetail/commoditydetail.iml" filepath="$PROJECT_DIR$/.idea/modules/commoditydetail/commoditydetail.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/common.iml" filepath="$PROJECT_DIR$/.idea/modules/common/common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/home/home.iml" filepath="$PROJECT_DIR$/.idea/modules/home/home.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/newproduct/newproduct.iml" filepath="$PROJECT_DIR$/.idea/modules/newproduct/newproduct.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/orderdetail/orderdetail.iml" filepath="$PROJECT_DIR$/.idea/modules/orderdetail/orderdetail.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/personal/personal.iml" filepath="$PROJECT_DIR$/.idea/modules/personal/personal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/phone/phone.iml" filepath="$PROJECT_DIR$/.idea/modules/phone/phone.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/shopcart/shopcart.iml" filepath="$PROJECT_DIR$/.idea/modules/shopcart/shopcart.iml" />
+    </modules>
+  </component>
+</project>

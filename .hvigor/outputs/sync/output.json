@@ -1,0 +1,211 @@
+{
+  "ohos-module-phone": {
+    "SELECT_TARGET": "default",
+    "MODULE_BUILD_DIR": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\product\\phone\\build",
+    "TARGETS": {
+      "default": {
+        "SOURCE_ROOT": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\product\\phone\\src\\main",
+        "RESOURCES_PATH": [
+          "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\product\\phone\\src\\main\\resources"
+        ],
+        "BUILD_PATH": {
+          "OUTPUT_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\product\\phone\\build\\default\\outputs\\default",
+          "INTERMEDIA_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\product\\phone\\build\\default\\intermediates",
+          "JS_ASSETS_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\product\\phone\\build\\default\\intermediates\\loader_out\\default",
+          "JS_LITE_ASSETS_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\product\\phone\\build\\default\\intermediates\\loader_out_lite\\default",
+          "RES_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\product\\phone\\build\\default\\intermediates\\res\\default",
+          "RES_PROFILE_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\product\\phone\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
+          "ETS_SUPER_VISUAL_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\product\\phone\\build\\default\\cache\\default\\default@CompileArkTS\\esmodule",
+          "JS_SUPER_VISUAL_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\product\\phone\\build\\default\\cache\\default\\default@CompileJS\\jsbundle",
+          "WORKER_LOADER": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\product\\phone\\build\\default\\intermediates\\loader\\default\\loader.json",
+          "MANIFEST_JSON": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\product\\phone\\build\\default\\intermediates\\manifest\\default",
+          "OUTPUT_METADATA_JSON": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\product\\phone\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json"
+        }
+      }
+    }
+  },
+  "ohos-module-common": {
+    "SELECT_TARGET": "default",
+    "MODULE_BUILD_DIR": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\common\\build",
+    "TARGETS": {
+      "default": {
+        "SOURCE_ROOT": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\common\\src\\main",
+        "RESOURCES_PATH": [
+          "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\common\\src\\main\\resources"
+        ],
+        "BUILD_PATH": {
+          "OUTPUT_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\common\\build\\default\\outputs\\default",
+          "INTERMEDIA_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\common\\build\\default\\intermediates",
+          "JS_ASSETS_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\common\\build\\default\\intermediates\\loader_out\\default",
+          "JS_LITE_ASSETS_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\common\\build\\default\\intermediates\\loader_out_lite\\default",
+          "RES_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\common\\build\\default\\intermediates\\res\\default",
+          "RES_PROFILE_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\common\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
+          "ETS_SUPER_VISUAL_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\common\\build\\default\\cache\\default\\default@CompileArkTS\\esmodule",
+          "JS_SUPER_VISUAL_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\common\\build\\default\\cache\\default\\default@CompileJS\\jsbundle",
+          "WORKER_LOADER": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\common\\build\\default\\intermediates\\loader\\default\\loader.json",
+          "MANIFEST_JSON": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\common\\build\\default\\intermediates\\manifest\\default",
+          "OUTPUT_METADATA_JSON": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\common\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json"
+        }
+      }
+    }
+  },
+  "ohos-module-home": {
+    "SELECT_TARGET": "default",
+    "MODULE_BUILD_DIR": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\home\\build",
+    "TARGETS": {
+      "default": {
+        "SOURCE_ROOT": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\home\\src\\main",
+        "RESOURCES_PATH": [
+          "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\home\\src\\main\\resources"
+        ],
+        "BUILD_PATH": {
+          "OUTPUT_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\home\\build\\default\\outputs\\default",
+          "INTERMEDIA_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\home\\build\\default\\intermediates",
+          "JS_ASSETS_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\home\\build\\default\\intermediates\\loader_out\\default",
+          "JS_LITE_ASSETS_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\home\\build\\default\\intermediates\\loader_out_lite\\default",
+          "RES_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\home\\build\\default\\intermediates\\res\\default",
+          "RES_PROFILE_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\home\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
+          "ETS_SUPER_VISUAL_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\home\\build\\default\\cache\\default\\default@CompileArkTS\\esmodule",
+          "JS_SUPER_VISUAL_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\home\\build\\default\\cache\\default\\default@CompileJS\\jsbundle",
+          "WORKER_LOADER": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\home\\build\\default\\intermediates\\loader\\default\\loader.json",
+          "MANIFEST_JSON": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\home\\build\\default\\intermediates\\manifest\\default",
+          "OUTPUT_METADATA_JSON": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\home\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json"
+        }
+      }
+    }
+  },
+  "ohos-module-newproduct": {
+    "SELECT_TARGET": "default",
+    "MODULE_BUILD_DIR": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\newproduct\\build",
+    "TARGETS": {
+      "default": {
+        "SOURCE_ROOT": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\newproduct\\src\\main",
+        "RESOURCES_PATH": [
+          "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\newproduct\\src\\main\\resources"
+        ],
+        "BUILD_PATH": {
+          "OUTPUT_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\newproduct\\build\\default\\outputs\\default",
+          "INTERMEDIA_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\newproduct\\build\\default\\intermediates",
+          "JS_ASSETS_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\newproduct\\build\\default\\intermediates\\loader_out\\default",
+          "JS_LITE_ASSETS_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\newproduct\\build\\default\\intermediates\\loader_out_lite\\default",
+          "RES_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\newproduct\\build\\default\\intermediates\\res\\default",
+          "RES_PROFILE_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\newproduct\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
+          "ETS_SUPER_VISUAL_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\newproduct\\build\\default\\cache\\default\\default@CompileArkTS\\esmodule",
+          "JS_SUPER_VISUAL_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\newproduct\\build\\default\\cache\\default\\default@CompileJS\\jsbundle",
+          "WORKER_LOADER": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\newproduct\\build\\default\\intermediates\\loader\\default\\loader.json",
+          "MANIFEST_JSON": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\newproduct\\build\\default\\intermediates\\manifest\\default",
+          "OUTPUT_METADATA_JSON": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\newproduct\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json"
+        }
+      }
+    }
+  },
+  "ohos-module-shopcart": {
+    "SELECT_TARGET": "default",
+    "MODULE_BUILD_DIR": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\shopcart\\build",
+    "TARGETS": {
+      "default": {
+        "SOURCE_ROOT": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\shopcart\\src\\main",
+        "RESOURCES_PATH": [
+          "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\shopcart\\src\\main\\resources"
+        ],
+        "BUILD_PATH": {
+          "OUTPUT_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\shopcart\\build\\default\\outputs\\default",
+          "INTERMEDIA_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\shopcart\\build\\default\\intermediates",
+          "JS_ASSETS_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\shopcart\\build\\default\\intermediates\\loader_out\\default",
+          "JS_LITE_ASSETS_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\shopcart\\build\\default\\intermediates\\loader_out_lite\\default",
+          "RES_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\shopcart\\build\\default\\intermediates\\res\\default",
+          "RES_PROFILE_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\shopcart\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
+          "ETS_SUPER_VISUAL_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\shopcart\\build\\default\\cache\\default\\default@CompileArkTS\\esmodule",
+          "JS_SUPER_VISUAL_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\shopcart\\build\\default\\cache\\default\\default@CompileJS\\jsbundle",
+          "WORKER_LOADER": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\shopcart\\build\\default\\intermediates\\loader\\default\\loader.json",
+          "MANIFEST_JSON": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\shopcart\\build\\default\\intermediates\\manifest\\default",
+          "OUTPUT_METADATA_JSON": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\shopcart\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json"
+        }
+      }
+    }
+  },
+  "ohos-module-personal": {
+    "SELECT_TARGET": "default",
+    "MODULE_BUILD_DIR": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\personal\\build",
+    "TARGETS": {
+      "default": {
+        "SOURCE_ROOT": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\personal\\src\\main",
+        "RESOURCES_PATH": [
+          "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\personal\\src\\main\\resources"
+        ],
+        "BUILD_PATH": {
+          "OUTPUT_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\personal\\build\\default\\outputs\\default",
+          "INTERMEDIA_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\personal\\build\\default\\intermediates",
+          "JS_ASSETS_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\personal\\build\\default\\intermediates\\loader_out\\default",
+          "JS_LITE_ASSETS_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\personal\\build\\default\\intermediates\\loader_out_lite\\default",
+          "RES_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\personal\\build\\default\\intermediates\\res\\default",
+          "RES_PROFILE_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\personal\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
+          "ETS_SUPER_VISUAL_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\personal\\build\\default\\cache\\default\\default@CompileArkTS\\esmodule",
+          "JS_SUPER_VISUAL_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\personal\\build\\default\\cache\\default\\default@CompileJS\\jsbundle",
+          "WORKER_LOADER": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\personal\\build\\default\\intermediates\\loader\\default\\loader.json",
+          "MANIFEST_JSON": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\personal\\build\\default\\intermediates\\manifest\\default",
+          "OUTPUT_METADATA_JSON": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\personal\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json"
+        }
+      }
+    }
+  },
+  "ohos-module-commoditydetail": {
+    "SELECT_TARGET": "default",
+    "MODULE_BUILD_DIR": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\commoditydetail\\build",
+    "TARGETS": {
+      "default": {
+        "SOURCE_ROOT": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\commoditydetail\\src\\main",
+        "RESOURCES_PATH": [
+          "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\commoditydetail\\src\\main\\resources"
+        ],
+        "BUILD_PATH": {
+          "OUTPUT_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\commoditydetail\\build\\default\\outputs\\default",
+          "INTERMEDIA_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\commoditydetail\\build\\default\\intermediates",
+          "JS_ASSETS_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\commoditydetail\\build\\default\\intermediates\\loader_out\\default",
+          "JS_LITE_ASSETS_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\commoditydetail\\build\\default\\intermediates\\loader_out_lite\\default",
+          "RES_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\commoditydetail\\build\\default\\intermediates\\res\\default",
+          "RES_PROFILE_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\commoditydetail\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
+          "ETS_SUPER_VISUAL_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\commoditydetail\\build\\default\\cache\\default\\default@CompileArkTS\\esmodule",
+          "JS_SUPER_VISUAL_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\commoditydetail\\build\\default\\cache\\default\\default@CompileJS\\jsbundle",
+          "WORKER_LOADER": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\commoditydetail\\build\\default\\intermediates\\loader\\default\\loader.json",
+          "MANIFEST_JSON": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\commoditydetail\\build\\default\\intermediates\\manifest\\default",
+          "OUTPUT_METADATA_JSON": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\commoditydetail\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json"
+        }
+      }
+    }
+  },
+  "ohos-module-orderdetail": {
+    "SELECT_TARGET": "default",
+    "MODULE_BUILD_DIR": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\orderdetail\\build",
+    "TARGETS": {
+      "default": {
+        "SOURCE_ROOT": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\orderdetail\\src\\main",
+        "RESOURCES_PATH": [
+          "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\orderdetail\\src\\main\\resources"
+        ],
+        "BUILD_PATH": {
+          "OUTPUT_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\orderdetail\\build\\default\\outputs\\default",
+          "INTERMEDIA_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\orderdetail\\build\\default\\intermediates",
+          "JS_ASSETS_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\orderdetail\\build\\default\\intermediates\\loader_out\\default",
+          "JS_LITE_ASSETS_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\orderdetail\\build\\default\\intermediates\\loader_out_lite\\default",
+          "RES_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\orderdetail\\build\\default\\intermediates\\res\\default",
+          "RES_PROFILE_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\orderdetail\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
+          "ETS_SUPER_VISUAL_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\orderdetail\\build\\default\\cache\\default\\default@CompileArkTS\\esmodule",
+          "JS_SUPER_VISUAL_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\orderdetail\\build\\default\\cache\\default\\default@CompileJS\\jsbundle",
+          "WORKER_LOADER": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\orderdetail\\build\\default\\intermediates\\loader\\default\\loader.json",
+          "MANIFEST_JSON": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\orderdetail\\build\\default\\intermediates\\manifest\\default",
+          "OUTPUT_METADATA_JSON": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\features\\orderdetail\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json"
+        }
+      }
+    }
+  },
+  "ohos-project": {
+    "SELECT_PRODUCT_NAME": "default",
+    "MODULE_BUILD_DIR": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\build",
+    "BUNDLE_NAME": "com.example.multishopping",
+    "BUILD_PATH": {
+      "OUTPUT_PATH": "C:\\Users\\Vsolon\\DevEcoStudioProjects\\MultiShopping\\build\\outputs\\default"
+    }
+  },
+  "version": 1
+}

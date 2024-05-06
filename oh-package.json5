@@ -1,0 +1,13 @@
+{
+  "license": "ISC",
+  "devDependencies": {
+    "@ohos/hypium": "1.0.6"
+  },
+  "name": "multishopping",
+  "description": "example description",
+  "repository": {},
+  "version": "1.0.0",
+  "dependencies": {
+    "@ohos/axios": "^2.2.0",
+  }
+}
