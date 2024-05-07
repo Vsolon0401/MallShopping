@@ -12,6 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { ProductService } from '../viewmodel/TypeModel';
+
+
 
 export class CommodityConstants{
   /**
@@ -43,4 +46,16 @@ export class CommodityConstants{
    * ConfirmOrderPage url.
    */
   static readonly CONFIRM_ORDER_PAGE_URL: string = 'pages/ConfirmOrderPage';
+
+
+  static readonly DEFAULT_SERVICE_LIST: ProductService[] = [{
+    id: 1,
+    name: "无忧退货"
+  }, {
+    id: 2,
+    name: "快速退款"
+  }, {
+    id: 3,
+    name: "免费包邮"
+  }];
 }

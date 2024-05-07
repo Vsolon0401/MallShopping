@@ -27,5 +27,9 @@ export { Category, Brand, Classify } from './src/main/ets/viewmodel/CategoryMode
 export { FlashProduct, FlashPromotion } from './src/main/ets/viewmodel/flashPromotionModel'
 export { CommodityInfo } from './src/main/ets/viewmodel/CommodityModel'
 export { ProductAttribute, ProductAttributeValue, SkuStock, ProductLadder, ProductFullReduction, Coupon} from './src/main/ets/viewmodel/ProductModel'
+export { CartItem } from './src/main/ets/viewmodel/CartModel'
 /**----------------------------------------------service------------------------------------------------------ **/
 export { productService } from './src/main/ets/service/ProductService'
+export { shoppingCartService } from './src/main/ets/service/ShoppingCartService'
+export { historyService } from './src/main/ets/service/HistoryService'
+export { collectionService } from './src/main/ets/service/CollectionService'

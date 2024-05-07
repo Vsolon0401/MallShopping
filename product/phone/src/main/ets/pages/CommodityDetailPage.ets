@@ -29,7 +29,7 @@ struct CommodityDetailPage {
   aboutToAppear() {
     let params = router.getParams() as Record<string, Object>;
     this.commodityId = params.data as string;
-    this.info = this.localDataManager.queryCommodityListById(this.commodityId);
+    // this.info = this.localDataManager.queryCommodityListById(this.commodityId);
     productService.fetchProductDetail(params.data as number).then((res) => {
       this.commodityInfo = res.data
     })

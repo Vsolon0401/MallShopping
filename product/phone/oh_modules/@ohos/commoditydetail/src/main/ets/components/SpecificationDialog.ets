@@ -17,24 +17,49 @@ import { Specification, CounterProduct, Commodity, KV, GridConstants, StyleConst
 import { CapsuleGroupButton } from './CapsuleGroupButton';
 import { ColorChange, FinishType } from '../viewmodel/TypeModel';
 import { CommodityConstants } from '../constants/CommodityConstants';
-import { ProductSpecification } from '@ohos/common/src/main/ets/viewmodel/ProductModel';
+import { ProductSpecification, Selected } from '@ohos/common/src/main/ets/viewmodel/ProductModel';
 
-// todo: selected颜色
 
 @CustomDialog
 export struct SpecificationDialog {
 
-  @State specificationChange: any[] = []
+  @State specificationChange: any[] = [];
+  @State productAttributeList: ProductAttribute[] = [];
+  @State productAttributeValueList: Selected[] = [];
   @Link data: CommodityInfo;
   @Link count: number;
   @Link selectTags: ProductSpecification[];
   @Link productOptions: string;
+  @State isSelected: boolean = false;
   controller?: CustomDialogController;
   private onFinish?: (type: FinishType, count: number, selectKeys: ProductSpecification[]) => void;
   aboutToAppear(){
+    this.productAttributeList = this.data?.productAttributeList.filter(item => item.type === 0)
+    const commonAttributeList = []
+    this.productAttributeList.forEach(attr => {
+      if (attr.inputType === 1) {
+        commonAttributeList.concat(attr.inputList.split(','))
+      } else {
+        const temp = this.data.productAttributeValueList.find(av => av.productAttributeId === attr.id).value.split(',')
+        commonAttributeList.concat(temp)
+      }
+    })
 
+    this.productAttributeValueList = commonAttributeList.map(common => {
+      return { tagName: common, isSelected: false }
+    })
+    if (this.selectTags.length === 0) {
+      this.productAttributeList.forEach((item) => {
+        const defaultSelectedTag: ProductSpecification = item.inputType === 1
+          ? { key: item.name, value: item.inputList.split(',')[0] }
+          : { key: item.name,
+              value: this.data.productAttributeValueList.find(
+                av => av.productAttributeId === item.id
+              ).value.split(',')[0] }
+        this.selectTags.push(defaultSelectedTag)
+      })
+    }
   }
-
 
   onTagSelect(tagValue: string, tagKey: string) {
     const selectedTag: ProductSpecification = { key: tagKey, value: tagValue }
@@ -47,6 +72,7 @@ export struct SpecificationDialog {
     if (!check) {
       this.selectTags.push(selectedTag)
     }
+    this.onColorChange(tagKey)
     this.onSelectKeysChange()
   }
 
@@ -55,6 +81,16 @@ export struct SpecificationDialog {
     this.selectTags.forEach((item)=>{
       this.productOptions += item.value+' ';
     })
+  }
+
+  onColorChange(key: string) {
+    let temp: string = ''
+    this.selectTags.forEach((tag) => {
+      if (tag.key === key) {
+        temp = tag.value
+      }
+    })
+    return temp
   }
 
   @Builder ButtonGroup() {
@@ -85,21 +121,22 @@ export struct SpecificationDialog {
   }
 
   @Builder Specification(
-    productAttribute: ProductAttribute,
-    productAttributeValue: string[],
-    selectedValue: string
+   $$: {
+     productAttribute: string,
+     productAttributeValue: string[],
+   }
   ) {
     Column() {
-      Text(productAttribute.name)
+      Text($$.productAttribute)
         .fontSize($r('app.float.small_font_size'))
         .margin({ bottom: $r('app.float.vp_twelve') })
         .fontColor($r('app.color.sixty_alpha_black'))
       Flex({ wrap: FlexWrap.Wrap }) {
-        ForEach(productAttributeValue, (item: string) => {
+        ForEach($$.productAttributeValue, (item: string) => {
           Text(item)
             .fontSize($r('app.float.smaller_font_size'))
-            .fontColor(selectedValue === item ?
-            $r('app.color.focus_color') : Color.Black) //TODO:select
+            .fontColor(this.onColorChange($$.productAttribute) === item ?
+            $r('app.color.focus_color') : Color.Black)
             .height($r('app.float.vp_twenty_four'))
             .padding({
               top: $r('app.float.vp_six'),
@@ -107,11 +144,11 @@ export struct SpecificationDialog {
               left: $r('app.float.vp_ten'),
               right: $r('app.float.vp_ten')
             })
-              .backgroundColor(selectedValue === item ?
+              .backgroundColor(this.onColorChange($$.productAttribute) === item?
                 $r('app.color.dialog_select_tag') : $r('app.color.five_alpha_black'))
             .margin({ bottom: $r('app.float.vp_ten'), right: $r('app.float.vp_twelve') })
             .borderRadius($r('app.float.vp_twelve'))
-            .onClick(() => this.onTagSelect(item, productAttribute.name))
+            .onClick(() => this.onTagSelect(item, $$.productAttribute))
         }, (item: string) => item)
       }
     }
@@ -126,16 +163,6 @@ export struct SpecificationDialog {
       GridCol({ span: { sm: GridConstants.SPAN_FOUR, md: GridConstants.SPAN_EIGHT, lg: GridConstants.SPAN_EIGHT },
         offset: { lg: GridConstants.OFFSET_TWO } }) {
         Column() {
-          // Image($r('app.media.ic_normal'))
-          //   .width($r('app.float.dialog_normal_image_width'))
-          //   .height($r('app.float.vp_twenty_four'))
-          //   .objectFit(ImageFit.Contain)
-          //   .onClick(() => {
-          //     this.controller?.close();
-          //     if (this.onFinish) {
-          //       this.onFinish(FinishType.CANCEL, this.count, this.selectTags);
-          //     }
-          //   })
           Row() {
             Image(formatLocalhost(this.data.product.pic))
               .width($r('app.float.dialog_commodity_image_size'))
@@ -174,21 +201,14 @@ export struct SpecificationDialog {
 
           Scroll() {
             Column() {
-              ForEach(this.data.productAttributeList.filter(item => item.type === 0) || [], (item: ProductAttribute) => {
-                if (item.inputType === 1) {
-                  this.Specification(
-                    item,
-                    item.inputList.split(','),
-                    this.selectTags.find(select => item.name = select.key)?.value
-                  )
-                } else {
-                  this.Specification(
-                    item,
-                    this.data.productAttributeValueList.find(av => av.productAttributeId === item.id).value.split(','),
-                    this.selectTags.find(select => item.name = select.key)?.value
-                  )
-                }
-              }, (item: ProductAttribute) => JSON.stringify(item))
+              ForEach(this.productAttributeList, (item: ProductAttribute) => {
+                this.Specification({
+                  productAttribute:item.name,
+                  productAttributeValue: item.inputType === 1
+                    ? item.inputList.split(',')
+                    : this.data.productAttributeValueList.find(av => av.productAttributeId === item.id).value.split(','),
+                })
+              })
               Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
                 Text($r('app.string.quantity'))
                   .fontSize($r('app.float.small_font_size'))

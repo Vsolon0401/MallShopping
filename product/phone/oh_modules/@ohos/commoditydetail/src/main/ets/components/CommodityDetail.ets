@@ -15,8 +15,8 @@
 
 import promptAction from '@ohos.promptAction';
 import router from '@ohos.router';
-import { CommodityInfo, Order, ProductSpecification } from '@ohos/common';
-import { FinishType } from '../viewmodel/TypeModel';
+import { CartItem, collectionService, CommodityInfo, historyService, Order, ProductSpecification, shoppingCartService } from '@ohos/common';
+import { FinishType, ProductService } from '../viewmodel/TypeModel';
 import { SpecificationDialog } from './SpecificationDialog';
 import { barData, userEvaluate, moreEvaluate, serviceList, Evaluate, BarData } from '../viewmodel/CommodityDetailData';
 import { CapsuleGroupButton } from '../components/CapsuleGroupButton';
@@ -47,9 +47,20 @@ export struct CommodityDetail {
   @Prop commodityId: string;
   // 商品详情信息
   @Link info: CommodityInfo;
+  // 商品已选择的规格
+  @State productCartInfo: CartItem = new CartItem();
+  // 商品图片
+  @State imgList: string[] = []
+  // 服务列表
+  @State serviceList: ProductService[] = CommodityConstants.DEFAULT_SERVICE_LIST;
+  // 优惠信息
+  @State promotionTip: string = ''
+  // 已选商品的属性
   @State @Watch('onSelectKeysChange') selectKeys?: ProductSpecification[] = [];
   // 选择的商品数
   @State count: number = 1;
+  // 商品规格
+  @State productSpecification: ProductAttribute[] = [];
   @State swiperIndex: number = 0;
   @State productOptions: string = '';
   private localDataManager: LocalDataManager = LocalDataManager.instance();
@@ -69,6 +80,90 @@ export struct CommodityDetail {
     customStyle: true
   })
 
+  aboutToAppear() {
+    // 初始化商品图片
+    const tempImgList = this.info.product.albumPics.split(',')
+    tempImgList.forEach(item => {
+      if (item !== null && item != '') {
+        this.imgList.push(item)
+      }
+    })
+    // 初始化服务信息
+    this.serviceList.forEach((item, index) => {
+      if (!this.info.product.serviceIds.includes(item.id.toString())) {
+        this.serviceList.splice(index, 1)
+      }
+    })
+
+    // 初始化优惠信息
+    this.initPromotionTipList(this.info)
+
+    // 创建历史浏览记录
+    this.createHistory()
+
+    // 初始话收藏记录
+    this.fetchCollection(this.info.product.id)
+    // this.info = this.localDataManager.queryCommodityListById(this.commodityId);
+    // const productAttribute: ProductAttribute[] = this.info.productAttributeList.filter(item => item.type === 0)
+    // if (this.selectKeys.length === 0 && productAttribute.length !== 0) {
+    //   productAttribute.forEach((item) => {
+    //     const defaultSelectedTag: ProductSpecification = item.inputType === 1
+    //       ? { key: item.name, value: item.inputList.split(',')[0] }
+    //       : { key: item.name,
+    //           value: this.info.productAttributeValueList.find(
+    //             av => av.productAttributeId === item.id
+    //           ).value.split(',')[0]
+    //         }
+    //     this.selectKeys.push(defaultSelectedTag)
+    //   })
+    // }
+  }
+
+  initPromotionTipList(data: CommodityInfo) {
+    const promotionType = this.info.product.promotionType;
+    switch(promotionType) {
+      case 0:
+        this.promotionTip = '暂无优惠'
+       break;
+      case 1:
+        this.promotionTip = '单品优惠'
+        break;
+      case 2:
+        this.promotionTip = '会员优惠'
+        break;
+      case 3:
+        this.promotionTip = '多买优惠'
+        for (let item of data.productLadderList) {
+          this.promotionTip += (" 满" + item.count + "件打" + Number(item.discount) * 10 + "折");
+        }
+        break;
+      case 4:
+        for (let item of data.productFullReductionList) {
+          this.promotionTip += (" 满" + item.fullPrice + "元减" + item.reducePrice + "元");
+        }
+        this.promotionTip = '满减优惠'
+        break;
+      case 5:
+        this.promotionTip = '限时优惠'
+        break;
+    }
+  }
+
+  createHistory() {
+    const product = this.info.product
+    historyService.createReadHistory({
+      productId: product.id,
+      productName: product.name,
+      productPic: product.pic,
+      productPrice: product.price,
+      productSubTitle: product.subTitle,
+    })
+  }
+
+  fetchCollection(productId: number) {
+    collectionService.fetchProductCollectionDetail(productId)
+  }
+
   onSelectKeysChange() {
     this.productOptions = '';
     if (this.selectKeys !== undefined) {
@@ -79,8 +174,8 @@ export struct CommodityDetail {
   }
 
   onSpecificationFinish(type: FinishType, count: number, selectKeys: ProductSpecification[]) {
-    this.count = count;
-    this.selectKeys = selectKeys;
+    // this.count = count;
+    // this.selectKeys = selectKeys;
     // const params: ShopProps = {
     //   id: getID(),
     //   commodityId: this.info !== undefined ? this.info.id : '',
@@ -121,20 +216,13 @@ export struct CommodityDetail {
     if (this.selectKeys !== undefined) {
       this.onSpecificationFinish(type, this.count, this.selectKeys);
     }
-  }
 
-  aboutToAppear() {
-    // this.info = this.localDataManager.queryCommodityListById(this.commodityId);
-    // if (this.info.specifications !== undefined) {
-    //   this.info.specifications.forEach((item: Specification) => {
-    //     if (this.selectKeys !== undefined) {
-    //       let SpecificationData:ProductSpecification = new ProductSpecification()
-    //       SpecificationData.name = item.title;
-    //       SpecificationData.value = item.data[0].key;
-    //       this.selectKeys.push(SpecificationData)
-    //     }
-    //   });
-    // }
+
+    if (type === FinishType.JOIN_SHOPPING_CART) {
+      Logger.debug(JSON.stringify(this.selectKeys))
+      this.productCartInfo.productAttr = JSON.stringify(this.selectKeys)
+
+    }
   }
 
   @Styles backgroundStyle(){
@@ -319,7 +407,7 @@ export struct CommodityDetail {
         .height($r('app.float.service_divide_height'))
         .backgroundColor($r('app.color.twenty_alpha_black'))
 
-      // 地址选择
+      //todo: 地址选择
       Flex({
         justifyContent: FlexAlign.SpaceBetween,
         alignItems: ItemAlign.Start
@@ -394,7 +482,7 @@ export struct CommodityDetail {
     .backgroundStyle()
   }
 
-  // 用户评价
+  //todo: 用户评价
   @Builder UserEvaluate() {
     Column({ space: StyleConstants.TWELVE_SPACE }) {
       Row() {
@@ -476,7 +564,7 @@ export struct CommodityDetail {
       direction: FlexDirection.Column,
       alignItems: ItemAlign.Center
     }) {
-      RichText(this.info.product.detailMobileHtml)
+      RichText(this.info.product.detailMobileHtml) // FIXME: 富文本加载
         .width(StyleConstants.FULL_WIDTH)
       // ForEach(images, (image: string) => {
       //   Image($rawfile(image))
@@ -489,6 +577,7 @@ export struct CommodityDetail {
     .backgroundStyle()
   }
 
+  // todo:调整button事件
   @Builder BottomMenu() {
     Flex({ alignItems: ItemAlign.Center }) {
       Row() {
@@ -568,7 +657,7 @@ export struct CommodityDetail {
                 lg: GridConstants.SPAN_TWELVE }
             }) {
               if (this.info !== undefined) {
-                this.CustomSwiper(this.info.product.albumPics.split(','))
+                this.CustomSwiper(this.imgList)
               }
             }
 

@@ -28,8 +28,7 @@ axiosInstance.interceptors.request.use(async (config: InternalAxiosRequestConfig
     .catch((error) => {
       Logger.error('token:undefined', error)
     })
-
-  console.log('headers:', JSON.stringify(config.headers), `${config.headers.hasAuthorization()}`)
+  Logger.debug(JSON.stringify(config))
   return config
 }, (error) => {
   hilog.error(0xFFFF, 'fail:request', error)
@@ -74,7 +73,7 @@ axiosInstance.interceptors.response.use((response) => {
 }, (error) => {
   Logger.error('error:response', error)
   promptAction.showToast({
-    message: error,
+    message: '网络发生异常，详情查看日志',
     duration: 1500
   })
   return Promise.reject(error)

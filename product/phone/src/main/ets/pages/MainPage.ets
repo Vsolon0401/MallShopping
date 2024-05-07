@@ -22,7 +22,8 @@ import {
   Commodity,
   OrderOperationStatus,
   StyleConstants,
-  BreakpointConstants
+  BreakpointConstants,
+  CartItem,
 } from '@ohos/common';
 import { Home } from '@ohos/home';
 import { NewProduct } from '@ohos/newproduct';
@@ -31,14 +32,15 @@ import { Personal } from '@ohos/personal';
 import { buttonInfo, ButtonInfoModel } from '../viewmodel/MainPageData';
 import { PageConstants } from '../constants/PageConstants';
 import { OrderCount } from '@ohos/commoditydetail/src/main/ets/viewmodel/TypeModel';
+import { shoppingCartService } from '@ohos/common/src/main/ets/service/ShoppingCartService';
 
 @Entry
 @Component
 struct MainPage {
   @StorageProp('currentBreakpoint') currentBreakpoint: string = 'sm';
   @StorageLink('IndexPage') currentPageIndex: number = 0;
-  @State shoppingCartCache: Product[] = [];
-  @State shoppingCartList: Product[] = [];
+
+  @State shoppingCartList: CartItem[] = [];
   @State orderCount: OrderCount = {
     payment: 0,
     ship: 0,
@@ -51,8 +53,8 @@ struct MainPage {
 
   aboutToAppear() {
     this.breakpointSystem.register();
-    this.shoppingCartList = this.shoppingCartCache?.length > 0 ? this.shoppingCartCache : [];
     this.queryOrderList();
+
   }
 
   aboutToDisappear() {
@@ -60,9 +62,11 @@ struct MainPage {
   }
 
   queryShopCart() {
-    const shoppingData = this.localDataManager.queryShopCart();
-    this.shoppingCartList = shoppingData;
-    this.shoppingCartCache = shoppingData;
+    // const shoppingData = this.localDataManager.queryShopCart();
+    // this.shoppingCartList = shoppingData;
+    shoppingCartService.fetchCartList().then(res => {
+      this.shoppingCartList = res;
+    })
   }
 
   // todo: 调整不同类型click的router处理
@@ -106,6 +110,7 @@ struct MainPage {
         .tabBar(this.BottomNavigation(buttonInfo[PageConstants.HOME_INDEX]))
 
         TabContent() {
+          //todo: 调整新品
           NewProduct()
         }
         .tabBar(this.BottomNavigation(buttonInfo[PageConstants.NEW_PRODUCT_INDEX]))

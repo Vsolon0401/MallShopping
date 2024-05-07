@@ -25,3 +25,8 @@ export class OrderCount {
   evaluation: number = 0;
   sale: number = 0;
 }
+
+export type ProductService = {
+  id: number;
+  name: string;
+}

@@ -84,6 +84,11 @@ export class ProductAttributeValue {
   value: string;
 }
 
+export class Selected {
+  tagName?: string;
+  isSelected?: boolean;
+}
+
 
 export class SkuStock {
   id: number;

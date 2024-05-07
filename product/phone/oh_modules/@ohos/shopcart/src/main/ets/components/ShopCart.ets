@@ -15,25 +15,14 @@
 
 import router from '@ohos.router';
 import { ShopCartConstants } from '../constants/ShopCartConstants';
-import {
-  LocalDataManager,
-  Logger,
-  CounterProduct,
-  CommodityList,
-  EmptyComponent,
-  Commodity,
-  Product,
-  StyleConstants,
-  BreakpointConstants,
-  Order
-} from '@ohos/common';
+import {LocalDataManager,Logger,CounterProduct,CommodityList,EmptyComponent,Commodity,Product,StyleConstants,BreakpointConstants,CartItem,shoppingCartService} from '@ohos/common';
 import { SelectProducts, UpdateShopProps } from '@ohos/common/src/main/ets/viewmodel/ProductModel';
 
 @Component
 export struct ShopCart {
   private onNeedUpdate?: () => void;
   @StorageProp('currentBreakpoint') currentBreakpoint: string = 'sm';
-  @Link @Watch('onListChange') products: Array<Product>;
+  @Link @Watch('onListChange') products: Array<CartItem>;
   @State sumPrice: number = 0;
   @State isSelectAll: boolean = false;
   @State commodityList: Commodity[] = [];
@@ -51,7 +40,6 @@ export struct ShopCart {
     if (this.onNeedUpdate !== undefined) {
       this.onNeedUpdate();
     }
-    this.countSumPrice();
   }
 
   private countSumPrice() {
@@ -61,8 +49,8 @@ export struct ShopCart {
     let tempPrice: number = 0;
     this.selectProducts.forEach((item: SelectProducts) => {
       if (item.selected) {
-        let data = this.products.find((value: Product) => value.id === item.key);
-        const ins = (data !== undefined ? data.price * data.count : 0);
+        let data = this.products.find((value: CartItem) => value.productName === item.key);
+        const ins = (data !== undefined ? data.price * data.quantity : 0);
         tempPrice += ins;
       }
     })
@@ -70,39 +58,42 @@ export struct ShopCart {
   }
 
   settleAccounts() {
-    const orderList = this.products
-      .filter((item: Product, index: number) =>
-        item.id === this.selectProducts[index].key && this.selectProducts[index].selected === true)
-      .map((item: Product) => {
-        let returnParams: Order = {
-          orderId: item.id,
-          commodityId: Number.parseInt(item.commodityId),
-          price: item.price,
-          count: item.count,
-          specifications: item.specifications,
-          image: item.img[0],
-          description: item.description,
-          title: item.name
-        }
-        return returnParams;
-      });
-    Logger.info('settleAccounts orderList length: ' + orderList.length);
-    router.pushUrl({
-      url: ShopCartConstants.CONFIRM_ORDER_PAGE_URL,
-      params: { orderList: orderList }
-    }).catch((err: Error) => {
-      Logger.error(JSON.stringify(err));
-    });
+    // const orderList = this.products
+    //   .filter((item: CartItem, index: number) =>
+    //     item.id === this.selectProducts[index].key && this.selectProducts[index].selected === true)
+    //   .map((item: CartItem) => {
+    //     let returnParams: Order = {
+    //       orderId: item.id,
+    //       commodityId: Number.parseInt(item.commodityId),
+    //       price: item.price,
+    //       count: item.count,
+    //       specifications: item.specifications,
+    //       image: item.img[0],
+    //       description: item.description,
+    //       title: item.name
+    //     }
+    //     return returnParams;
+    //   });
+    // Logger.info('settleAccounts orderList length: ' + orderList.length);
+    // router.pushUrl({
+    //   url: ShopCartConstants.CONFIRM_ORDER_PAGE_URL,
+    //   params: { orderList: orderList }
+    // }).catch((err: Error) => {
+    //   Logger.error(JSON.stringify(err));
+    // });
   }
 
   onListChange() {
-    this.selectProducts = [];
-    this.products.forEach((item: Product) => {
-      let payload: SelectProducts = { selected: false, key: '' };
-      payload.selected = !!item.selected;
-      payload.key = item.id;
-      this.selectProducts.push(payload);
-    })
+    if (this.selectProducts.length === 0) {
+      this.products.forEach((item: CartItem) => {
+        let payload: SelectProducts = { selected: false, key: '' };
+        payload.selected = !!item.selected;
+        payload.key = item.productName;
+        this.selectProducts.push(payload);
+      })
+    } else {
+
+    }
     this.countSumPrice();
   }
 
@@ -113,17 +104,18 @@ export struct ShopCart {
     return false;
   }
 
-  onChangeCount = (count: number, info: Product): void => {
-    let updateShopCartParams: UpdateShopProps = {
-      id: info.id,
-      count: count
-    };
-    this.localDataManager.updateShopCart(updateShopCartParams);
+  updateShopCart(cartItem: CartItem) {
+    shoppingCartService.updateCartItem(cartItem)
+  }
+
+  onChangeCount = async (count: number, info: CartItem) => {
+    await shoppingCartService.updateItemQuantity(info.id, count)
     this.needUpdateShopCart();
   }
 
+  // 侧滑删除
   @Builder
-  ItemDelete(item: Product) {
+  ItemDelete(item: CartItem, index: number) {
     Flex({
       direction: FlexDirection.Column,
       justifyContent: FlexAlign.Center,
@@ -140,8 +132,12 @@ export struct ShopCart {
       }
       .padding({ right: $r('app.float.vp_fourteen') })
     }
-    .onClick(() => {
-      this.products = this.localDataManager.deleteShopCart([item.id]);
+    .onClick(async () => {
+       await shoppingCartService.delCartItem(item.id).then(() => {
+         this.selectProducts.splice(index, 1)
+       })
+      this.needUpdateShopCart();
+      // this.products = this.localDataManager.deleteShopCart([item.id]);
     })
     .height($r('app.float.item_delete_height'))
     .width($r('app.float.item_delete_width'))
@@ -150,8 +146,9 @@ export struct ShopCart {
     .margin({ left: $r('app.float.item_delete_margin_left') })
   }
 
+  // 商品渲染
   @Builder
-  CartItem(item: Product, index: number) {
+  CartItem(item: CartItem, index: number) {
     Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Center }) {
       Checkbox({
         name: `${ShopCartConstants.CHECKBOX}${index}`,
@@ -167,32 +164,22 @@ export struct ShopCart {
             selected: !this.selectProducts[index].selected
           }
           this.selectProducts.splice(index, 1, tempData)
-          let updateShopCartParams: UpdateShopProps = {
-            id: item.id,
-            selected: this.selectProducts[index].selected
-          };
-          this.localDataManager.updateShopCart(updateShopCartParams);
-          this.needUpdateShopCart();
+          this.countSumPrice()
+          // this.needUpdateShopCart();
         })
-      Image($rawfile(item.img[0]))
+      Image(item.productPic)
         .height($r('app.float.card_image_size'))
         .width($r('app.float.card_image_size'))
         .objectFit(ImageFit.Cover)
         .margin({ left: $r('app.float.vp_sixteen') })
       Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.SpaceAround }) {
-        Text($r('app.string.commodity_piece_description', item.name, item.description))
+        Text($r('app.string.commodity_piece_description', item.productName, item.productSubTitle))
           .fontSize($r('app.float.small_font_size'))
           .margin({ bottom: $r('app.float.vp_eight') })
           .textOverflow({ overflow: TextOverflow.Ellipsis })
           .maxLines(StyleConstants.TWO_TEXT_LINE)
           .width(StyleConstants.FULL_WIDTH)
-        Text(item.specifications.length === 2 ?
-            item.specifications[0].value + '，' + item.specifications[1].value:
-            item.specifications.length === 3 ?
-            item.specifications[0].value + '，' + item.specifications[1].value + '，' + item.specifications[2].value :
-            item.specifications.length === 4 ?
-            item.specifications[0].value + '，' + item.specifications[1].value + '，' + item.specifications[2].value + '，' + item.specifications[3].value : ''
-        )
+        Text(item.productAttr)
           .fontSize($r('app.float.smaller_font_size'))
           .maxLines(1)
           .fontColor($r('app.color.sixty_alpha_black'))
@@ -209,7 +196,7 @@ export struct ShopCart {
           }
 
           CounterProduct({
-            count: item.count,
+            count: item.quantity,
             onNumberChange: (num: number) => {
               this.onChangeCount(num, item);
             }
@@ -237,20 +224,21 @@ export struct ShopCart {
   Settle() {
     Flex({ justifyContent: FlexAlign.SpaceBetween }) {
       Flex({ alignItems: ItemAlign.Center }) {
-        Checkbox({ name: ShopCartConstants.CHECKBOX, group: ShopCartConstants.CHECKBOX_GROUP })
+        Checkbox({ name: ShopCartConstants.CHECKBOX, group: ShopCartConstants.CHECKBOX_GROUP }) // 全选框
           .selectedColor($r('app.color.select_color'))
           .select(this.isSelectAll)
           .onClick(() => {
+            // FIXME: 全选时更新购物车数量
             this.isSelectAll = !this.isSelectAll;
-            this.products.map((item: Product) => {
-              let returnParams = this.localDataManager.updateShopCart({
-                id: item.id,
-                count: item.count,
-                selected: !!this.isSelectAll,
-                specifications: []
-              });
-              return returnParams;
-            })
+            // this.products.map((item: CartItem) => {
+            //   // let returnParams = this.localDataManager.updateShopCart({
+            //   //   id: item.id,
+            //   //   count: item.count,
+            //   //   selected: !!this.isSelectAll,
+            //   //   specifications: []
+            //   // });
+            //   // return returnParams;
+            // })
             this.needUpdateShopCart();
           })
         Text($r('app.string.select_all'))
@@ -277,7 +265,7 @@ export struct ShopCart {
           left: $r('app.float.vp_eight')
         })
 
-        Button($r('app.string.checkout'), { type: ButtonType.Capsule, stateEffect: true })
+        Button($r('app.string.checkout'), { type: ButtonType.Capsule, stateEffect: true }) // 结算
           .backgroundColor($r('app.color.focus_color'))
           .fontSize($r('app.float.smaller_font_size'))
           .height($r('app.float.settle_button_height'))
@@ -309,14 +297,14 @@ export struct ShopCart {
         Column() {
           if (this.products.length > 0) {
             List({ space: StyleConstants.FIFTEEN_SPACE }) {
-              ForEach(this.products, (item: Product, index?: number) => {
+              ForEach(this.products, (item: CartItem, index?: number) => {
                 ListItem() {
                   if (index !== undefined) {
                     this.CartItem(item, index)
                   }
                 }
-                .swipeAction({ end: this.ItemDelete(item) })
-              }, (item: Product) => item.id)
+                .swipeAction({ end: this.ItemDelete(item, index) })
+              }, (item: CartItem) => JSON.stringify(item))
             }
           } else {
             Column() {
@@ -335,6 +323,7 @@ export struct ShopCart {
             })
             .textAlign(TextAlign.Start)
 
+          // todo: 调整猜你喜欢
           CommodityList({
             commodityList: $commodityList,
             column: this.currentBreakpoint === BreakpointConstants.BREAKPOINT_SM ?
