@@ -16,6 +16,14 @@
 class BarData {
   icon?: Resource;
   text?: Resource;
+  type?: BarType;
+}
+
+export enum BarType {
+  SHARE,
+  COLLECTION,
+  CANCEL_COLLECTION,
+  PREFERENTIAL
 }
 
 class Evaluate {
@@ -35,15 +43,23 @@ class UserEvaluate {
 const barData: BarData[] = [
   {
     icon: $r('app.media.ic_bar_share'),
-    text: $r('app.string.share')
+    text: $r('app.string.share'),
+    type: BarType.SHARE
   },
   {
     icon: $r('app.media.ic_collect'),
-    text: $r('app.string.collection')
+    text: $r('app.string.collection'),
+    type: BarType.COLLECTION
+  },
+  {
+    icon: $r('app.media.ic_collection_on'),
+    text:$r('app.string.cancel_collection'),
+    type: BarType.CANCEL_COLLECTION
   },
   {
     icon: $r('app.media.ic_price'),
-    text: $r('app.string.reduction')
+    text: $r('app.string.reduction'),
+    type: BarType.PREFERENTIAL
   }
 ]
 

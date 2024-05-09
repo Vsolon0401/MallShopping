@@ -50,12 +50,12 @@
    }
   ],
   "runningProfileList": [
-   "Default"
+   "Phone"
   ],
   "availableProfileList": [
    "Tablet",
    "Foldable",
-   "Phone"
+   "Default"
   ]
  }
 }

@@ -14,24 +14,30 @@
  */
 
 import router from '@ohos.router';
-import { LocalDataManager, Commodity, productService, CommodityInfo, Logger } from '@ohos/common';
+import { LocalDataManager, Commodity, productService, CommodityInfo, Logger, historyService, collectionService, ProductAttribute, ProductSpecification, SkuSpecification, SkuStock } from '@ohos/common';
 import { CommodityDetail } from '@ohos/commoditydetail';
+import { ProductService } from '@ohos/commoditydetail/src/main/ets/viewmodel/TypeModel';
+import { CommodityConstants } from '@ohos/commoditydetail/src/main/ets/constants/CommodityConstants';
 
 @Entry
 @Component
 struct CommodityDetailPage {
   @State commodityId: string = '';
-  @State info?: Commodity = undefined;
-  private localDataManager: LocalDataManager = LocalDataManager.instance();
-
-  @State commodityInfo?: CommodityInfo = undefined;
+  @State info?: CommodityInfo = undefined;
+  // 商品图片
+  @State productImgList: string[] = [];
 
   aboutToAppear() {
     let params = router.getParams() as Record<string, Object>;
     this.commodityId = params.data as string;
-    // this.info = this.localDataManager.queryCommodityListById(this.commodityId);
     productService.fetchProductDetail(params.data as number).then((res) => {
-      this.commodityInfo = res.data
+      this.info = res.data
+      // 商品图片
+      res.data.product.albumPics.split(',').forEach(item => {
+        if (item !== null && item != '') {
+          this.productImgList.push(item)
+        }
+      })
     })
   }
 
@@ -39,7 +45,8 @@ struct CommodityDetailPage {
     Row() {
       CommodityDetail({
         commodityId: this.commodityId,
-        info: $commodityInfo
+        info: $info,
+        productImgList: $productImgList
       })
     }
     .backgroundColor($r('app.color.page_background'))

@@ -14,19 +14,28 @@
  */
 
 import { CommodityOrderItem } from './CommodityOrderItem';
-import { Order } from '@ohos/common';
+import { CartPromotionItem, Order } from '@ohos/common';
+import { ConfirmOrderType } from '@ohos/common/src/main/ets/viewmodel/OrderModel';
+
+
 
 @Component
 export struct CommodityOrderList {
-  @Consume('orderList') orderList: Order[];
+  @Consume('confirmOrder') confirmOrderInfo: ConfirmOrderType;
 
   build() {
     Column() {
-      ForEach(this.orderList, (item: Order) => {
+      Text('商品信息')
+        .fontSize($r('app.float.small_font_size'))
+      Divider()
+        .height($r('app.float.vp_one'))
+        .backgroundColor($r("app.color.five_alpha_black"))
+      ForEach(this.confirmOrderInfo.cartPromotionItemList, (item: CartPromotionItem) => {
         CommodityOrderItem({
           orderData: item
         });
       }, (item: Order, index?: number) => JSON.stringify(item) + index);
+      // todo: 优惠卷、积分、及其费用
       Flex({ justifyContent: FlexAlign.SpaceBetween }) {
         Text($r('app.string.order_list_reward'))
           .fontSize($r('app.float.small_font_size'))
@@ -42,6 +51,23 @@ export struct CommodityOrderList {
       Divider()
         .height($r('app.float.vp_one'))
         .backgroundColor($r("app.color.five_alpha_black"))
+
+      Flex({ justifyContent: FlexAlign.SpaceBetween }) {
+        Text('运费')
+          .fontSize($r('app.float.small_font_size'))
+        Text($r('app.string.commodity_piece', this.confirmOrderInfo.calcAmount?.freightAmount))
+          .fontSize($r('app.float.small_font_size'))
+      }
+      .padding({
+        top: $r('app.float.vp_twelve'),
+        bottom: $r('app.float.vp_twelve')
+      })
+      .height($r('app.float.order_item_height'))
+
+      Divider()
+        .height($r('app.float.vp_one'))
+        .backgroundColor($r("app.color.five_alpha_black"))
+
       Flex({ justifyContent: FlexAlign.SpaceBetween }) {
         Text($r('app.string.order_list_invoices'))
           .fontSize($r('app.float.small_font_size'))

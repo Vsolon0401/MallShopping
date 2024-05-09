@@ -1,37 +1,47 @@
 import router from '@ohos.router';
 import { ConfirmOrder } from '@ohos/orderdetail';
-import { Order, Logger } from '@ohos/common';
+import { Order, Logger, orderService } from '@ohos/common';
 import { PageConstants } from '../constants/PageConstants';
+import { ConfirmOrderType } from '@ohos/common/src/main/ets/viewmodel/OrderModel';
+import { UserAddress } from '@ohos/common/src/main/ets/viewmodel/AddressModel';
 
 @Entry
 @Component
 struct ConfirmPageOrder {
-  @Provide('amount') amount: number = 0;
-  @Provide('orderList') orderList: Order[] = [];
+  @State isAddressSelected: boolean = false;
+  @State cartIdList: number[] = []
+  @Provide('confirmOrder') confirmOrder: ConfirmOrderType = new ConfirmOrderType()
+  @Provide('selectedAddress') selectedAddress: UserAddress = new UserAddress()
+
 
   onPageShow() {
-    let params = router.getParams() as Record<string, Order[]>;
-    const orderList = params.orderList
-    for (let index = 0; index < orderList.length; index++) {
-      let orderData: Order = {
-        orderId: orderList[index].orderId,
-        commodityId: orderList[index].commodityId,
-        price: orderList[index].price,
-        count: orderList[index].count,
-        specifications: orderList[index].specifications,
-        image: orderList[index].image,
-        description: orderList[index].description,
-        title: orderList[index].title
-      };
-      this.orderList.push(orderData);
-    }
-    Logger.info('onPageShow orderList length: ' + this.orderList.length);
-    this.amount = this.orderList.reduce((s: number, item: Order) => s + item.price * item.count, 0);
+    let params = router.getParams() as Record<string, number[]>;
+    orderService.generateConfirmOrder(params.cartIdList).then(res => {
+      this.confirmOrder = res.data
+      this.cartIdList = params.cartIdList
+      // 初始化默认地址
+      this.selectedAddress = res.data.memberReceiveAddressList
+        .find(address => address.defaultStatus === 1)
+    })
+    // this.orderList.push(orderData);
+    // this.amount = this.orderList.reduce((s: number, item: Order) => s + item.price * item.count, 0);
+  }
+
+  onSelectAddress() {
+    this.isAddressSelected = !this.isAddressSelected
   }
 
   build() {
     Column() {
-      ConfirmOrder()
+      if (!this.isAddressSelected) {
+        ConfirmOrder({
+          cartIdList: $cartIdList,
+          onSelectAddress: this.onSelectAddress
+        })
+      } else {
+
+      }
+
     }
   }
 }

@@ -16,6 +16,7 @@
 import { Logger } from './Logger';
 import { StyleConstants } from '../constants/StyleConstants';
 import { Opt } from '../viewmodel/CommodityModel';
+import { ProductSpecification, SkuStock } from '../viewmodel/ProductModel';
 
 
 const MiniIO_URL: string = 'http://192.168.253.80:9000'
@@ -87,4 +88,15 @@ export function getID() {
   arr.sort(() => (Math.random() - StyleConstants.HALF_ONE) > 0 ? 1 : StyleConstants.MINUS_ONE)
 
   return arr.join('')
+}
+
+/**
+ * 获取sku
+ * @param skuStockList
+ * @param specSelected
+ */
+export function getSkuStock(skuStockList: SkuStock[], specSelected: ProductSpecification[]) {
+  const spec = JSON.stringify(specSelected)
+  const target = skuStockList.find((skuStock) => skuStock.spData === spec);
+  return target ? target : null
 }

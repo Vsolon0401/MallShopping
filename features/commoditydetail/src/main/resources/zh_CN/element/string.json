@@ -18,7 +18,7 @@
     },
     {
       "name": "reduction",
-      "value": "降价通知"
+      "value": "获取优惠"
     },
     {
       "name": "choice",
@@ -71,6 +71,10 @@
     {
       "name": "attribute",
       "value": "参数"
+    },
+    {
+      "name": "cancel_collection",
+      "value": "取消收藏"
     }
   ]
 }

@@ -13,12 +13,24 @@
  * limitations under the License.
  */
 
-import { Order, StyleConstants } from '@ohos/common';
+import { CartPromotionItem, Order, ProductSpecification, StyleConstants } from '@ohos/common';
 
 @Component
 export struct CommodityOrderItem {
-  private orderData?: Order;
-  private onCommodityClick: () => void = () => {};
+  @State specification: string = ''
+  private orderData: CartPromotionItem;
+  private onCommodityClick?: () => void = () => {};
+
+  aboutToAppear() {
+    if (this.orderData !== undefined) {
+      const specificationList: ProductSpecification[] = JSON.parse(this.orderData.productAttr)
+      this.specification = specificationList.reduce((acc, curSp) => {
+        const specItem = curSp.key + ':' + curSp.value + '；'
+        acc += specItem;
+        return acc
+      }, '')
+    }
+  }
 
   @Styles flexStyles(){
     .flexShrink(StyleConstants.FLEX_SHRINK)
@@ -29,7 +41,7 @@ export struct CommodityOrderItem {
   build() {
     if (this.orderData) {
       Flex() {
-        Image($rawfile(this.orderData.image))
+        Image(this.orderData.productPic)
           .height(StyleConstants.FULL_HEIGHT)
           .aspectRatio(1)
         Flex({ direction: FlexDirection.Column }) {
@@ -38,7 +50,7 @@ export struct CommodityOrderItem {
             alignItems: ItemAlign.Center
           }) {
             Flex() {
-              Text($r('app.string.commodity_piece_description', this.orderData.title, this.orderData.description))
+              Text($r('app.string.commodity_piece_description', this.orderData.productName, this.orderData.productSubTitle))
                 .width(StyleConstants.FULL_WIDTH)
                 .fontColor(Color.Black)
                 .maxLines(StyleConstants.TWO_TEXT_LINE)
@@ -63,13 +75,7 @@ export struct CommodityOrderItem {
 
           Flex({ justifyContent: FlexAlign.SpaceBetween }) {
             Flex({ direction: FlexDirection.Column }) {
-              Text(this.orderData.specifications.length === 2 ?
-                this.orderData.specifications[0].value + '，' + this.orderData.specifications[1].value:
-                  this.orderData.specifications.length === 3 ?
-                  this.orderData.specifications[0].value + '，' + this.orderData.specifications[1].value + '，' + this.orderData.specifications[2].value :
-                    this.orderData.specifications.length === 4 ?
-                    this.orderData.specifications[0].value + '，' + this.orderData.specifications[1].value + '，' + this.orderData.specifications[2].value + '，' + this.orderData.specifications[3].value : ''
-              )
+              Text(this.specification)
                 .fontSize($r('app.float.smaller_font_size'))
                 .fontColor($r("app.color.sixty_alpha_black"))
             }
@@ -79,7 +85,7 @@ export struct CommodityOrderItem {
               direction: FlexDirection.Column,
               alignItems: ItemAlign.End
             }) {
-              Text(`x${this.orderData.count}`)
+              Text(`x${this.orderData.quantity}`)
                 .fontSize($r('app.float.small_font_size'))
                 .fontColor($r("app.color.sixty_alpha_black"))
             }

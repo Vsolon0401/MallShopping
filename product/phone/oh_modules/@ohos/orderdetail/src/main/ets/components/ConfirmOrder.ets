@@ -19,34 +19,26 @@ import { AddressInfo } from './AddressInfo';
 import { HeaderBar } from '../components/HeaderBar';
 import { OrderDetailConstants } from '../constants/OrderDetailConstants';
 import { CommodityOrderList } from './CommodityOrderList';
-import { LocalDataManager, Order, OrderOperationStatus, GridConstants, StyleConstants } from '@ohos/common';
-import { InsertOrderProps } from '@ohos/common/src/main/ets/viewmodel/OrderModel';
+import { LocalDataManager, Order, OrderOperationStatus, GridConstants, StyleConstants, orderService } from '@ohos/common';
+import { ConfirmOrderType, InsertOrderProps } from '@ohos/common/src/main/ets/viewmodel/OrderModel';
 
 @Component
 export struct ConfirmOrder {
-  @Consume('orderList') orderList: Order[];
-  @Consume('amount') amount: number;
+  @Link cartIdList: number[];
+  @Consume('confirmOrder') confirmOrderInfo: ConfirmOrderType;
+  private onSelectAddress?: () => void;
+
   private orderIds: string[] = [];
   private localDataManager: LocalDataManager = LocalDataManager.instance();
 
   /**
    * Confirm order to request server.
    */
-  confirmOrder(status: number) {
-    this.orderList.map((item: Order) => {
-      let orderStatus: InsertOrderProps = {
-        order: item,
-        status: status
-      };
-      let orderId: string | undefined = this.localDataManager.insertOrder(orderStatus);
-      if (orderId !== undefined) {
-        this.localDataManager.deleteShopCart([orderId]);
-        this.orderIds.push(orderId);
-      }
-    })
+  async confirmOrder(status: number) {
+    // orderService.generateOrder({})
   }
 
-  handleConfirmOrder() {
+  submitConfirmOrder() {
     try {
       this.confirmOrder(OrderOperationStatus.UN_PAY);
       promptAction.showToast({ message: $r('app.string.order_commit_success') });
@@ -110,7 +102,7 @@ export struct ConfirmOrder {
           },
           offset: { lg: GridConstants.OFFSET_TWO }
         }) {
-          Text($r('app.string.bottom_bar_amount', this.amount))
+          Text($r('app.string.bottom_bar_amount', this.confirmOrderInfo.calcAmount?.totalAmount || 111))
             .fontSize($r('app.float.huge_font_size'))
             .margin({ right: $r('app.float.vp_twelve') })
             .fontColor($r('app.color.focus_color'))
@@ -135,7 +127,7 @@ export struct ConfirmOrder {
             .height($r('app.float.confirm_button_height'))
             .width(StyleConstants.FULL_WIDTH)
             .margin({ top: $r('app.float.vp_eight') })
-            .onClick((): void => this.handleConfirmOrder())
+            .onClick(() => this.submitConfirmOrder())
         }
       }
       .padding({

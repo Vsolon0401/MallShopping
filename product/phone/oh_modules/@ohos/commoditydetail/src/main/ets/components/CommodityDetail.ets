@@ -15,10 +15,10 @@
 
 import promptAction from '@ohos.promptAction';
 import router from '@ohos.router';
-import { CartItem, collectionService, CommodityInfo, historyService, Order, ProductSpecification, shoppingCartService } from '@ohos/common';
+import { CartItem, collectionService, CommodityInfo, getSkuStock, historyService, Order, ProductSpecification, shoppingCartService } from '@ohos/common';
 import { FinishType, ProductService } from '../viewmodel/TypeModel';
 import { SpecificationDialog } from './SpecificationDialog';
-import { barData, userEvaluate, moreEvaluate, serviceList, Evaluate, BarData } from '../viewmodel/CommodityDetailData';
+import { barData, userEvaluate, moreEvaluate, serviceList, Evaluate, BarData, BarType } from '../viewmodel/CommodityDetailData';
 import { CapsuleGroupButton } from '../components/CapsuleGroupButton';
 import { CommodityConstants } from '../constants/CommodityConstants';
 import {
@@ -31,7 +31,7 @@ import {
   getID,
   Specification
 } from '@ohos/common';
-import { ProductAttribute, ShopProps } from '@ohos/common/src/main/ets/viewmodel/ProductModel';
+import { ProductAttribute, ShopProps, SkuSpecification, SkuStock } from '@ohos/common/src/main/ets/viewmodel/ProductModel';
 
 @Extend(Button) function titleButton() {
   .backgroundColor($r('app.color.zero_alpha_black'))
@@ -46,85 +46,133 @@ export struct CommodityDetail {
   // 商品id
   @Prop commodityId: string;
   // 商品详情信息
-  @Link info: CommodityInfo;
-  // 商品已选择的规格
+  @Link @Watch('onInfoChange') info: CommodityInfo;
+  // 购物车商品信息
   @State productCartInfo: CartItem = new CartItem();
   // 商品图片
-  @State imgList: string[] = []
+  @Link productImgList: string[];
   // 服务列表
   @State serviceList: ProductService[] = CommodityConstants.DEFAULT_SERVICE_LIST;
   // 优惠信息
-  @State promotionTip: string = ''
+  @State promotionTip: string = '';
   // 已选商品的属性
-  @State @Watch('onSelectKeysChange') selectKeys?: ProductSpecification[] = [];
+  @State @Watch('onSelectKeysChange') selectKeys: ProductSpecification[] = [];
   // 选择的商品数
   @State count: number = 1;
-  // 商品规格
-  @State productSpecification: ProductAttribute[] = [];
+  // 商品规格列表
+  @State productSpecificationList: SkuSpecification[] = [];
+  // 收藏状态用于筛选barList, 反选状态
+  @State favorite: BarType.COLLECTION | BarType.CANCEL_COLLECTION = BarType.COLLECTION
+  // 初始化状态
+  private isInit: boolean = false;
   @State swiperIndex: number = 0;
   @State productOptions: string = '';
-  private localDataManager: LocalDataManager = LocalDataManager.instance();
+
+
+  private skuCache: Set<string> = new Set()
   private data: CommonDataSource<Evaluate> = new CommonDataSource<Evaluate>(userEvaluate.evaluate !== undefined ?
   userEvaluate.evaluate : []);
+
   dialogController: CustomDialogController = new CustomDialogController({
     builder: SpecificationDialog({
-      onFinish: (type: FinishType, count: number, selectKeys: ProductSpecification[]): void =>
+      onFinish: (type: FinishType, count: number, selectKeys: ProductSpecification[]) =>
         this.onSpecificationFinish(type, count, selectKeys),
       data: $info,
       count: $count,
       selectTags: $selectKeys,
-      productOptions:$productOptions
+      productOptions:$productOptions,
+      productSpecificationList: $productSpecificationList
     }),
     autoCancel: true,
     alignment: DialogAlignment.Bottom,
     customStyle: true
   })
 
-  aboutToAppear() {
-    // 初始化商品图片
-    const tempImgList = this.info.product.albumPics.split(',')
-    tempImgList.forEach(item => {
-      if (item !== null && item != '') {
-        this.imgList.push(item)
-      }
-    })
-    // 初始化服务信息
-    this.serviceList.forEach((item, index) => {
-      if (!this.info.product.serviceIds.includes(item.id.toString())) {
-        this.serviceList.splice(index, 1)
-      }
-    })
+  onInfoChange() {
+    //初始化
+    if (!this.isInit && this.info !== undefined) {
+      // set存储sku筛选可用选项
+      this.info.skuStockList.forEach((skuStock: SkuStock) => {
+        const spData: ProductSpecification[] = JSON.parse(skuStock.spData)
+        spData.forEach(spItem => {
+          this.skuCache.add(spItem.value)
+        })
+      })
+      this.initSpecification()
+      this.initPromotionTipList(this.info)
 
-    // 初始化优惠信息
-    this.initPromotionTipList(this.info)
+      // 初始化服务信息
+      this.serviceList.forEach((item, index) => {
+        if (!this.info.product.serviceIds.includes(item.id.toString())) {
+          this.serviceList.splice(index, 1)
+        }
+      })
 
-    // 创建历史浏览记录
-    this.createHistory()
+      // 创建历史浏览记录
+      this.createHistory()
 
-    // 初始话收藏记录
-    this.fetchCollection(this.info.product.id)
-    // this.info = this.localDataManager.queryCommodityListById(this.commodityId);
-    // const productAttribute: ProductAttribute[] = this.info.productAttributeList.filter(item => item.type === 0)
-    // if (this.selectKeys.length === 0 && productAttribute.length !== 0) {
-    //   productAttribute.forEach((item) => {
-    //     const defaultSelectedTag: ProductSpecification = item.inputType === 1
-    //       ? { key: item.name, value: item.inputList.split(',')[0] }
-    //       : { key: item.name,
-    //           value: this.info.productAttributeValueList.find(
-    //             av => av.productAttributeId === item.id
-    //           ).value.split(',')[0]
-    //         }
-    //     this.selectKeys.push(defaultSelectedTag)
-    //   })
-    // }
+      // 初始话收藏记录
+      this.fetchCollection(this.info.product.id)
+      this.isInit = true
+    }
   }
+  // 初始化规格
+  initSpecification() {
+    const productAttribute: ProductAttribute[] = this.info.productAttributeList.filter(item => item.type === 0)
+    const specList = []
+    let specChildList = []
+    // 构建specList， specChildList
+    productAttribute.forEach((item) => {
+      specList.push({
+        id: item.id,
+        name: item.name
+      })
 
+      const specListHand = item.handAddStatus === 1
+        ? this.info.productAttributeValueList.find(
+          av => av.productAttributeId === item.id
+        ).value.split(',')
+        : item.inputList.split(',')
+
+      specListHand.forEach((specValue) => {
+        specChildList.push({
+          pid: item.id,
+          pname: item.name,
+          name: specValue
+        })
+      })
+    })
+
+    // filter
+    specChildList = specChildList.filter(item => this.skuCache.has(item.name))
+
+    const productSpecificationList: SkuSpecification[] = []
+    const defaultSelected: ProductSpecification[] = []
+    specList.forEach(specItem => {
+       const productSpecificationValueList = specChildList.reduce((acc, curSp) => {
+         if (curSp.pname === specItem.name || curSp.pid === specItem.id) {
+           acc.push(curSp.name)
+         }
+         return acc
+       }, [])
+      // 默认选择第一项
+      if (this.selectKeys.length === 0) {
+        defaultSelected.push({ key: specItem.name, value: productSpecificationValueList[0] })
+      }
+
+      productSpecificationList.push({ key: specItem.name, specList: productSpecificationValueList })
+    })
+
+    this.productSpecificationList = productSpecificationList
+    this.selectKeys = defaultSelected
+  }
+  // 初始化优惠信息
   initPromotionTipList(data: CommodityInfo) {
     const promotionType = this.info.product.promotionType;
     switch(promotionType) {
       case 0:
         this.promotionTip = '暂无优惠'
-       break;
+        break;
       case 1:
         this.promotionTip = '单品优惠'
         break;
@@ -148,7 +196,7 @@ export struct CommodityDetail {
         break;
     }
   }
-
+  // 创建浏览记录
   createHistory() {
     const product = this.info.product
     historyService.createReadHistory({
@@ -159,9 +207,11 @@ export struct CommodityDetail {
       productSubTitle: product.subTitle,
     })
   }
-
+  // 获取收藏信息
   fetchCollection(productId: number) {
-    collectionService.fetchProductCollectionDetail(productId)
+    collectionService.fetchCollectionDetail(productId).then(res => {
+      this.favorite = res.data != null ? BarType.COLLECTION : BarType.CANCEL_COLLECTION
+    })
   }
 
   onSelectKeysChange() {
@@ -173,55 +223,128 @@ export struct CommodityDetail {
     }
   }
 
-  onSpecificationFinish(type: FinishType, count: number, selectKeys: ProductSpecification[]) {
-    // this.count = count;
-    // this.selectKeys = selectKeys;
-    // const params: ShopProps = {
-    //   id: getID(),
-    //   commodityId: this.info !== undefined ? this.info.id : '',
-    //   count,
-    //   specifications: this.selectKeys
-    // }
-    // switch (type) {
-    //   case FinishType.JOIN_SHOPPING_CART:
-    //     this.localDataManager.insertShopCart(params);
-    //     promptAction.showToast({
-    //       message: $r('app.string.insert_cart_success')
-    //     });
-    //     break;
-    //   case FinishType.BUY_NOW:
-    //     if (this.info !== undefined) {
-    //       let orderList: Order = {
-    //         orderId: params.id,
-    //         image: this.info.images[0],
-    //         title: this.info.title,
-    //         description: this.info.description,
-    //         price: this.info.price,
-    //         count: params.count,
-    //         commodityId: Number.parseInt(params.commodityId),
-    //         specifications: this.selectKeys
-    //       }
-    //       router.pushUrl({
-    //         url: CommodityConstants.CONFIRM_ORDER_PAGE_URL,
-    //         params: { orderList: [orderList] }
-    //       }).catch((err: Error) => {
-    //         Logger.error(JSON.stringify(err));
-    //       });
-    //       break;
-    //     }
-    // }
+  async onSpecificationFinish(type: FinishType, count: number, selectKeys: ProductSpecification[]) {
+    this.count = count;
+    this.selectKeys = selectKeys;
+    switch (type) {
+      case FinishType.JOIN_SHOPPING_CART:
+        const product = this.info.product
+        const productSkuStock: SkuStock = getSkuStock(this.info.skuStockList, this.selectKeys)
+        if (productSkuStock !== null) {
+          const cartItem: CartItem = {
+            price: product.price,
+            productAttr: productSkuStock.spData,
+            productBrand: product.brandName,
+            productCategoryId: product.productCategoryId,
+            productId: product.id,
+            productName: product.name,
+            productPic: product.pic,
+            productSkuCode: productSkuStock.skuCode,
+            productSkuId: productSkuStock.id,
+            productSn: product.productSn,
+            productSubTitle: product.subTitle,
+            quantity: 1
+          }
+          const res = await shoppingCartService.addCartItem(cartItem)
+          if (res.code === 200) {
+            promptAction.showToast({
+              message: $r('app.string.insert_cart_success')
+            });
+          }
+        }
+        break;
+      case FinishType.BUY_NOW:
+        // if (this.info !== undefined) {
+        //   let orderList: Order = {
+        //     orderId: params.id,
+        //     image: this.info.images[0],
+        //     title: this.info.title,
+        //     description: this.info.description,
+        //     price: this.info.price,
+        //     count: params.count,
+        //     commodityId: Number.parseInt(params.commodityId),
+        //     specifications: this.selectKeys
+        //   }
+        //   router.pushUrl({
+        //     url: CommodityConstants.CONFIRM_ORDER_PAGE_URL,
+        //     params: { orderList: [orderList] }
+        //   }).catch((err: Error) => {
+        //     Logger.error(JSON.stringify(err));
+        //   });
+        //   break;
+        // }
+    }
   }
 
-  bottomBtnClick(type: FinishType) {
+  async bottomBtnClick(type: FinishType) {
     if (this.selectKeys !== undefined) {
       this.onSpecificationFinish(type, this.count, this.selectKeys);
     }
 
-
+    // 加入购物车
     if (type === FinishType.JOIN_SHOPPING_CART) {
-      Logger.debug(JSON.stringify(this.selectKeys))
-      this.productCartInfo.productAttr = JSON.stringify(this.selectKeys)
+      const product = this.info.product
+      const productSkuStock: SkuStock = getSkuStock(this.info.skuStockList, this.selectKeys)
+      if (productSkuStock !== null) {
+        const cartItem: CartItem = {
+          price: product.price,
+          productAttr: productSkuStock.spData,
+          productBrand: product.brandName,
+          productCategoryId: product.productCategoryId,
+          productId: product.id,
+          productName: product.name,
+          productPic: product.pic,
+          productSkuCode: productSkuStock.skuCode,
+          productSkuId: productSkuStock.id,
+          productSn: product.productSn,
+          productSubTitle: product.subTitle,
+          quantity: 1
+        }
+        const res = await shoppingCartService.addCartItem(cartItem)
+        if (res.code === 200) {
+          promptAction.showToast({
+            message: $r('app.string.insert_cart_success'),
+            duration: 1500
+          })
+        }
+      }
+    } else if (type === FinishType.BUY_NOW) {
 
+    }
+  }
+
+  async handleBarClick(item: BarData) {
+    const type = item.type
+    switch (type) {
+      case BarType.SHARE:
+        break;
+      case BarType.COLLECTION:
+        const product = this.info.product
+        const res = await collectionService.addCollection({
+          productId: product.id,
+          productName: product.name,
+          productPic: product.pic,
+          productPrice: product.price.toString(),
+          productSubTitle: product.subTitle
+        })
+        if (res.code === 200) {
+          this.favorite = BarType.COLLECTION
+          promptAction.showToast({
+            message: '收藏成功'
+          })
+        }
+        break;
+      case BarType.CANCEL_COLLECTION:
+        const productId = this.info.product.id
+        const action = await collectionService.delCollection(productId)
+        if (action.code === 200) {
+          this.favorite = BarType.CANCEL_COLLECTION
+          promptAction.showToast({
+            message: '收藏成功'
+          })
+        }
+      case BarType.PREFERENTIAL:
+        break;
     }
   }
 
@@ -294,16 +417,6 @@ export struct CommodityDetail {
           .fontSize($r('app.float.bigger_font_size'))
           .fontColor($r('app.color.focus_color'))
       }
-
-      // Row() {
-      //   Text($r('app.string.commodity_desc', payload.product.name, payload.product.subTitle))
-      //     .fontColor(Color.Black)
-      //     .fontSize($r('app.float.middle_font_size'))
-      //     .fontWeight(StyleConstants.FONT_WEIGHT_FOUR)
-      // }
-      // .width(StyleConstants.FULL_WIDTH)
-      // .margin({ top: $r('app.float.vp_four') })
-
       Column() {
         Text(payload.product.name)
           .fontColor(Color.Black)
@@ -319,7 +432,7 @@ export struct CommodityDetail {
       .margin({ top: $r('app.float.vp_four') })
 
       Flex({ justifyContent: FlexAlign.SpaceBetween }) {
-        ForEach(barData, (item: BarData) => {
+        ForEach(barData.filter(barItem => barItem.type !== this.favorite), (item: BarData) => {
           Row() {
             Image(item.icon !== undefined ? item.icon : '')
               .height($r('app.float.vp_fourteen'))
@@ -329,12 +442,29 @@ export struct CommodityDetail {
               .fontSize($r('app.float.micro_font_size'))
               .fontColor($r('app.color.sixty_alpha_black'))
           }
+          .onClick(() => this.handleBarClick(item))
         }, (item: BarData) => JSON.stringify(item))
       }
       .height($r('app.float.vp_fourteen'))
       .margin({ top: $r('app.float.vp_twelve') })
     }
     .backgroundStyle()
+  }
+
+  // 商品优惠信息
+  @Builder Preferential() {
+    Row() {
+      Marquee({
+        start: (this.promotionTip !== '' && this.promotionTip !== '暂无优惠'),
+        src: this.promotionTip
+      })
+        .layoutWeight(StyleConstants.LAYOUT_WEIGHT)
+        .fontColor(Color.Black)
+        .fontSize($r('app.float.middle_font_size'))
+        .fontWeight(StyleConstants.FONT_WEIGHT_FOUR)
+    }
+      .backgroundStyle()
+
   }
 
   // 已选商品属性
@@ -393,6 +523,7 @@ export struct CommodityDetail {
           .width(StyleConstants.FULL_WIDTH)
           .listDirection(Axis.Horizontal)
         }
+        .margin({ bottom: $r('app.float.vp_sixteen') })
         .layoutWeight(StyleConstants.LAYOUT_WEIGHT)
         .scrollable(ScrollDirection.Horizontal)
         .scrollBar(BarState.Off)
@@ -460,12 +591,12 @@ export struct CommodityDetail {
           .fontWeight(StyleConstants.FONT_WEIGHT_FIVE)
           .margin({ right: $r('app.float.vp_sixteen') })
         Flex({ direction: FlexDirection.Column }) {
-          ForEach(serviceList, (item: string, index?: number) => {
+          ForEach(this.serviceList, (item: ProductService, index?: number) => {
             Flex({ alignItems: ItemAlign.Center }) {
               Image($r('app.media.ic_supplying'))
                 .width($r('app.float.vp_sixteen'))
                 .height($r('app.float.vp_sixteen'))
-              Text(item)
+              Text(item.name)
                 .fontColor(Color.Black)
                 .fontSize($r('app.float.vp_fourteen'))
                 .margin({ left: $r('app.float.vp_eight') })
@@ -474,7 +605,7 @@ export struct CommodityDetail {
             .margin({
               bottom: index === serviceList.length - 1 ? 0 : $r('app.float.vp_sixteen')
             })
-          }, (item: string) => JSON.stringify(item))
+          }, (item: ProductService) => JSON.stringify(item))
         }
         .layoutWeight(StyleConstants.LAYOUT_WEIGHT)
       }
@@ -625,10 +756,10 @@ export struct CommodityDetail {
       CapsuleGroupButton({
         configs: [{
           text: $r('app.string.insert_cart'),
-          onClick: ():void => this.bottomBtnClick(FinishType.JOIN_SHOPPING_CART)
+          onClick: () => this.bottomBtnClick(FinishType.JOIN_SHOPPING_CART)
         }, {
           text: $r('app.string.buy_now'),
-          onClick: ():void => this.bottomBtnClick(FinishType.BUY_NOW)
+          onClick: () => this.bottomBtnClick(FinishType.BUY_NOW)
         }]
       })
     }
@@ -657,7 +788,7 @@ export struct CommodityDetail {
                 lg: GridConstants.SPAN_TWELVE }
             }) {
               if (this.info !== undefined) {
-                this.CustomSwiper(this.imgList)
+                this.CustomSwiper(this.productImgList)
               }
             }
 
@@ -672,6 +803,7 @@ export struct CommodityDetail {
               Column() {
                 if (this.info) {
                   this.TitleBar(this.info)
+                  this.Preferential()
                   this.Specification()
                   this.SpecialService()
                   this.UserEvaluate()

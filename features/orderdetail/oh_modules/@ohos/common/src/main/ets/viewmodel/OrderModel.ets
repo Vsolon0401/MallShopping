@@ -12,6 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { UserAddress } from './AddressModel';
+import { CartPromotionItem } from './CartModel';
+import { CouponHistoryDetail } from './HistoryModel';
 import { ProductSpecification } from './ProductModel';
 
 export enum OrderType {
@@ -74,4 +77,29 @@ export class updateOrderProps {
 export class OrderStatus {
   order?: Order;
   status?: number;
+}
+
+@Observed
+export class ConfirmOrderType {
+  cartPromotionItemList: CartPromotionItem[];
+  memberReceiveAddressList: UserAddress[];
+  couponHistoryDetailList: CouponHistoryDetail[];
+  integrationConsumeSetting: IntegrationConsumeSetting;
+  memberIntegration: number;
+  calcAmount: CalcAmount;
+}
+
+export class CalcAmount {
+  totalAmount: number;
+  freightAmount: number;
+  promotionAmount: number;
+  payAmount: number;
+}
+
+export class IntegrationConsumeSetting {
+  id: number;
+  deductionPerAmount: number;
+  maxPercentPerOrder: number;
+  useUnit: number;
+  couponStatus: number;
 }

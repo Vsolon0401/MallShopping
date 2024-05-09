@@ -28,7 +28,7 @@ axiosInstance.interceptors.request.use(async (config: InternalAxiosRequestConfig
     .catch((error) => {
       Logger.error('token:undefined', error)
     })
-  Logger.debug(JSON.stringify(config))
+
   return config
 }, (error) => {
   hilog.error(0xFFFF, 'fail:request', error)

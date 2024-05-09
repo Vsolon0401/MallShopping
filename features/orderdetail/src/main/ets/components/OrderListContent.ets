@@ -92,7 +92,7 @@ export struct OrderListContent {
                             bottom: $r('app.float.vp_twelve')
                           })
 
-                        CommodityOrderItem({ orderData: info })
+                        // CommodityOrderItem({ orderData: info })
                         Text($r('app.string.order_id', info.orderId))
                           .fontSize($r('app.float.small_font_size'))
                           .fontColor($r("app.color.sixty_alpha_black"))
@@ -189,21 +189,21 @@ export struct OrderListContent {
                 .width(StyleConstants.FULL_WIDTH)
                 .textAlign(TextAlign.Start)
 
-              CommodityList({
-                commodityList: this.commodityList,
-                column: this.currentBreakpoint === BreakpointConstants.BREAKPOINT_SM ?
-                StyleConstants.DISPLAY_TWO : StyleConstants.DISPLAY_THREE,
-                onClickItem: (data: Commodity) => {
-                  router.pushUrl({
-                    url: OrderDetailConstants.COMMODITY_DETAIL_PAGE_URL,
-                    params: {
-                      id: data.id
-                    }
-                  }).catch((err: Error) => {
-                    Logger.error(JSON.stringify(err));
-                  });
-                }
-              })
+              // CommodityList({
+              //   commodityList: this.commodityList,
+              //   column: this.currentBreakpoint === BreakpointConstants.BREAKPOINT_SM ?
+              //   StyleConstants.DISPLAY_TWO : StyleConstants.DISPLAY_THREE,
+              //   onClickItem: (data: Commodity) => {
+              //     router.pushUrl({
+              //       url: OrderDetailConstants.COMMODITY_DETAIL_PAGE_URL,
+              //       params: {
+              //         id: data.id
+              //       }
+              //     }).catch((err: Error) => {
+              //       Logger.error(JSON.stringify(err));
+              //     });
+              //   }
+              // })
             }
           }
         }

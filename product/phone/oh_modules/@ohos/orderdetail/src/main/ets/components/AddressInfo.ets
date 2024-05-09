@@ -14,55 +14,58 @@
  */
 
 import { StyleConstants } from '@ohos/common';
-import { addressInfo, AddressInfoParams } from '../viewmodel/OrderData';
+import { UserAddress } from '@ohos/common/src/main/ets/viewmodel/AddressModel';
+import { ConfirmOrderType } from '@ohos/common/src/main/ets/viewmodel/OrderModel';
+import { addressInfo, AddressInfoParams, AddressDetailInfo } from '../viewmodel/OrderData';
 
 @Component
 export struct AddressInfo {
-  private info?: AddressInfoParams;
-
-  aboutToAppear() {
-    this.info = addressInfo[0];
-  }
+  @Consume('selectedAddress') selectedAddress: UserAddress;
+  @Consume('confirmOrder') confirmOrderInfo: ConfirmOrderType;
+  private onSelectAddress?: () => void;
 
   build() {
-    Flex({
-      justifyContent: FlexAlign.Start,
-      alignItems: ItemAlign.Center
-    }) {
-      Image($r('app.media.ic_location'))
-        .width($r('app.float.vp_eighteen'))
-        .height($r('app.float.vp_eighteen'))
-        .margin({ right: $r('app.float.vp_twelve') })
+    if (this.selectedAddress.name !== '') {
       Flex({
-        justifyContent: FlexAlign.SpaceBetween,
+        justifyContent: FlexAlign.Start,
         alignItems: ItemAlign.Center
       }) {
-        Column(){
-          Row() {
-            Text(this.info?.name)
-              .fontSize($r('app.float.small_font_size'))
-              .margin({ right: $r('app.float.vp_twelve') })
-              .fontColor(Color.Black)
-            Text(this.info?.phone)
-              .fontSize($r('app.float.small_font_size'))
+        Image($r('app.media.ic_location'))
+          .width($r('app.float.vp_eighteen'))
+          .height($r('app.float.vp_eighteen'))
+          .margin({ right: $r('app.float.vp_twelve') })
+        Flex({
+          justifyContent: FlexAlign.SpaceBetween,
+          alignItems: ItemAlign.Center
+        }) {
+          Column(){
+            Row() {
+              Text(this.selectedAddress?.name)
+                .fontSize($r('app.float.small_font_size'))
+                .margin({ right: $r('app.float.vp_twelve') })
+                .fontColor(Color.Black)
+              Text(this.selectedAddress?.phoneNumber)
+                .fontSize($r('app.float.small_font_size'))
+                .fontColor($r("app.color.sixty_alpha_black"))
+            }
+            .margin({ bottom: $r('app.float.vp_eight') })
+            Text(`${this.selectedAddress?.province}${this.selectedAddress?.city}${this.selectedAddress?.region} ${this.selectedAddress?.detailAddress}`)
+              .fontSize($r('app.float.smaller_font_size'))
               .fontColor($r("app.color.sixty_alpha_black"))
           }
-          .margin({ bottom: $r('app.float.vp_eight') })
-          Text(`${this.info?.province}${this.info?.city}${this.info?.region} ${this.info?.detailAddress}`)
-            .fontSize($r('app.float.smaller_font_size'))
-            .fontColor($r("app.color.sixty_alpha_black"))
-        }
-        .alignItems(HorizontalAlign.Start)
+          .alignItems(HorizontalAlign.Start)
 
-        Image($r('app.media.ic_point'))
-          .height($r('app.float.vp_twelve'))
-          .width($r('app.float.vp_six'))
+          Image($r('app.media.ic_point'))
+            .height($r('app.float.vp_twelve'))
+            .width($r('app.float.vp_six'))
+        }
       }
+      .width(StyleConstants.FULL_WIDTH)
+      .backgroundColor(Color.White)
+      .borderRadius($r('app.float.vp_sixteen'))
+      .margin({ bottom: $r('app.float.vp_twelve') })
+      .padding($r('app.float.vp_sixteen'))
+      .onClick(() => this.onSelectAddress())
     }
-    .width(StyleConstants.FULL_WIDTH)
-    .backgroundColor(Color.White)
-    .borderRadius($r('app.float.vp_sixteen'))
-    .margin({ bottom: $r('app.float.vp_twelve') })
-    .padding($r('app.float.vp_sixteen'))
   }
 }

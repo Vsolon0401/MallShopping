@@ -55,7 +55,7 @@ export class ShoppingCartService {
    * @returns
    */
   async delCartItem(id: number) {
-    return Request.post('/cart/delete', {ids: id})
+    return Request.post(`/cart/delete?ids=${id}}`)
   }
 
   /**

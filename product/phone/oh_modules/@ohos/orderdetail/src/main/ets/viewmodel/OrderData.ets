@@ -29,6 +29,19 @@ export class AddressInfoParams {
   post_code?: string;
 }
 
+export class AddressDetailInfo {
+  id?: number;
+  memberId?: number;
+  defaultStatus: number;
+  province?: string;
+  phone?: string;
+  city?: string;
+  postCode?: string;
+  name?: string;
+  detailAddress?: string;
+  region?: string;
+}
+
 const addressInfo: AddressInfoParams[] = [
   {
     id: '1',

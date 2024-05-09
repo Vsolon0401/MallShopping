@@ -44,12 +44,11 @@ export struct ShopCart {
 
   private countSumPrice() {
     this.sumPrice = 0;
-
     this.isSelectAll = this.selectProducts.every((item: SelectProducts) => item.selected);
     let tempPrice: number = 0;
     this.selectProducts.forEach((item: SelectProducts) => {
       if (item.selected) {
-        let data = this.products.find((value: CartItem) => value.productName === item.key);
+        let data = this.products.find((value: CartItem) => (value.productName + value.productAttr) === item.key);
         const ins = (data !== undefined ? data.price * data.quantity : 0);
         tempPrice += ins;
       }
@@ -58,29 +57,20 @@ export struct ShopCart {
   }
 
   settleAccounts() {
-    // const orderList = this.products
-    //   .filter((item: CartItem, index: number) =>
-    //     item.id === this.selectProducts[index].key && this.selectProducts[index].selected === true)
-    //   .map((item: CartItem) => {
-    //     let returnParams: Order = {
-    //       orderId: item.id,
-    //       commodityId: Number.parseInt(item.commodityId),
-    //       price: item.price,
-    //       count: item.count,
-    //       specifications: item.specifications,
-    //       image: item.img[0],
-    //       description: item.description,
-    //       title: item.name
-    //     }
-    //     return returnParams;
-    //   });
-    // Logger.info('settleAccounts orderList length: ' + orderList.length);
-    // router.pushUrl({
-    //   url: ShopCartConstants.CONFIRM_ORDER_PAGE_URL,
-    //   params: { orderList: orderList }
-    // }).catch((err: Error) => {
-    //   Logger.error(JSON.stringify(err));
-    // });
+    const orderList = this.products
+      .filter((item: CartItem, index: number) =>
+        (item.productName + item.productAttr) === this.selectProducts[index].key
+        && this.selectProducts[index].selected === true)
+      .map((item: CartItem) => {
+        return item.id
+      });
+    Logger.info('settleAccounts orderList length: ' + orderList.length);
+    router.pushUrl({
+      url: ShopCartConstants.CONFIRM_ORDER_PAGE_URL,
+      params: { cartIdList: orderList }
+    }).catch((err: Error) => {
+      Logger.error(JSON.stringify(err));
+    });
   }
 
   onListChange() {
@@ -88,7 +78,7 @@ export struct ShopCart {
       this.products.forEach((item: CartItem) => {
         let payload: SelectProducts = { selected: false, key: '' };
         payload.selected = !!item.selected;
-        payload.key = item.productName;
+        payload.key = item.productName + item.productAttr;
         this.selectProducts.push(payload);
       })
     } else {
@@ -165,7 +155,6 @@ export struct ShopCart {
           }
           this.selectProducts.splice(index, 1, tempData)
           this.countSumPrice()
-          // this.needUpdateShopCart();
         })
       Image(item.productPic)
         .height($r('app.float.card_image_size'))
@@ -230,16 +219,11 @@ export struct ShopCart {
           .onClick(() => {
             // FIXME: 全选时更新购物车数量
             this.isSelectAll = !this.isSelectAll;
-            // this.products.map((item: CartItem) => {
-            //   // let returnParams = this.localDataManager.updateShopCart({
-            //   //   id: item.id,
-            //   //   count: item.count,
-            //   //   selected: !!this.isSelectAll,
-            //   //   specifications: []
-            //   // });
-            //   // return returnParams;
-            // })
-            this.needUpdateShopCart();
+            const selectAll: SelectProducts[] = this.selectProducts.map((item) => {
+              return { key: item.key, selected: this.isSelectAll }
+            })
+            this.selectProducts = selectAll
+            this.countSumPrice()
           })
         Text($r('app.string.select_all'))
           .fontSize($r('app.float.small_font_size'))

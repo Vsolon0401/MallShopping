@@ -34,6 +34,11 @@ export class ProductSpecification {
   value: string = '';
 }
 
+export class SkuSpecification {
+  key: string = '';
+  specList: string[];
+}
+
 export class ShopProps {
   id: string = '';
   commodityId: string = '';
@@ -93,7 +98,7 @@ export class Selected {
 export class SkuStock {
   id: number;
   productId: number;
-  skuCode: number;
+  skuCode: string;
   price: number | string;
   stock: number;
   lowStock: number;

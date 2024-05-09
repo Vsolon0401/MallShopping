@@ -71,6 +71,10 @@
     {
       "name": "attribute",
       "value": "Product Attribute"
+    },
+    {
+      "name": "cancel_collection",
+      "value": "Cancel Collection"
     }
   ]
 }
