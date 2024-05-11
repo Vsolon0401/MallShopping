@@ -21,31 +21,38 @@ import { OrderDetailConstants } from '../constants/OrderDetailConstants';
 import { CommodityOrderList } from './CommodityOrderList';
 import { LocalDataManager, Order, OrderOperationStatus, GridConstants, StyleConstants, orderService } from '@ohos/common';
 import { ConfirmOrderType, InsertOrderProps } from '@ohos/common/src/main/ets/viewmodel/OrderModel';
+import { UserAddress } from '@ohos/common/src/main/ets/viewmodel/AddressModel';
 
 @Component
 export struct ConfirmOrder {
   @Link cartIdList: number[];
+  @Consume('selectedAddress') selectedAddress: UserAddress;
   @Consume('confirmOrder') confirmOrderInfo: ConfirmOrderType;
   private onSelectAddress?: () => void;
-
-  private orderIds: string[] = [];
-  private localDataManager: LocalDataManager = LocalDataManager.instance();
 
   /**
    * Confirm order to request server.
    */
   async confirmOrder(status: number) {
-    // orderService.generateOrder({})
+    const res = await orderService.generateOrder({
+      cartIds: this.cartIdList,
+      // couponId: 0,
+      memberReceiveAddressId: this.selectedAddress.id,
+      payType: 0,
+      // useIntegration: 0
+    })
+    if (res.code === 200) {
+      promptAction.showToast({ message: $r('app.string.order_commit_success') });
+      router.replaceUrl({
+        url: OrderDetailConstants.PAY_ORDER_PAGE_URL,
+        params: { orderData: res.data }
+      });
+    }
   }
 
   submitConfirmOrder() {
     try {
       this.confirmOrder(OrderOperationStatus.UN_PAY);
-      promptAction.showToast({ message: $r('app.string.order_commit_success') });
-      router.replaceUrl({
-        url: OrderDetailConstants.PAY_ORDER_PAGE_URL,
-        params: { orderIds: this.orderIds }
-      });
     } catch (err) {
       promptAction.showToast({ message: $r('app.string.order_commit_fail', err) });
     }
@@ -75,7 +82,9 @@ export struct ConfirmOrder {
               offset: { lg: GridConstants.OFFSET_TWO }
             }) {
               Column() {
-                AddressInfo()
+                AddressInfo({
+                  onSelectAddress: this.onSelectAddress
+                })
                 CommodityOrderList()
               }
             }

@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { ES_PRODUCT_SORT_STATUS } from '@ohos/common';
 
 export class ButtonInfoModel {
   index: number = 0;

@@ -4,7 +4,7 @@ export class UserAddress {
   memberId?: number;
   name: string = '';
   phoneNumber: string;
-  defaultStatus: number;
+  defaultStatus?: number;
   postCode: string;
   province: string;
   city: string;

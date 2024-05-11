@@ -54,6 +54,11 @@
       <excludeFolder url="file://$MODULE_DIR$/../../features/orderdetail/.test" />
       <excludeFolder url="file://$MODULE_DIR$/../../features/orderdetail/.preview" />
       <excludeFolder url="file://$MODULE_DIR$/../../features/orderdetail/oh_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../previewer/car" />
+      <excludeFolder url="file://$MODULE_DIR$/../previewer/liteWearable" />
+      <excludeFolder url="file://$MODULE_DIR$/../previewer/smartVision" />
+      <excludeFolder url="file://$MODULE_DIR$/../previewer/tv" />
+      <excludeFolder url="file://$MODULE_DIR$/../previewer/wearable" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">

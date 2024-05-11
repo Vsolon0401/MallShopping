@@ -19,12 +19,12 @@ export class OrderService {
     return Request.post('/order/generateOrder', params)
   }
 
-  async fetchOrderList() {
-    return Request.get(`/order/list`)
+  async fetchOrderList(status: number = -1, pageNum: number = 1, pageSize: number = 10) {
+    return Request.get(`/order/list?pageNum=${pageNum}&pageSize=${pageSize}&status=${status}`)
   }
 
-  async payOrderSuccess() {
-    return Request.post('/order/paySuccess', {
+  async payOrderSuccess(orderId: number, payType: number) {
+    return Request.post(`/order/paySuccess?orderId=${orderId}&payType=${payType}`, {
 
     }, {
       header: {
@@ -34,11 +34,11 @@ export class OrderService {
   }
 
   async fetchOrderDetail(orderId: number) {
-    return Request.get(`/order/detail/${orderId}`)
+    return Request.get(`/order/detail/${orderId.toString()}`)
   }
 
-  async cancelUserOrder() {
-    return Request.post('/order/cancelUserOrder', {
+  async cancelUserOrder(orderId: number) {
+    return Request.post(`/order/cancelUserOrder?orderId=${orderId}`, {
 
     }, {
       header: {
@@ -47,8 +47,8 @@ export class OrderService {
     })
   }
 
-  async confirmReceiveOrder() {
-    return Request.post('/order/confirmReceiveOrder', {
+  async confirmReceiveOrder(orderId: number) {
+    return Request.post(`/order/confirmReceiveOrder?orderId=${orderId}`, {
 
     }, {
       header: {

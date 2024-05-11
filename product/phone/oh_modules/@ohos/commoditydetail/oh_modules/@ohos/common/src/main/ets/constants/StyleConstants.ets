@@ -171,4 +171,15 @@ export class StyleConstants {
    * Number of value: -1.
    */
   static readonly MINUS_ONE: number = -1;
+
+  /**
+   * Water flow layout weight value:1.
+   */
+  static readonly WATER_FLOW_LAYOUT_WEIGHT: number = 1;
+
+  /**
+   * Water flow layout columns template.
+   */
+  static readonly WATER_FLOW_COLUMNS_TEMPLATE: string = '1fr 1fr';
+
 }

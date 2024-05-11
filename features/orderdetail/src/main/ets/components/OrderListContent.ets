@@ -28,22 +28,28 @@ import {
   CommodityList,
   StyleConstants,
   BreakpointConstants,
-  GridConstants
+  GridConstants,
+  orderService,
 } from '@ohos/common';
-import { updateOrderProps } from '@ohos/common/src/main/ets/viewmodel/OrderModel';
+import { OrderInfo, OrderItem, OrderStatus, updateOrderProps } from '@ohos/common/src/main/ets/viewmodel/OrderModel';
 
 @Component
 export struct OrderListContent {
   @StorageProp('currentBreakpoint') currentBreakpoint: string = 'sm';
-  @Consume orderList: Order[];
-  @Consume commodityList: Commodity[];
-  private status: OrderOperationStatus = OrderOperationStatus.ALLStatus;
-  private localDataManager: LocalDataManager = LocalDataManager.instance();
+  @Consume('orderList') orderInfo: OrderInfo[]
 
-  paymentHandler(orderId: string, status: number, msg: string | Resource) {
-    let orderIdStatus: updateOrderProps = { orderId, status }
-    this.orderList = this.localDataManager.updateOrder(orderIdStatus);
-    promptAction.showToast({ message: `${msg}${OrderDetailConstants.SUCCESS}` });
+  async paymentHandler(orderId: number, status: number) {
+    let response = null;
+    switch (status) {
+      case OrderStatus.PendingPayment:
+        response = await orderService.payOrderSuccess(orderId, 0) // todo：选择支付方法
+      case OrderStatus.Completed:
+        response = await orderService.confirmReceiveOrder(orderId)
+    }
+
+    if (response.code === 200) {
+      promptAction.showToast({ message: `${response.message}${OrderDetailConstants.SUCCESS}` });
+    }
   }
 
   build() {
@@ -65,11 +71,9 @@ export struct OrderListContent {
             offset: { lg: GridConstants.OFFSET_TWO }
           }) {
             Column() {
-              if (this.status === OrderOperationStatus.ALLStatus ||
-                this.orderList.filter(item => item.status === this.status).length > 0) {
+              if (this.orderInfo?.length > 0) {
                 List() {
-                  ForEach(this.status === OrderOperationStatus.ALLStatus ?
-                  this.orderList : this.orderList.filter(item => item.status === this.status), (info: Order) => {
+                  ForEach(this.orderInfo, (info: OrderInfo) => {
                     ListItem() {
                       Flex({ direction: FlexDirection.Column }) {
                         Flex({ justifyContent: FlexAlign.End }) {
@@ -92,8 +96,23 @@ export struct OrderListContent {
                             bottom: $r('app.float.vp_twelve')
                           })
 
-                        // CommodityOrderItem({ orderData: info })
-                        Text($r('app.string.order_id', info.orderId))
+                        // FIXME: ui
+                        Scroll() {
+                          ForEach(info?.orderItemList, (item: OrderItem) => {
+                            CommodityOrderItem({
+                              orderData: {
+                                productAttr: item.productAttr,
+                                productPic: item.productPic,
+                                productName: item.productName,
+                                price: item.productPrice,
+                                quantity: item.productQuantity
+                              }
+                            });
+                          }, (item: Order, index?: number) => JSON.stringify(item) + index);
+                        }
+                        .scrollable(ScrollDirection.Horizontal)
+
+                        Text($r('app.string.order_id', info.orderSn))
                           .fontSize($r('app.float.small_font_size'))
                           .fontColor($r("app.color.sixty_alpha_black"))
                           .width(StyleConstants.FULL_WIDTH)
@@ -112,32 +131,30 @@ export struct OrderListContent {
                           alignItems: ItemAlign.End,
                           justifyContent: FlexAlign.End
                         }) {
-                          Text($r('app.string.goods_count', info.count,
-                            info.status !== undefined ? payEnum[info.status] : '', info.price * info.count))
+                          Text($r('app.string.goods_count', info.orderItemList?.length || 0,
+                            info.status !== undefined ? payEnum[info.status] : '', info.payAmount))
                             .fontSize($r('app.float.small_font_size'))
                             .margin({
                               bottom: $r('app.float.vp_sixteen')
                             })
                           Flex({ justifyContent: FlexAlign.End }) {
-                            if (info.status === OrderOperationStatus.UN_PAY) {
+                            if (info.status === OrderStatus.PendingPayment) {
                               Button($r('app.string.pay_now'))
                                 .height($r('app.float.order_list_button_height'))
                                 .fontColor(Color.White)
                                 .backgroundColor($r('app.color.focus_color'))
                                 .borderRadius($r('app.float.vp_fourteen'))
                                 .onClick(() => {
-                                  this.paymentHandler(info.orderId !== undefined ? info.orderId : '',
-                                    OrderOperationStatus.DELIVERED, OrderDetailConstants.ORDER_PAY);
+                                  this.paymentHandler(info.id, OrderStatus.PendingPayment);
                                 })
-                            } else if (info.status === OrderOperationStatus.DELIVERED) {
+                            } else if (info.status === OrderStatus.ToBeShipped || info.status === OrderStatus.Shipped) {
                               Button($r('app.string.confirm_harvest'))
                                 .height($r('app.float.order_list_button_height'))
                                 .fontColor(Color.White)
                                 .backgroundColor($r('app.color.focus_color'))
                                 .borderRadius($r('app.float.vp_fourteen'))
                                 .onClick(() => {
-                                  this.paymentHandler(info.orderId !== undefined ? info.orderId : '',
-                                    OrderOperationStatus.RECEIPT, OrderDetailConstants.ORDER_CONFIRM);
+                                  this.paymentHandler(info.id, OrderStatus.Completed);
                                 })
                             }
                           }

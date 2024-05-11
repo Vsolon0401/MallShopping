@@ -1,5 +1,9 @@
 /oh_modules
 /**/build
 /**/.preview
+/**/oh_modules
 /**/**/build
 /**/**/.preview
+/**/**/oh_modules
+/.hvigor
+/.idea

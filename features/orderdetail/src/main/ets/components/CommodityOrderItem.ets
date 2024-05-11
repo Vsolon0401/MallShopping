@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { CartPromotionItem, Order, ProductSpecification, StyleConstants } from '@ohos/common';
+import { CartPromotionItem, Logger, Order, ProductSpecification, StyleConstants } from '@ohos/common';
 
 @Component
 export struct CommodityOrderItem {
@@ -22,6 +22,7 @@ export struct CommodityOrderItem {
   private onCommodityClick?: () => void = () => {};
 
   aboutToAppear() {
+    Logger.debug(JSON.stringify(this.orderData))
     if (this.orderData !== undefined) {
       const specificationList: ProductSpecification[] = JSON.parse(this.orderData.productAttr)
       this.specification = specificationList.reduce((acc, curSp) => {
@@ -50,7 +51,7 @@ export struct CommodityOrderItem {
             alignItems: ItemAlign.Center
           }) {
             Flex() {
-              Text($r('app.string.commodity_piece_description', this.orderData.productName, this.orderData.productSubTitle))
+              Text($r('app.string.commodity_piece_description', this.orderData.productName, this.orderData?.productSubTitle))
                 .width(StyleConstants.FULL_WIDTH)
                 .fontColor(Color.Black)
                 .maxLines(StyleConstants.TWO_TEXT_LINE)

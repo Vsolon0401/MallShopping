@@ -6,7 +6,7 @@ const LOG = 'PreferencesUtils-PUT'
 // 默认文件名(数据库表名)，可以在构造函数进行修改
 const PREFERENCES_NAME = 'store'
 const KEY_PREFERENCES = 'preferences'
-type ValueType = number | string | boolean | Array<number> | Array<string> | Array<boolean>
+type ValueType = number | string | boolean | Array<number> | Array<string> | Array<boolean> | any
 
 export class PreferencesUtils {
   // preferences的文件名-数据库表名

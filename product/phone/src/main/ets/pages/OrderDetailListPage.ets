@@ -15,24 +15,25 @@
 
 import router from '@ohos.router';
 import { OrderDetailList } from '@ohos/orderdetail';
-import { LocalDataManager, Order, Commodity } from '@ohos/common';
+import { LocalDataManager, Order, Commodity, orderService, OrderInfo, Logger } from '@ohos/common';
 
 @Entry
 @Component
 struct OrderDetailListPage {
-  @Provide orderList: Order[] = [];
-  @Provide commodityList: Commodity[] = [];
-  @Provide currentTabIndex: number = 0;
-  private localDataManager: LocalDataManager = LocalDataManager.instance();
+  @Provide('orderList') orderInfo: OrderInfo[] = []
+  @Provide @Watch('fetchOrderList') currentTabIndex: number = 0;
 
   aboutToAppear() {
     let params = router.getParams() as Record<string, Object>;
     this.currentTabIndex = params.tabIndex as number || 0;
+    this.fetchOrderList()
   }
 
-  onPageShow() {
-    this.orderList = this.localDataManager.queryOrderList();
-    this.commodityList = this.localDataManager.queryCommodityList();
+  fetchOrderList() {
+    orderService.fetchOrderList(this.currentTabIndex).then(res => {
+      Logger.debug(JSON.stringify(res.data?.list))
+      this.orderInfo = res.data?.list as OrderInfo[]
+    })
   }
 
   build() {

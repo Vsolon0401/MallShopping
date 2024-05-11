@@ -57,9 +57,9 @@ const memberButton: IconButtonModel[] = [
 ]
 
 const activityButton: IconButtonModel[] = [
-  new IconButtonModel($r('app.media.ic_official'), $r('app.string.official_service')),
-  new IconButtonModel($r('app.media.ic_cash'), $r('app.string.cash')),
-  new IconButtonModel($r('app.media.ic_trade'), $r('app.string.trade_in')),
+  new IconButtonModel($r('app.media.ic_person_collect'), $r('app.string.official_service')), // 收藏
+  new IconButtonModel($r('app.media.ic_person_address'), $r('app.string.cash')), // 地址
+  new IconButtonModel($r('app.media.ic_person_history'), $r('app.string.trade_in')), // 足迹
   new IconButtonModel($r('app.media.ic_my_evaluation'), $r('app.string.my_evaluation'))
 ]
 

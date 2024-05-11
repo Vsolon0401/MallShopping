@@ -115,6 +115,14 @@
     {
       "name": "capsule_height",
       "value": "40vp"
+    },
+    {
+      "name": "water_flow_columns_gap",
+      "value": "8vp"
+    },
+    {
+      "name": "water_flow_row_gap",
+      "value": "8vp"
     }
   ]
 }

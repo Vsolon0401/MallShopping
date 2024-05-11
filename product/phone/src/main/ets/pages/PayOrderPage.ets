@@ -15,36 +15,60 @@
 
 import router from '@ohos.router';
 import { PayOrder } from '@ohos/orderdetail';
-import { LocalDataManager, Order } from '@ohos/common';
+import { LocalDataManager, Logger, Order, OrderItem, orderService } from '@ohos/common';
+import { UserAddress } from '@ohos/common/src/main/ets/viewmodel/AddressModel';
+import { ConfirmOrderType, OrderDetail, OrderInfo } from '@ohos/common/src/main/ets/viewmodel/OrderModel';
 
 @Entry
 @Component
 struct PayOrderPage {
-  @Provide('orderList') data: Order[] = [];
-  @State totalPrice: number = 0;
-  private localDataManager: LocalDataManager = LocalDataManager.instance();
 
-  aboutToAppear() {
-    let params = router.getParams() as Record<string, Object>;
-    let order: Order = params.order as Order;
-    let orderIds: string[] = params.orderIds as string[];
-    if (order) {
-      this.data = [order];
-    }
-    if (orderIds) {
-      const orders = this.localDataManager.queryOrderList();
-      this.data = orders.filter(order => orderIds.includes(order.orderId));
-    }
-    this.totalPrice = this.data.reduce((sum, i) => {
-      return sum + i.price * i.count;
-    }, 0)
+  @Provide('orderInfo') orderInfo: OrderInfo = new OrderInfo()
+  @Provide('selectedAddress') selectedAddress: UserAddress = new UserAddress();
+  @Provide('confirmOrder') confirmOrderInfo: ConfirmOrderType = new ConfirmOrderType();
+
+  onPageShow() {
+    const params = router.getParams() as Record<string, Object>;
+    const orderInfo = params.orderData as any
+    orderService.fetchOrderDetail(orderInfo.order.id).then(res => {
+      const orderInfo = res.data as OrderInfo
+      // 初始化地址
+      this.selectedAddress = {
+        name: orderInfo.receiverName,
+        phoneNumber: orderInfo.receiverPhone,
+        province: orderInfo.receiverProvince,
+        city: orderInfo.receiverCity,
+        detailAddress: orderInfo.receiverDetailAddress,
+        region: orderInfo.receiverRegion,
+        postCode: orderInfo.receiverPostCode
+      }
+      // 初始化CartItem
+      this.confirmOrderInfo = {
+        cartPromotionItemList: orderInfo.orderItemList.map((orderItem: OrderItem) => {
+          return {
+            productAttr: orderItem.productAttr,
+            productPic: orderItem.productPic,
+            productName: orderItem.productName,
+            price: orderItem.productPrice,
+            quantity: orderItem.productQuantity
+          }
+        }),
+        memberReceiveAddressList: [],
+        couponHistoryDetailList: [],
+        calcAmount: {
+          totalAmount: 0,
+          freightAmount: orderInfo.freightAmount,
+          promotionAmount: 0,
+          payAmount: orderInfo.payAmount,
+        }
+      }
+      this.orderInfo = orderInfo
+    })
   }
 
   build() {
     Column() {
-      PayOrder({
-        totalPrice: $totalPrice
-      })
+      PayOrder()
     }
   }
 }

@@ -111,6 +111,14 @@
     {
       "name": "wait_pay",
       "value": "待支付"
+    },
+    {
+      "name": "order_cancel",
+      "value": "取消订单"
+    },
+    {
+      "name": "info_error",
+      "value": "%s失败"
     }
   ]
 }

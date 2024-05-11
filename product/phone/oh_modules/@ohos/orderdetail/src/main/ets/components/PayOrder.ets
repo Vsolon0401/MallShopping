@@ -25,31 +25,65 @@ import {
   Order,
   OrderOperationStatus,
   StyleConstants,
-  GridConstants
+  GridConstants,
+  orderService
+,
 } from '@ohos/common';
-import { updateOrderProps } from '@ohos/common/src/main/ets/viewmodel/OrderModel';
+import { OrderInfo, OrderItem, OrderStatus, updateOrderProps } from '@ohos/common/src/main/ets/viewmodel/OrderModel';
 
 @Component
 export struct PayOrder {
   @StorageProp('currentBreakpoint') currentBreakpoint: string = 'sm';
-  @Consume('orderList') data: Order[];
-  @Link totalPrice: number;
-  private localDataManager: LocalDataManager = LocalDataManager.instance();
+  @Consume('orderInfo') orderInfo: OrderInfo;
 
-  @Builder OrderStatus() {
+  async handleCancel() {
+    const res = await orderService.cancelUserOrder(this.orderInfo.id)
+    if (res.code === 200) {
+      promptAction.showToast({
+        message: $r('app.string.info_success', '取消订单')
+      });
+      router.back();
+    }
+  }
+
+  async handlePay() {
+    const res = await orderService.payOrderSuccess(this.orderInfo.id, this.orderInfo.payType)
+    if (res.code === 200) {
+      promptAction.showToast({
+        message: $r('app.string.info_success', OrderDetailConstants.PAYMENT_ENUM[OrderOperationStatus.UN_PAY])
+      });
+      router.back();
+    } else {
+      promptAction.showToast({
+        message: $r('app.string.info_error', OrderDetailConstants.PAYMENT_ENUM[OrderOperationStatus.UN_PAY])
+      });
+    }
+  }
+
+  async confirmReceipt() {
+    const res = await orderService.confirmReceiveOrder(this.orderInfo.id)
+    if (res.code === 200) {
+      promptAction.showToast({
+        message: $r('app.string.info_success', OrderDetailConstants.PAYMENT_ENUM[OrderOperationStatus.DELIVERED])
+      });
+      router.back();
+    }
+  }
+
+  @Builder OrderStatusPanel() {
     Row() {
       Column() {
-        Text(OrderDetailConstants.STATUS_ENUM[this.data[0].status !== undefined?this.data[0].status:0])
+        Text(OrderDetailConstants.STATUS_ENUM[this.orderInfo.status !== undefined ? this.orderInfo.status : 0])
           .fontSize($r('app.float.big_font_size'))
           .margin({ bottom: $r('app.float.vp_two') })
           .fontColor(Color.White)
-        Text(OrderDetailConstants.STATUS_DESC_ENUM[this.data[0]?.status !== undefined?this.data[0]?.status:0])
+        Text(OrderDetailConstants.STATUS_DESC_ENUM[this.orderInfo.status !== undefined ? this.orderInfo.status : 3])
           .fontSize($r('app.float.smaller_font_size'))
           .opacity(StyleConstants.SIXTY_OPACITY)
           .margin({ bottom: $r('app.float.vp_two') })
           .fontColor(Color.White)
-        Text(this.data[0].createTime !== undefined ?
-          formatDate(new Date(this.data[0].createTime).valueOf(), OrderDetailConstants.DATE_FORMAT) : '')
+        Text(this.orderInfo.createTime !== undefined ?
+          formatDate(new Date(this.orderInfo.createTime).valueOf(), OrderDetailConstants.DATE_FORMAT) : '')// FIXME:
           .fontSize($r('app.float.smaller_font_size'))
           .opacity(StyleConstants.SIXTY_OPACITY)
           .fontColor(Color.White)
@@ -74,7 +108,7 @@ export struct PayOrder {
       Flex({ justifyContent: FlexAlign.SpaceBetween }) {
         Text($r('app.string.product_price'))
           .fontSize($r('app.float.small_font_size'))
-        Text($r('app.string.commodity_piece', this.totalPrice))
+        Text($r('app.string.commodity_piece', this.orderInfo.totalAmount))
           .textAlign(TextAlign.End)
           .fontSize($r('app.float.small_font_size'))
       }
@@ -83,7 +117,7 @@ export struct PayOrder {
       Flex({ justifyContent: FlexAlign.SpaceBetween }) {
         Text($r('app.string.fee_price'))
           .fontSize($r('app.float.small_font_size'))
-        Text($r('app.string.money', OrderDetailConstants.FEE_PRICE))
+        Text($r('app.string.money', this.orderInfo.freightAmount))
           .textAlign(TextAlign.End)
           .fontSize($r('app.float.small_font_size'))
       }
@@ -92,7 +126,7 @@ export struct PayOrder {
       Flex({ justifyContent: FlexAlign.SpaceBetween }) {
         Text($r('app.string.order_money'))
           .fontSize($r('app.float.small_font_size'))
-        Text($r('app.string.commodity_piece', this.totalPrice))
+        Text($r('app.string.commodity_piece', this.orderInfo.payAmount))
           .textAlign(TextAlign.End)
           .fontSize($r('app.float.small_font_size'))
       }
@@ -107,44 +141,23 @@ export struct PayOrder {
     Flex({
       alignItems: ItemAlign.Center
     }) {
-      if (this.data[0].status === OrderOperationStatus.UN_PAY) {
+      Button($r('app.string.order_cancel'))
+        .backgroundColor(Color.White)
+        .height($r('app.float.button_height'))
+        .width(StyleConstants.FULL_WIDTH)
+        .onClick(() => this.handleCancel())
+      if (this.orderInfo.status === OrderStatus.PendingPayment) {
         Button($r('app.string.btn_pay'))
           .backgroundColor($r('app.color.focus_color'))
           .height($r('app.float.button_height'))
           .width(StyleConstants.FULL_WIDTH)
-          .onClick(() => {
-            this.data.forEach((item: Order) => {
-              if (item.orderId !== undefined) {
-                let UpdateOrderParameter: updateOrderProps = {
-                  orderId: item.orderId,
-                  status: OrderOperationStatus.DELIVERED
-                }
-                this.localDataManager.updateOrder(UpdateOrderParameter);
-              }
-            })
-            promptAction.showToast({
-              message: $r('app.string.info_success', OrderDetailConstants.PAYMENT_ENUM[OrderOperationStatus.UN_PAY])
-            });
-            router.back();
-          })
-      } else if (this.data[0].status === OrderOperationStatus.DELIVERED) {
+          .onClick(() => this.handlePay())
+      } else if (this.orderInfo.status === OrderStatus.ToBeShipped || this.orderInfo.status === OrderStatus.Shipped) {
         Button($r('app.string.confirm_harvest'))
           .height($r('app.float.button_height'))
           .width(StyleConstants.FULL_WIDTH)
           .backgroundColor($r('app.color.focus_color'))
-          .onClick(() => {
-            if (this.data[0].orderId !== undefined) {
-              let UpdateOrderParameter: updateOrderProps = {
-                orderId: this.data[0].orderId,
-                status: OrderOperationStatus.RECEIPT
-              }
-              this.localDataManager.updateOrder(UpdateOrderParameter);
-              promptAction.showToast({
-                message: $r('app.string.info_success', OrderDetailConstants.PAYMENT_ENUM[OrderOperationStatus.DELIVERED])
-              });
-              router.back();
-            }
-          })
+          .onClick(() => this.confirmReceipt())
       } else {
         Row()
       }
@@ -181,7 +194,7 @@ export struct PayOrder {
                 offset: { lg: GridConstants.OFFSET_TWO }
               }) {
                 Column() {
-                  this.OrderStatus()
+                  this.OrderStatusPanel()
                   AddressInfo()
                   CommodityOrderList()
                   this.CostInfo()

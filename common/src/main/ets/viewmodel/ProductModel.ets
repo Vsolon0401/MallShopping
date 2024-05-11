@@ -144,3 +144,4 @@ export class Coupon {
   code: string;
   memberLevel: number;
 }
+

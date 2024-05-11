@@ -25,12 +25,21 @@ export struct CommodityOrderList {
 
   build() {
     Column() {
-      Text('商品信息')
-        .fontSize($r('app.float.small_font_size'))
+      Flex({ justifyContent: FlexAlign.SpaceBetween }) {
+        Text('商品信息')
+          .fontSize($r('app.float.small_font_size'))
+      }
+      .padding({
+        top: $r('app.float.vp_twelve'),
+        bottom: $r('app.float.vp_twelve')
+      })
+      .height($r('app.float.order_item_height'))
+
       Divider()
         .height($r('app.float.vp_one'))
         .backgroundColor($r("app.color.five_alpha_black"))
-      ForEach(this.confirmOrderInfo.cartPromotionItemList, (item: CartPromotionItem) => {
+
+      ForEach(this.confirmOrderInfo?.cartPromotionItemList, (item: CartPromotionItem) => {
         CommodityOrderItem({
           orderData: item
         });

@@ -1,5 +1,5 @@
 import router from '@ohos.router';
-import { ConfirmOrder } from '@ohos/orderdetail';
+import { AddressSelected, ConfirmOrder } from '@ohos/orderdetail';
 import { Order, Logger, orderService } from '@ohos/common';
 import { PageConstants } from '../constants/PageConstants';
 import { ConfirmOrderType } from '@ohos/common/src/main/ets/viewmodel/OrderModel';
@@ -36,10 +36,12 @@ struct ConfirmPageOrder {
       if (!this.isAddressSelected) {
         ConfirmOrder({
           cartIdList: $cartIdList,
-          onSelectAddress: this.onSelectAddress
+          onSelectAddress: () => this.onSelectAddress()
         })
       } else {
-
+        AddressSelected({
+          onSelectAddress: () => this.onSelectAddress()
+        })
       }
 
     }

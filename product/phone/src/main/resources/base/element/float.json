@@ -27,6 +27,18 @@
     {
       "name": "bar_width",
       "value": "96vp"
+    },
+    {
+      "name": "search_background_height",
+      "value": "90vp"
+    },
+    {
+      "name": "water_flow_columns_gap",
+      "value": "8vp"
+    },
+    {
+      "name": "water_flow_row_gap",
+      "value": "8vp"
     }
   ]
 }

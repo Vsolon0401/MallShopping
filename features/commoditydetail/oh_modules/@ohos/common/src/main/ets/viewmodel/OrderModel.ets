@@ -30,7 +30,8 @@ export enum OrderOperationStatus {
   DELIVERED = 1,
   RECEIPT = 2,
   CONSIGNMENT = 3,
-  ALLStatus = 4
+  CLOSED = 4,
+  ALLStatus = -1
 }
 
 @Observed
@@ -74,18 +75,18 @@ export class updateOrderProps {
   amount?: number;
 }
 
-export class OrderStatus {
-  order?: Order;
-  status?: number;
-}
+// export class OrderStatus {
+//   order?: Order;
+//   status?: number;
+// }
 
 @Observed
 export class ConfirmOrderType {
   cartPromotionItemList: CartPromotionItem[];
   memberReceiveAddressList: UserAddress[];
   couponHistoryDetailList: CouponHistoryDetail[];
-  integrationConsumeSetting: IntegrationConsumeSetting;
-  memberIntegration: number;
+  integrationConsumeSetting?: IntegrationConsumeSetting;
+  memberIntegration?: number;
   calcAmount: CalcAmount;
 }
 
@@ -102,4 +103,96 @@ export class IntegrationConsumeSetting {
   maxPercentPerOrder: number;
   useUnit: number;
   couponStatus: number;
+}
+
+export enum PayType {
+  NoPay,
+  Alipay,
+  WechatPay
+}
+
+export enum OrderStatus {
+  PendingPayment,
+  ToBeShipped,
+  Shipped,
+  Completed,
+  Closed,
+  InvalidOrder
+}
+
+export class OrderDetail {
+  id: number;
+  memberId: number;
+  couponId: number;
+  orderSn: string;
+  createTime?: string | Date;
+  memberUsername: string;
+  totalAmount: number;
+  payAmount: number;
+  freightAmount: number;
+  promotionAmount: number;
+  integrationAmount: number;
+  couponAmount: number;
+  discountAmount: number;
+  // "支付方式：0->未支付；1->支付宝；2->微信"
+  payType: PayType;
+  sourceType: number;
+  status: OrderStatus;
+  orderType: number;
+  deliveryCompany: string;
+  deliverySn: string;
+  autoConfirmDay: number;
+  integration: number;
+  growth: number;
+  promotionInfo: number;
+  billType: number;
+  billHeader: string;
+  billContent: string;
+  billReceiverPhone: string;
+  billReceiverEmail: string;
+  receiverName: string;
+  receiverPhone: string;
+  receiverPostCode: string;
+  receiverProvince: string;
+  receiverCity: string;
+  receiverRegion: string;
+  receiverDetailAddress: string;
+  note: string;
+  confirmStatus: number;
+  deleteStatus: number;
+  useIntegration: number;
+  paymentTime: string | Date;
+  deliveryTime: string | Date;
+  receiveTime: string | Date;
+  commentTime: string | Date;
+  modifyTime: string | Date;
+}
+
+export class OrderItem {
+  id: number;
+  orderId: number;
+  orderSn: string;
+  productId: number;
+  productPic: string;
+  productName: string;
+  productBrand: string;
+  productSn: string;
+  productPrice: number;
+  productQuantity: number;
+  productSkuId: number;
+  productSkuCode: string;
+  productCategoryId: number;
+  promotionName: string;
+  promotionAmount: number;
+  couponAmount: number;
+  integrationAmount: number;
+  realAmount: number;
+  giftIntegration: number;
+  giftGrowth: number;
+  productAttr: string;
+}
+
+
+export class OrderInfo extends OrderDetail {
+  orderItemList: OrderItem[]
 }

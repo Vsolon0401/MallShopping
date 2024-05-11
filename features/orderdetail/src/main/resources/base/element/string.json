@@ -111,6 +111,14 @@
     {
       "name": "wait_pay",
       "value": "To be paid"
+    },
+    {
+      "name": "order_cancel",
+      "value": "order_cancel"
+    },
+    {
+      "name": "info_error",
+      "value": "%s Fail"
     }
   ]
 }

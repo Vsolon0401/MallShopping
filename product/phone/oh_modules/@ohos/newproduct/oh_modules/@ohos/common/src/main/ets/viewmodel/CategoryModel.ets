@@ -80,3 +80,69 @@ export class Classify {
     this.name = title
   }
 }
+
+/**
+ * CommonResult«CommonPage«EsProduct»»
+ */
+export class SearchResponse {
+  code?: number;
+  data?: SearchResult;
+  message?: string;
+}
+
+/**
+ * CommonPage«EsProduct»
+ */
+export class SearchResult {
+  list?: EsProduct[];
+  pageNum?: number;
+  pageSize?: number;
+  total?: number;
+  totalPage?: number;
+}
+
+/**
+ * EsProduct
+ */
+export class EsProduct {
+  attrValueList?: EsProductAttributeValue[];
+  brandId?: number;
+  brandName?: string;
+  id?: number;
+  keywords?: string;
+  name?: string;
+  newStatus?: number;
+  pic?: string;
+  price?: number;
+  productCategoryId?: number;
+  productCategoryName?: string;
+  productSn?: string;
+  promotionType?: number;
+  recommandStatus?: number;
+  sale?: number;
+  sort?: number;
+  stock?: number;
+  subTitle?: string;
+}
+
+/**
+ * EsProductAttributeValue
+ */
+export class EsProductAttributeValue {
+  id?: number;
+  name?: string;
+  productAttributeId?: number;
+  type?: number;
+  value?: string;
+}
+
+export enum ES_PRODUCT_SORT_STATUS {
+  /** 按相关度 **/
+  RELEVANCE = 0,
+  /** 按销量 **/
+  SALES = 2,
+  /** 价格从低到高 **/
+  PRICE_DOWN = 3,
+  /** 价格从高到低 **/
+  PRICE_UP = 4
+}

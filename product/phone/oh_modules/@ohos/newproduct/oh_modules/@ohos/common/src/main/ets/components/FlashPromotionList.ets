@@ -71,7 +71,7 @@ export struct FlashPromotionList {
   @Builder
   FlashProduct() {
     Scroll() {
-      if (this.flashPromotion.productList.length > 0) {
+      if (this.flashPromotion.productList?.length > 0) {
         List() {
           LazyForEach(new CommonDataSource<FlashProduct>(this.flashPromotion.productList), (item: FlashProduct) => {
             ListItem() {

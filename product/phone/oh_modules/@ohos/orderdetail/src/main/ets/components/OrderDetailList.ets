@@ -31,16 +31,12 @@ export struct OrderDetailList {
         index: this.currentTabIndex
       }) {
         TabContent() {
-          OrderListContent({
-            status: OrderOperationStatus.ALLStatus,
-          })
+          OrderListContent()
         }
         .tabBar(this.tabBar($r('app.string.all_orders'), OrderDetailConstants.ALL_INDEX))
 
         TabContent() {
-          OrderListContent({
-            status: OrderOperationStatus.UN_PAY,
-          })
+          OrderListContent()
         }
         .tabBar(this.tabBar($r('app.string.pending_payment'), OrderDetailConstants.PENDING_PAYMENT_INDEX))
 
@@ -54,16 +50,12 @@ export struct OrderDetailList {
         .tabBar(this.tabBar($r('app.string.waiting_shipment'), OrderDetailConstants.WAITING_SHIPMENT_INDEX))
 
         TabContent() {
-          OrderListContent({
-            status: OrderOperationStatus.DELIVERED,
-          })
+          OrderListContent()
         }
         .tabBar(this.tabBar($r('app.string.to_be_received'), OrderDetailConstants.WAITING_RECEIVED_INDEX))
 
         TabContent() {
-          OrderListContent({
-            status: OrderOperationStatus.RECEIPT,
-          })
+          OrderListContent()
         }
         .tabBar(this.tabBar($r('app.string.to_be_evaluated'), OrderDetailConstants.WAITING_EVALUATE_INDEX))
       }

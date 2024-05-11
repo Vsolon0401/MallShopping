@@ -24,6 +24,8 @@ import {
   StyleConstants,
   BreakpointConstants,
   CartItem,
+  Preferences
+,
 } from '@ohos/common';
 import { Home } from '@ohos/home';
 import { NewProduct } from '@ohos/newproduct';
@@ -33,13 +35,16 @@ import { buttonInfo, ButtonInfoModel } from '../viewmodel/MainPageData';
 import { PageConstants } from '../constants/PageConstants';
 import { OrderCount } from '@ohos/commoditydetail/src/main/ets/viewmodel/TypeModel';
 import { shoppingCartService } from '@ohos/common/src/main/ets/service/ShoppingCartService';
+import { UserInfo } from '../viewmodel/LoginData';
+import { loginService } from '../service/LoginService';
 
 @Entry
 @Component
 struct MainPage {
   @StorageProp('currentBreakpoint') currentBreakpoint: string = 'sm';
   @StorageLink('IndexPage') currentPageIndex: number = 0;
-
+  // ->
+  @Provide('userInfo') userInfo: UserInfo = new UserInfo()
   @State shoppingCartList: CartItem[] = [];
   @State orderCount: OrderCount = {
     payment: 0,
@@ -53,8 +58,14 @@ struct MainPage {
 
   aboutToAppear() {
     this.breakpointSystem.register();
+    loginService.getUserInfo()
+    Preferences.get('userInfo').then(info => {
+      if (info !== undefined) {
+        Logger.debug(JSON.stringify(info))
+        this.userInfo = info as UserInfo
+      }
+    })
     this.queryOrderList();
-
   }
 
   aboutToDisappear() {
@@ -79,6 +90,7 @@ struct MainPage {
     });
   }
 
+  // FIXME：订单数统计
   queryOrderList() {
     const orderList = this.localDataManager.queryOrderList();
     this.orderCount = {

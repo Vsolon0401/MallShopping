@@ -14,7 +14,7 @@
  */
 
 import router from '@ohos.router';
-import { Logger, OrderType, StyleConstants, BreakpointConstants } from '@ohos/common';
+import { Logger, OrderType, StyleConstants, BreakpointConstants, UserInfo } from '@ohos/common';
 import { orderButton, memberButton, activityButton, liveData } from '../viewmodel/PersonalData';
 import { IconButton } from '../components/IconButton';
 import { LiveList } from '../components/LiveList';
@@ -27,6 +27,8 @@ export struct Personal {
   @StorageProp('currentBreakpoint') currentBreakpoint: string = 'md';
   @Link @Watch('onOrderCountChange') orderCount: OrderCount;
   @State orderIconButton: IconButtonModel[] = orderButton;
+  // ->
+  @Consume('userInfo') userInfo: UserInfo;
 
   aboutToAppear() {
     this.onOrderCountChange();
@@ -84,6 +86,10 @@ export struct Personal {
     });
   }
 
+  onUserButtonClick(key) {
+
+  }
+
   @Styles
   cardStyle(){
     .width(StyleConstants.FULL_WIDTH)
@@ -96,17 +102,17 @@ export struct Personal {
   Avatar() {
     Column() {
       Row() {
-        Image($r('app.media.ic_person'))
+        Image(this.userInfo.icon || $r('app.media.ic_person'))
           .width($r('app.float.icon_person_size'))
           .height($r('app.float.icon_person_size'))
           .borderRadius($r('app.float.vp_twenty_four'))
         Column() {
-          Text($r('app.string.account_name'))
+          Text(this.userInfo.phone)
             .fontSize($r('app.float.vp_sixteen'))
             .fontColor(Color.White)
             .margin({ bottom: $r('app.float.vp_four') })
           Row() {
-            Text($r('app.string.member_type'))
+            Text(this.userInfo.memberLevelId.toString()) // FIXME: %s
               .fontSize($r('app.float.micro_font_size'))
               .fontColor($r('app.color.eighty_alpha_white'))
               .padding({
@@ -118,17 +124,17 @@ export struct Personal {
               .backgroundColor($r("app.color.ten_alpha_black"))
               .margin({ right: $r('app.float.vp_four') })
               .borderRadius($r('app.float.vp_eight'))
-            Text($r('app.string.ship_address'))
-              .fontSize($r('app.float.micro_font_size'))
-              .fontColor($r("app.color.eighty_alpha_white"))
-              .padding({
-                left: $r('app.float.vp_four'),
-                right: $r('app.float.vp_four'),
-                top: $r('app.float.vp_one'),
-                bottom: $r('app.float.vp_one')
-              })
-              .backgroundColor($r("app.color.ten_alpha_black"))
-              .borderRadius($r('app.float.vp_eight'))
+            // Text($r('app.string.ship_address'))
+            //   .fontSize($r('app.float.micro_font_size'))
+            //   .fontColor($r("app.color.eighty_alpha_white"))
+            //   .padding({
+            //     left: $r('app.float.vp_four'),
+            //     right: $r('app.float.vp_four'),
+            //     top: $r('app.float.vp_one'),
+            //     bottom: $r('app.float.vp_one')
+            //   })
+            //   .backgroundColor($r("app.color.ten_alpha_black"))
+            //   .borderRadius($r('app.float.vp_eight'))
           }
         }
         .justifyContent(FlexAlign.Center)
@@ -137,7 +143,7 @@ export struct Personal {
       .height($r('app.float.icon_person_size'))
       .width(StyleConstants.FULL_WIDTH)
 
-      Row() {
+      Row() { //FIXME: 积分、优惠
         this.AccountPoints($r('app.string.account_point'), $r('app.string.account_bonus'))
         Divider()
           .vertical(true)
@@ -236,7 +242,8 @@ export struct Personal {
     }) {
       ForEach(buttons, (iconButton: IconButtonModel) => {
         IconButton({
-          props: iconButton
+          props: iconButton,
+          click: this.onUserButtonClick
         })
       }, (iconButton: IconButtonModel[]) => JSON.stringify(iconButton))
     }
@@ -277,10 +284,11 @@ export struct Personal {
             .width($r('app.float.vp_twenty_four'))
             .height($r('app.float.vp_twenty_four'))
 
-          Image($r('app.media.ic_scan'))
-            .width($r('app.float.vp_twenty_four'))
-            .height($r('app.float.vp_twenty_four'))
-            .margin({ left: $r('app.float.vp_twenty_four') })
+          // TODO: 扫描二维码
+          // Image($r('app.media.ic_scan'))
+          //   .width($r('app.float.vp_twenty_four'))
+          //   .height($r('app.float.vp_twenty_four'))
+          //   .margin({ left: $r('app.float.vp_twenty_four') })
         }
         .justifyContent(FlexAlign.End)
         .width(StyleConstants.FULL_WIDTH)

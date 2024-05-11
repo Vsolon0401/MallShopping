@@ -11,8 +11,15 @@ export interface BaseResponse<T> {
   code: number
 }
 
+const ip = '192.168.64.80'
+
+enum Port {
+  Portal = 8085,
+  Search = 8081
+}
+
 const baseConfig: CreateAxiosDefaults = {
-  baseURL: 'http://192.168.64.80:8085',  //'https://portal-api.macrozheng.com',
+  baseURL: `http://${ip}:${Port.Portal}`,  //'https://portal-api.macrozheng.com',
   timeout: 5000
 }
 
@@ -28,7 +35,6 @@ axiosInstance.interceptors.request.use(async (config: InternalAxiosRequestConfig
     .catch((error) => {
       Logger.error('token:undefined', error)
     })
-
   return config
 }, (error) => {
   hilog.error(0xFFFF, 'fail:request', error)
@@ -82,5 +88,6 @@ axiosInstance.interceptors.response.use((response) => {
 export const Request = {
   get: (url, config?) => axiosInstance.get(url, config).then(res => res.data),
   post: (url, data?, config?) => axiosInstance.post(url, data, config).then(res => res.data),
-  originalPost: axiosInstance.post
+  searchGet: (url, config?) => axiosInstance.get(url, { baseURL: `http://${ip}:${Port.Search}`, ...config }).then(res => res.data),
+  searchPost: (url, data?, config?) => axiosInstance.post(url, data, { baseURL: `http://${ip}:${Port.Search}`, ...config }).then(res => res.data),
 }

@@ -6,6 +6,7 @@
     "pages/ConfirmOrderPage",
     "pages/PayOrderPage",
     "pages/OrderDetailListPage",
-    "pages/LoginPage"
+    "pages/LoginPage",
+    "pages/SearchCommodityPage"
   ]
 }

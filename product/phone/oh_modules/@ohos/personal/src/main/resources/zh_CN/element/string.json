@@ -78,15 +78,15 @@
     },
     {
       "name": "official_service",
-      "value": "官方客服"
+      "value": "收藏记录"
     },
     {
       "name": "cash",
-      "value": "现金红包"
+      "value": "收货地址"
     },
     {
       "name": "trade_in",
-      "value": "以旧换新"
+      "value": "历史足迹"
     },
     {
       "name": "my_evaluation",

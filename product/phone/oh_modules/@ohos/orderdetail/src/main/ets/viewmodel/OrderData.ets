@@ -73,8 +73,8 @@ const addressInfo: AddressInfoParams[] = [
   }
 ];
 
-const payEnum = ['应付款','实付款','实付款'];
+const payEnum = ['应付款','实付款','实付款','实付款','实付款'];
 
-const statusEnum = ['待支付','卖家已发货','已完成'];
+const statusEnum = ['待支付','待发货','卖家已发货','已完成', '已关闭'];
 
 export { addressInfo, payEnum, statusEnum }

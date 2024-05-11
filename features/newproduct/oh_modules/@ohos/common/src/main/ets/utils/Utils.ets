@@ -19,10 +19,9 @@ import { Opt } from '../viewmodel/CommodityModel';
 import { ProductSpecification, SkuStock } from '../viewmodel/ProductModel';
 
 
-const MiniIO_URL: string = 'http://192.168.253.80:9000'
+const MiniIO_URL: string = 'http://192.168.64.80:9000'
 /**
  * Format date.
- *
  * @param timestamp time
  * @param format = "yyyy-mm-dd"
  * @returns res

@@ -18,13 +18,14 @@ export { RecommendScroll } from './src/main/ets/components/RecommendScroll'
 export { CategoryList } from './src/main/ets/components/CategoryList'
 export { EmptyComponent } from './src/main/ets/components/EmptyComponent';
 /**----------------------------------------------viewModel------------------------------------------------------ **/
-export { Category, Brand, Classify } from './src/main/ets/viewmodel/CategoryModel'
+export { Category, Brand, SearchResult, EsProduct, EsProductAttributeValue, Classify, ES_PRODUCT_SORT_STATUS } from './src/main/ets/viewmodel/CategoryModel'
 export { FlashProduct, FlashPromotion } from './src/main/ets/viewmodel/flashPromotionModel'
 export { CommodityInfo } from './src/main/ets/viewmodel/CommodityModel'
 export { ProductAttribute, ProductAttributeValue, SkuStock, ProductLadder, ProductFullReduction, Coupon} from './src/main/ets/viewmodel/ProductModel'
 export { CartItem, CartPromotionItem } from './src/main/ets/viewmodel/CartModel'
 export { Collection } from './src/main/ets/viewmodel/CollectionModel'
-export { ConfirmOrderType as ConfirmOrder } from './src/main/ets/viewmodel/OrderModel'
+export { ConfirmOrderType as ConfirmOrder, OrderItem, OrderInfo, PayType, OrderStatus, OrderDetail } from './src/main/ets/viewmodel/OrderModel'
+export { UserInfo } from './src/main/ets/viewmodel/UserModel'
 /**----------------------------------------------service------------------------------------------------------ **/
 export { productService } from './src/main/ets/service/ProductService'
 export { shoppingCartService } from './src/main/ets/service/ShoppingCartService'
@@ -32,6 +33,7 @@ export { historyService } from './src/main/ets/service/HistoryService'
 export { collectionService } from './src/main/ets/service/CollectionService'
 export { orderService } from './src/main/ets/service/OrderService'
 export { addressService } from './src/main/ets/service/AddressService'
+export { searchService } from './src/main/ets/service/SearchService'
 /**----------------------------------------------utils------------------------------------------------------ **/
 export { Request } from './src/main/ets/utils/Request'
 export { formatDate, getID, formatLocalhost, getSkuStock } from './src/main/ets/utils/Utils';

@@ -280,37 +280,6 @@ export struct CommodityDetail {
     if (this.selectKeys !== undefined) {
       this.onSpecificationFinish(type, this.count, this.selectKeys);
     }
-
-    // 加入购物车
-    if (type === FinishType.JOIN_SHOPPING_CART) {
-      const product = this.info.product
-      const productSkuStock: SkuStock = getSkuStock(this.info.skuStockList, this.selectKeys)
-      if (productSkuStock !== null) {
-        const cartItem: CartItem = {
-          price: product.price,
-          productAttr: productSkuStock.spData,
-          productBrand: product.brandName,
-          productCategoryId: product.productCategoryId,
-          productId: product.id,
-          productName: product.name,
-          productPic: product.pic,
-          productSkuCode: productSkuStock.skuCode,
-          productSkuId: productSkuStock.id,
-          productSn: product.productSn,
-          productSubTitle: product.subTitle,
-          quantity: 1
-        }
-        const res = await shoppingCartService.addCartItem(cartItem)
-        if (res.code === 200) {
-          promptAction.showToast({
-            message: $r('app.string.insert_cart_success'),
-            duration: 1500
-          })
-        }
-      }
-    } else if (type === FinishType.BUY_NOW) {
-
-    }
   }
 
   async handleBarClick(item: BarData) {
