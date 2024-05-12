@@ -128,6 +128,11 @@ export class HomeContent {
 export class PageOption {
   pageNum?: number = 1;
   pageSize?: number = 4;
+
+  constructor(pageNum: number = 1, pageSize: number = 4) {
+    this.pageNum = pageNum;
+    this.pageSize = pageSize
+  }
 }
 
 

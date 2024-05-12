@@ -26,6 +26,11 @@ export class CommonDataSource<T> implements IDataSource {
 		this.notifyDataAdd(this.dataArray.length - 1);
 	}
 
+	public reloadData(data: T[]): void {
+		this.dataArray = data;
+		this.notifyDataReload()
+	}
+
 	unregisterDataChangeListener(listener: DataChangeListener): void {
 		const pos = this.listeners.indexOf(listener);
 		if (pos >= 0) {

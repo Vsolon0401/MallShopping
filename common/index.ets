@@ -17,8 +17,9 @@ export { BrandList } from './src/main/ets/components/BrandList'
 export { RecommendScroll } from './src/main/ets/components/RecommendScroll'
 export { CategoryList } from './src/main/ets/components/CategoryList'
 export { EmptyComponent } from './src/main/ets/components/EmptyComponent';
+export { ProductWaterFlow } from './src/main/ets/components/ProductWaterFlow'
 /**----------------------------------------------viewModel------------------------------------------------------ **/
-export { Category, Brand, SearchResult, EsProduct, EsProductAttributeValue, Classify, ES_PRODUCT_SORT_STATUS } from './src/main/ets/viewmodel/CategoryModel'
+export { Category, Brand, SearchResult, EsProduct, EsProductAttributeValue, Classify, ProductSort as ES_PRODUCT_SORT_STATUS } from './src/main/ets/viewmodel/CategoryModel'
 export { FlashProduct, FlashPromotion } from './src/main/ets/viewmodel/flashPromotionModel'
 export { CommodityInfo } from './src/main/ets/viewmodel/CommodityModel'
 export { ProductAttribute, ProductAttributeValue, SkuStock, ProductLadder, ProductFullReduction, Coupon} from './src/main/ets/viewmodel/ProductModel'

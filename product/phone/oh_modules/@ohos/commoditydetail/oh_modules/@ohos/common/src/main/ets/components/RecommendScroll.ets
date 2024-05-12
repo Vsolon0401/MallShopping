@@ -24,10 +24,7 @@ export struct RecommendScroll {
         .width($r('app.float.commodity_item_image_size'))
         .height($r('app.float.commodity_item_image_size'))
         .objectFit(ImageFit.Contain)
-        .margin({
-          top: $r('app.float.vp_sixteen'),
-          bottom: $r('app.float.vp_eight')
-        })
+        .margin($r('app.float.vp_six'))
       Column() {
         Text(info.name)
           .fontColor(Color.Black)
@@ -46,22 +43,22 @@ export struct RecommendScroll {
       }
       .width(StyleConstants.FULL_WIDTH)
       .alignItems(HorizontalAlign.Start)
+      .padding($r('app.float.vp_twelve'))
     }
-    .margin($r('app.float.vp_eight'))
-    .padding($r('app.float.vp_twelve'))
-    .height($r('app.float.commodity_item_height'))
+    // .padding($r('app.float.vp_twelve'))
+    // .height(250)
     .width(StyleConstants.FULL_WIDTH)
     .backgroundColor(Color.White)
-    .borderRadius($r('app.float.vp_eight'))
   }
 
   build() {
     if (this.recommendList.totalCount() > 0) {
-      List({ space: StyleConstants.TWELVE_SPACE }) {
+      List() {
         LazyForEach(this.recommendList, (item: Category) => {
           ListItem() {
             this.CategoryItem(item)
           }
+          // .margin($r('app.float.vp_eight'))
           // .margin({ left: $r('app.float.vp_six'), right: $r('app.float.vp_six') })
           .onClick(() => {
             if (this.onClickItem !== undefined) {
@@ -72,7 +69,7 @@ export struct RecommendScroll {
       }
       .lanes(StyleConstants.TWO_TEXT_LINE)
       .width(StyleConstants.FULL_WIDTH)
-      .margin({ left: $r('app.float.commodity_list_margin'), right: $r('app.float.commodity_list_margin') })
+      // .margin({ left: $r('app.float.commodity_list_margin'), right: $r('app.float.commodity_list_margin') })
       .listDirection(Axis.Vertical)
     } else {
       EmptyComponent({ outerHeight: StyleConstants.FIFTY_HEIGHT, emptyText: '暂无秒杀活动' })

@@ -49,6 +49,8 @@ export class PageConstants {
    */
   static readonly  COMMODITY_DETAIL_PAGE_URL: string = 'pages/CommodityDetailPage';
 
+  static readonly  SEARCH_COMMODITY_PAGE_URL: string = 'pages/SearchCommodityPage';
+
   /**
    * Index of home tab.
    */

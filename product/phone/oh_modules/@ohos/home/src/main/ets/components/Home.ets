@@ -14,18 +14,19 @@
  */
 
 import { searchSwiper, classifyTitle, swiperImage, activityTitle, ActivityTitleModel, Advertise, HotProduct, PageOption} from '../viewmodel/HomeData';
-import { LocalDataManager, CommodityList, Commodity, StyleConstants, BreakpointConstants, CategoryList, Category, RecommendScroll,Logger, CommonDataSource, Brand, FlashPromotion, BrandList, FlashPromotionList, Classify, formatLocalhost } from '@ohos/common';
+import { LocalDataManager, CommodityList, Commodity, StyleConstants, BreakpointConstants, CategoryList, Category, RecommendScroll,Logger, CommonDataSource, Brand, FlashPromotion, BrandList, FlashPromotionList, Classify, formatLocalhost, ProductWaterFlow } from '@ohos/common';
 import { homeService } from '../model/homeService';
 import promptAction from '@ohos.promptAction';
+import router from '@ohos.router';
 
 @Preview
 @Component
 export struct Home {
   @StorageProp('currentBreakpoint') currentBreakpoint: string = 'sm';
   // 下拉更多的分页参数配置
-  // old
+  // 分页查询状态
   @State pageOption: PageOption = new PageOption();
-  @State commodityList: Commodity[] = [];
+
   @State titleIndex: number = 0;
   @State activityTitleIndex: number = 0;
   @State flushSaleList: any[] = [];
@@ -52,7 +53,6 @@ export struct Home {
 
   aboutToAppear() {
     const { pageNum, pageSize } = this.pageOption
-    this.commodityList = this.localDataManger.queryCommodityList();
     homeService.fetchClassify(this.titleIndex).then((res) => {
       this.classifyLevel1 = this.classifyLevel1.concat(res.data)
     })
@@ -94,6 +94,14 @@ export struct Home {
       }
     }
     this.titleIndex = parentId;
+  }
+
+  routerToSearch() {
+    router.pushUrl({
+      url: 'pages/SearchCommodityPage'
+    }).catch((err: Error) => {
+      Logger.error(JSON.stringify(err));
+    });
   }
 
   // 搜索栏
@@ -139,6 +147,7 @@ export struct Home {
       .width(StyleConstants.FULL_WIDTH)
       .borderRadius($r('app.float.vp_twenty'))
       .backgroundColor(Color.White)
+      .onClick(() => this.routerToSearch())
     }
     .width(StyleConstants.FULL_WIDTH)
     .padding({ top: $r('app.float.vp_twelve'), bottom: $r('app.float.vp_twelve') })
@@ -364,7 +373,7 @@ export struct Home {
       Row({ space: 5 }) {
         Image($r('app.media.ic_love'))
           .objectFit(ImageFit.Contain)
-          .width(50)
+          .width(25)
 
         Text('猜你喜欢')
           .fontColor(Color.Black)
@@ -376,8 +385,6 @@ export struct Home {
       .margin({ top: $r('app.float.vp_six'), bottom: $r('app.float.vp_six')})
       .width(StyleConstants.FULL_WIDTH)
       .alignItems(VerticalAlign.Center)
-      .backgroundColor(Color.White)
-      .borderRadius($r('app.float.vp_eight'))
     }
 
     // CommodityList({
