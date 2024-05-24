@@ -17,23 +17,27 @@ export class PersonalConstants{
   /**
    * Index of pending payment tab.
    */
-  static readonly PENDING_PAYMENT_INDEX: number = 0;
+  static readonly PENDING_PAYMENT_INDEX: number = 1;
 
   /**
    * Index of waiting shipping tab.
    */
-  static readonly WAITING_SHIPMENT_INDEX: number = 1;
+  static readonly WAITING_SHIPMENT_INDEX: number = 2;
 
   /**
    * Index of waiting received tab.
    */
-  static readonly WAITING_RECEIVED_INDEX: number = 2;
+  static readonly WAITING_RECEIVED_INDEX: number = 3;
 
   /**
    * Index of waiting evaluate tab.
    */
-  static readonly WAITING_EVALUATE_INDEX: number = 3;
+  static readonly WAITING_EVALUATE_INDEX: number = 4;
 
+  /**
+   * Index of close tab.
+   */
+  static readonly CLOSE_ORDER_INDEX: number = 5;
   /**
   * Size of badge.
   */

@@ -13,14 +13,14 @@
  * limitations under the License.
  */
 
-import { OrderType } from '@ohos/common';
+import { Logger, OrderType, UserFunctionType } from '@ohos/common';
 import { IconButtonModel } from '../viewmodel/IconButtonModel';
 import { PersonalConstants } from '../constants/PersonalConstants';
 
 @Component
 export struct IconButton {
   @ObjectLink props: IconButtonModel;
-  click?: (key: OrderType) => void = () => {};
+  click?: (key: OrderType | UserFunctionType) => void = () => {};
 
   build() {
     Column() {

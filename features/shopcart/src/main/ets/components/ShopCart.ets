@@ -15,8 +15,9 @@
 
 import router from '@ohos.router';
 import { ShopCartConstants } from '../constants/ShopCartConstants';
-import {LocalDataManager,Logger,CounterProduct,CommodityList,EmptyComponent,Commodity,Product,StyleConstants,BreakpointConstants,CartItem,shoppingCartService} from '@ohos/common';
+import {Logger,CounterProduct,EmptyComponent,StyleConstants,BreakpointConstants,CartItem,shoppingCartService, searchService, ProductWaterFlow, EsProduct, CommonDataSource} from '@ohos/common';
 import { SelectProducts, UpdateShopProps } from '@ohos/common/src/main/ets/viewmodel/ProductModel';
+import promptAction from '@ohos.promptAction';
 
 @Component
 export struct ShopCart {
@@ -25,14 +26,9 @@ export struct ShopCart {
   @Link @Watch('onListChange') products: Array<CartItem>;
   @State sumPrice: number = 0;
   @State isSelectAll: boolean = false;
-  @State commodityList: Commodity[] = [];
-  @State @Watch('selectProductChange') selectProducts: SelectProducts[] = [];
-  private localDataManager: LocalDataManager = LocalDataManager.instance();
+  @State selectProducts: SelectProducts[] = [];
 
   aboutToAppear() {
-    const sortRes = this.localDataManager.queryCommodityList();
-    sortRes.sort(() => (Math.random() - StyleConstants.HALF_ONE) > 0 ? 1 : StyleConstants.MINUS_ONE);
-    this.commodityList = sortRes;
     this.onListChange();
   }
 
@@ -64,7 +60,6 @@ export struct ShopCart {
       .map((item: CartItem) => {
         return item.id
       });
-    Logger.info('settleAccounts orderList length: ' + orderList.length);
     router.pushUrl({
       url: ShopCartConstants.CONFIRM_ORDER_PAGE_URL,
       params: { cartIdList: orderList }
@@ -81,8 +76,14 @@ export struct ShopCart {
         payload.key = item.productName + item.productAttr;
         this.selectProducts.push(payload);
       })
-    } else {
-
+    } else if (this.selectProducts.length !== this.products.length) {
+      this.products.forEach((item: CartItem) => {
+        const key = item.productName + item.productAttr;
+        const check = this.selectProducts.findIndex(select => select.key === key)
+        if (check === -1) {
+          this.selectProducts.push({ key, selected: !!item.selected })
+        }
+      })
     }
     this.countSumPrice();
   }
@@ -94,10 +95,33 @@ export struct ShopCart {
     return false;
   }
 
+  // 更新购物车
   updateShopCart(cartItem: CartItem) {
     shoppingCartService.updateCartItem(cartItem)
   }
 
+  // 删除商品
+  handleDelProduct(item: CartItem, index: number) {
+    shoppingCartService.delCartItem(item.id).then(() => {
+      this.selectProducts.splice(index, 1)
+      promptAction.showToast({
+        message: '删除成功'
+      })
+    })
+    this.needUpdateShopCart();
+  }
+
+  // 跳转生成订单页面
+  routerDetailPage<T>(productId: T) {
+    router.pushUrl({
+      url: 'pages/CommodityDetailPage',
+      params: { data: productId }
+    }).catch((err: Error) => {
+      Logger.error(JSON.stringify(err));
+    });
+  }
+
+  // 单独修改商品数量
   onChangeCount = async (count: number, info: CartItem) => {
     await shoppingCartService.updateItemQuantity(info.id, count)
     this.needUpdateShopCart();
@@ -122,13 +146,7 @@ export struct ShopCart {
       }
       .padding({ right: $r('app.float.vp_fourteen') })
     }
-    .onClick(async () => {
-       await shoppingCartService.delCartItem(item.id).then(() => {
-         this.selectProducts.splice(index, 1)
-       })
-      this.needUpdateShopCart();
-      // this.products = this.localDataManager.deleteShopCart([item.id]);
-    })
+    .onClick(() => this.handleDelProduct(item, index))
     .height($r('app.float.item_delete_height'))
     .width($r('app.float.item_delete_width'))
     .backgroundColor($r('app.color.focus_color'))
@@ -217,7 +235,6 @@ export struct ShopCart {
           .selectedColor($r('app.color.select_color'))
           .select(this.isSelectAll)
           .onClick(() => {
-            // FIXME: 全选时更新购物车数量
             this.isSelectAll = !this.isSelectAll;
             const selectAll: SelectProducts[] = this.selectProducts.map((item) => {
               return { key: item.key, selected: this.isSelectAll }
@@ -287,7 +304,7 @@ export struct ShopCart {
                     this.CartItem(item, index)
                   }
                 }
-                .swipeAction({ end: this.ItemDelete(item, index) })
+                .swipeAction({ end: this.ItemDelete(item, index), edgeEffect: SwipeEdgeEffect.None})
               }, (item: CartItem) => JSON.stringify(item))
             }
           } else {
@@ -297,31 +314,8 @@ export struct ShopCart {
             .width(StyleConstants.FULL_WIDTH)
             .height(StyleConstants.FIFTY_HEIGHT)
           }
-          Text($r('app.string.guess'))
-            .fontSize($r('app.float.middle_font_size'))
-            .width(StyleConstants.FULL_WIDTH)
-            .margin({
-              top: $r('app.float.vp_twenty_four'),
-              bottom: $r('app.float.vp_sixteen'),
-              left: $r('app.float.vp_twelve')
-            })
-            .textAlign(TextAlign.Start)
-
-          // todo: 调整猜你喜欢
-          CommodityList({
-            commodityList: $commodityList,
-            column: this.currentBreakpoint === BreakpointConstants.BREAKPOINT_SM ?
-              StyleConstants.DISPLAY_TWO : StyleConstants.DISPLAY_THREE,
-            onClickItem: (data: Commodity) => {
-              router.pushUrl({
-                url: ShopCartConstants.COMMODITY_DETAIL_PAGE_URL,
-                params: { id: data.id }
-              }).catch((err: Error) => {
-                Logger.error(JSON.stringify(err));
-              });
-            }
-          })
         }
+        .justifyContent(FlexAlign.Start)
       }
       .scrollBar(BarState.Off)
       .margin({

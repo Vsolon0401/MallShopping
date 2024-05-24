@@ -15,7 +15,7 @@
 
 import promptAction from '@ohos.promptAction';
 import router from '@ohos.router';
-import { CartItem, collectionService, CommodityInfo, getSkuStock, historyService, Order, ProductSpecification, shoppingCartService } from '@ohos/common';
+import { addressService, CartItem, collectionService, CommodityInfo, getSkuStock, historyService, Order, ProductSpecification, shoppingCartService } from '@ohos/common';
 import { FinishType, ProductService } from '../viewmodel/TypeModel';
 import { SpecificationDialog } from './SpecificationDialog';
 import { barData, userEvaluate, moreEvaluate, serviceList, Evaluate, BarData, BarType } from '../viewmodel/CommodityDetailData';
@@ -32,6 +32,7 @@ import {
   Specification
 } from '@ohos/common';
 import { ProductAttribute, ShopProps, SkuSpecification, SkuStock } from '@ohos/common/src/main/ets/viewmodel/ProductModel';
+import { UserAddress } from '@ohos/common/src/main/ets/viewmodel/AddressModel';
 
 @Extend(Button) function titleButton() {
   .backgroundColor($r('app.color.zero_alpha_black'))
@@ -63,6 +64,8 @@ export struct CommodityDetail {
   @State productSpecificationList: SkuSpecification[] = [];
   // 收藏状态用于筛选barList, 反选状态
   @State favorite: BarType.COLLECTION | BarType.CANCEL_COLLECTION = BarType.COLLECTION
+  //
+  @State defaultAddress: UserAddress = new UserAddress()
   // 初始化状态
   private isInit: boolean = false;
   @State swiperIndex: number = 0;
@@ -113,6 +116,8 @@ export struct CommodityDetail {
 
       // 初始话收藏记录
       this.fetchCollection(this.info.product.id)
+      // 初始化地址
+      this.fetchAddressList()
       this.isInit = true
     }
   }
@@ -214,6 +219,14 @@ export struct CommodityDetail {
     })
   }
 
+  // 初始化收货地址
+  fetchAddressList() {
+    addressService.fetchAddressList().then(res => {
+      const addressInfoList = res.data as UserAddress[]
+      this.defaultAddress = addressInfoList.find(address => address.defaultStatus === 1)
+    })
+  }
+
   onSelectKeysChange() {
     this.productOptions = '';
     if (this.selectKeys !== undefined) {
@@ -254,25 +267,7 @@ export struct CommodityDetail {
         }
         break;
       case FinishType.BUY_NOW:
-        // if (this.info !== undefined) {
-        //   let orderList: Order = {
-        //     orderId: params.id,
-        //     image: this.info.images[0],
-        //     title: this.info.title,
-        //     description: this.info.description,
-        //     price: this.info.price,
-        //     count: params.count,
-        //     commodityId: Number.parseInt(params.commodityId),
-        //     specifications: this.selectKeys
-        //   }
-        //   router.pushUrl({
-        //     url: CommodityConstants.CONFIRM_ORDER_PAGE_URL,
-        //     params: { orderList: [orderList] }
-        //   }).catch((err: Error) => {
-        //     Logger.error(JSON.stringify(err));
-        //   });
-        //   break;
-        // }
+        promptAction.showToast({ message: '暂不支持，请添加到购物车后购买'})
     }
   }
 
@@ -428,11 +423,17 @@ export struct CommodityDetail {
         src: this.promotionTip
       })
         .layoutWeight(StyleConstants.LAYOUT_WEIGHT)
-        .fontColor(Color.Black)
+        .fontColor(Color.Gray)
         .fontSize($r('app.float.middle_font_size'))
         .fontWeight(StyleConstants.FONT_WEIGHT_FOUR)
     }
-      .backgroundStyle()
+    .backgroundColor($r("app.color.page_background"))
+    .padding({
+      left: $r('app.float.vp_twelve'),
+      right: $r('app.float.vp_twelve'),
+      top: $r('app.float.vp_sixteen'),
+      bottom: $r('app.float.vp_sixteen')
+    })
 
   }
 
@@ -507,7 +508,6 @@ export struct CommodityDetail {
         .height($r('app.float.service_divide_height'))
         .backgroundColor($r('app.color.twenty_alpha_black'))
 
-      //todo: 地址选择
       Flex({
         justifyContent: FlexAlign.SpaceBetween,
         alignItems: ItemAlign.Start
@@ -525,10 +525,18 @@ export struct CommodityDetail {
             Image($r('app.media.ic_send'))
               .width($r('app.float.vp_sixteen'))
               .height($r('app.float.vp_sixteen'))
-            Text($r('app.string.send_hint'))
-              .fontColor($r('app.color.sixty_alpha_black'))
-              .fontSize($r('app.float.small_font_size'))
-              .margin({ left: $r('app.float.vp_eight') })
+
+            if (this.defaultAddress.detailAddress !== '') {
+              Text(`${this.defaultAddress?.province}${this.defaultAddress?.city}${this.defaultAddress?.region} ${this.defaultAddress?.detailAddress}`)
+                .fontColor($r('app.color.sixty_alpha_black'))
+                .fontSize($r('app.float.small_font_size'))
+                .margin({ left: $r('app.float.vp_eight') })
+            } else {
+              Text($r('app.string.send_hint'))
+                .fontColor($r('app.color.sixty_alpha_black'))
+                .fontSize($r('app.float.small_font_size'))
+                .margin({ left: $r('app.float.vp_eight') })
+            }
           }
 
           Image($r('app.media.ic_point'))

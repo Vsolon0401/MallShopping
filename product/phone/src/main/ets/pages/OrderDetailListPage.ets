@@ -20,25 +20,35 @@ import { LocalDataManager, Order, Commodity, orderService, OrderInfo, Logger } f
 @Entry
 @Component
 struct OrderDetailListPage {
-  @Provide('orderList') orderInfo: OrderInfo[] = []
-  @Provide @Watch('fetchOrderList') currentTabIndex: number = 0;
+  @State orderInfo: OrderInfo[] = []
+  @Provide currentTabIndex: number = 0;
 
   aboutToAppear() {
     let params = router.getParams() as Record<string, Object>;
-    this.currentTabIndex = params.tabIndex as number || 0;
-    this.fetchOrderList()
+    this.currentTabIndex = params.tabIndex as number;
+    this.fetchOrderList(params.tabIndex)
   }
 
-  fetchOrderList() {
-    orderService.fetchOrderList(this.currentTabIndex).then(res => {
-      Logger.debug(JSON.stringify(res.data?.list))
-      this.orderInfo = res.data?.list as OrderInfo[]
-    })
+  async fetchOrderList(currentTabIndex) {
+    try {
+      const status = currentTabIndex-1
+      orderService.fetchOrderList(status).then(res => {
+        const orderInfoList: OrderInfo[] = res.data.list
+        this.orderInfo = orderInfoList?.length > 0
+          ? orderInfoList
+          : []
+      })
+    } catch (e) {
+      Logger.error(JSON.stringify(e))
+    }
   }
 
   build() {
     Column() {
-      OrderDetailList()
+      OrderDetailList({
+        orderInfo: $orderInfo,
+        onTabChange: this.fetchOrderList
+      })
     }
   }
 }

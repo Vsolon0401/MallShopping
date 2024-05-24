@@ -19,7 +19,7 @@ struct ConfirmPageOrder {
     orderService.generateConfirmOrder(params.cartIdList).then(res => {
       this.confirmOrder = res.data
       this.cartIdList = params.cartIdList
-      // 初始化默认地址
+      // 初始化默认地
       this.selectedAddress = res.data.memberReceiveAddressList
         .find(address => address.defaultStatus === 1)
     })

@@ -14,7 +14,7 @@
  */
 
 import router from '@ohos.router';
-import { Logger, OrderType, StyleConstants, BreakpointConstants, UserInfo } from '@ohos/common';
+import { Logger, OrderType, StyleConstants, BreakpointConstants, UserInfo, UserFunctionType } from '@ohos/common';
 import { orderButton, memberButton, activityButton, liveData } from '../viewmodel/PersonalData';
 import { IconButton } from '../components/IconButton';
 import { LiveList } from '../components/LiveList';
@@ -27,7 +27,6 @@ export struct Personal {
   @StorageProp('currentBreakpoint') currentBreakpoint: string = 'md';
   @Link @Watch('onOrderCountChange') orderCount: OrderCount;
   @State orderIconButton: IconButtonModel[] = orderButton;
-  // ->
   @Consume('userInfo') userInfo: UserInfo;
 
   aboutToAppear() {
@@ -63,17 +62,20 @@ export struct Personal {
   onOrderButtonClick(key: OrderType) {
     let tabIndex: number = 0;
     switch (key) {
-      case OrderType.PAYMENT:
+      case OrderType.PAYMENT: // 1
         tabIndex = PersonalConstants.PENDING_PAYMENT_INDEX;
         break;
-      case OrderType.SHIP:
+      case OrderType.SHIP: //2
         tabIndex = PersonalConstants.WAITING_SHIPMENT_INDEX;
         break;
-      case OrderType.RECEIPT:
+      case OrderType.RECEIPT: //3
         tabIndex = PersonalConstants.WAITING_RECEIVED_INDEX;
         break;
-      case OrderType.EVALUATION:
+      case OrderType.EVALUATION: // 4
         tabIndex = PersonalConstants.WAITING_EVALUATE_INDEX;
+        break;
+      case OrderType.SALE: // 5
+        tabIndex = PersonalConstants.CLOSE_ORDER_INDEX;
         break;
       default:
         break;
@@ -86,8 +88,24 @@ export struct Personal {
     });
   }
 
-  onUserButtonClick(key) {
+  onUserButtonClick(key: UserFunctionType) {
+    switch (key) {
+      case UserFunctionType.Collection:
+        break;
+      case UserFunctionType.Address:
+        router.pushUrl({ url: 'pages/AddressPage' })
+        break;
+      case UserFunctionType.History:
+        break;
+      case UserFunctionType.Evaluate:
+        break
+    }
+  }
 
+  handleSettingClick() {
+    router.pushUrl({
+      url: 'pages/SettingPage'
+    })
   }
 
   @Styles
@@ -102,17 +120,17 @@ export struct Personal {
   Avatar() {
     Column() {
       Row() {
-        Image(this.userInfo.icon || $r('app.media.ic_person'))
+        Image(this.userInfo?.icon || $r('app.media.ic_person'))
           .width($r('app.float.icon_person_size'))
           .height($r('app.float.icon_person_size'))
           .borderRadius($r('app.float.vp_twenty_four'))
         Column() {
-          Text(this.userInfo.phone)
+          Text(this.userInfo?.nickname)
             .fontSize($r('app.float.vp_sixteen'))
             .fontColor(Color.White)
             .margin({ bottom: $r('app.float.vp_four') })
           Row() {
-            Text(this.userInfo.memberLevelId.toString()) // FIXME: %s
+            Text(this.userInfo?.phone)
               .fontSize($r('app.float.micro_font_size'))
               .fontColor($r('app.color.eighty_alpha_white'))
               .padding({
@@ -124,17 +142,17 @@ export struct Personal {
               .backgroundColor($r("app.color.ten_alpha_black"))
               .margin({ right: $r('app.float.vp_four') })
               .borderRadius($r('app.float.vp_eight'))
-            // Text($r('app.string.ship_address'))
-            //   .fontSize($r('app.float.micro_font_size'))
-            //   .fontColor($r("app.color.eighty_alpha_white"))
-            //   .padding({
-            //     left: $r('app.float.vp_four'),
-            //     right: $r('app.float.vp_four'),
-            //     top: $r('app.float.vp_one'),
-            //     bottom: $r('app.float.vp_one')
-            //   })
-            //   .backgroundColor($r("app.color.ten_alpha_black"))
-            //   .borderRadius($r('app.float.vp_eight'))
+            Text(this.userInfo?.city)
+              .fontSize($r('app.float.micro_font_size'))
+              .fontColor($r("app.color.eighty_alpha_white"))
+              .padding({
+                left: $r('app.float.vp_four'),
+                right: $r('app.float.vp_four'),
+                top: $r('app.float.vp_one'),
+                bottom: $r('app.float.vp_one')
+              })
+              .backgroundColor($r("app.color.ten_alpha_black"))
+              .borderRadius($r('app.float.vp_eight'))
           }
         }
         .justifyContent(FlexAlign.Center)
@@ -144,7 +162,7 @@ export struct Personal {
       .width(StyleConstants.FULL_WIDTH)
 
       Row() { //FIXME: 积分、优惠
-        this.AccountPoints($r('app.string.account_point'), $r('app.string.account_bonus'))
+        this.AccountPoints(`${this.userInfo?.integration}`, $r('app.string.account_bonus'))
         Divider()
           .vertical(true)
           .color($r("app.color.sixty_alpha_white"))
@@ -154,7 +172,7 @@ export struct Personal {
           .vertical(true)
           .color($r("app.color.sixty_alpha_white"))
           .height($r('app.float.vp_sixteen'))
-        this.AccountPoints($r('app.string.account_point'), $r('app.string.account_vouchers'))
+        this.AccountPoints(`${this.userInfo?.growth}`, $r('app.string.account_vouchers'))
       }
       .justifyContent(FlexAlign.SpaceAround)
       .width(StyleConstants.FULL_WIDTH)
@@ -169,7 +187,7 @@ export struct Personal {
   }
 
   @Builder
-  AccountPoints(pointValue: Resource, pointName: Resource) {
+  AccountPoints(pointValue: Resource | string, pointName: Resource) {
     Column() {
       Text(pointValue)
         .fontSize($r('app.float.small_font_size'))
@@ -283,8 +301,9 @@ export struct Personal {
           Image($r('app.media.ic_setting'))
             .width($r('app.float.vp_twenty_four'))
             .height($r('app.float.vp_twenty_four'))
+            .onClick(() => this.handleSettingClick())
 
-          // TODO: 扫描二维码
+          // TODO: 不做了 扫描二维码
           // Image($r('app.media.ic_scan'))
           //   .width($r('app.float.vp_twenty_four'))
           //   .height($r('app.float.vp_twenty_four'))
@@ -298,10 +317,10 @@ export struct Personal {
           Column() {
             this.Avatar()
             this.Order()
-            this.IconDock(memberButton)
             this.IconDock(activityButton)
             // this.LiveTitle()
-            // LiveList({
+            // todo:不做了
+            //  LiveList({
             //   count: this.currentBreakpoint === BreakpointConstants.BREAKPOINT_LG ? StyleConstants.DISPLAY_FOUR :
             //     (this.currentBreakpoint === BreakpointConstants.BREAKPOINT_MD ?
             //     StyleConstants.DISPLAY_THREE : StyleConstants.DISPLAY_TWO),

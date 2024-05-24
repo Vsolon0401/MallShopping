@@ -24,13 +24,7 @@ export class OrderService {
   }
 
   async payOrderSuccess(orderId: number, payType: number) {
-    return Request.post(`/order/paySuccess?orderId=${orderId}&payType=${payType}`, {
-
-    }, {
-      header: {
-        'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
-      }
-    })
+    return Request.post(`/order/paySuccess?orderId=${orderId}&payType=${payType}`)
   }
 
   async fetchOrderDetail(orderId: number) {

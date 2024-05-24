@@ -41,13 +41,8 @@ class LoginService {
     }
   }
 
-  async getUserInfo(): Promise<boolean> {
-    const userInfo = await Request.get('/sso/info').then(res => res.data)
-    if (typeof userInfo === 'object' && userInfo !== null) {
-      Preferences.put('userInfo', userInfo)
-      return true
-    }
-    return false
+  async getUserInfo() {
+   return await Request.get('/sso/info')
   }
 }
 

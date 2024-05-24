@@ -17,12 +17,14 @@ import router from '@ohos.router';
 import { HeaderBar } from './HeaderBar';
 import { OrderListContent } from './OrderListContent';
 import { OrderDetailConstants } from '../constants/OrderDetailConstants'
-import { EmptyComponent, OrderOperationStatus, StyleConstants, BreakpointConstants } from '@ohos/common';
+import { EmptyComponent, OrderOperationStatus, StyleConstants, BreakpointConstants, OrderInfo } from '@ohos/common';
 
 @Component
 export struct OrderDetailList {
   @StorageProp('currentBreakpoint') currentBreakpoint: string = 'sm';
   @Consume currentTabIndex: number;
+  @Link orderInfo: OrderInfo[];
+  private onTabChange: (currentTabIndex: any) => Promise<void>;
 
   @Builder OrderTabs() {
     Column() {
@@ -31,33 +33,34 @@ export struct OrderDetailList {
         index: this.currentTabIndex
       }) {
         TabContent() {
-          OrderListContent()
+          OrderListContent({ orderInfo: $orderInfo })
         }
         .tabBar(this.tabBar($r('app.string.all_orders'), OrderDetailConstants.ALL_INDEX))
 
         TabContent() {
-          OrderListContent()
+          OrderListContent({ orderInfo: $orderInfo })
         }
         .tabBar(this.tabBar($r('app.string.pending_payment'), OrderDetailConstants.PENDING_PAYMENT_INDEX))
 
         TabContent() {
-          Column() {
-            EmptyComponent()
-          }
-          .width(StyleConstants.FULL_WIDTH)
-          .height(StyleConstants.FULL_HEIGHT)
+          OrderListContent({ orderInfo: $orderInfo })
         }
         .tabBar(this.tabBar($r('app.string.waiting_shipment'), OrderDetailConstants.WAITING_SHIPMENT_INDEX))
 
         TabContent() {
-          OrderListContent()
+          OrderListContent({ orderInfo: $orderInfo })
         }
         .tabBar(this.tabBar($r('app.string.to_be_received'), OrderDetailConstants.WAITING_RECEIVED_INDEX))
 
         TabContent() {
-          OrderListContent()
+          OrderListContent({ orderInfo: $orderInfo })
         }
         .tabBar(this.tabBar($r('app.string.to_be_evaluated'), OrderDetailConstants.WAITING_EVALUATE_INDEX))
+
+        TabContent() {
+          OrderListContent({ orderInfo: $orderInfo })
+        }
+        .tabBar(this.tabBar($r('app.string.to_be_close'), OrderDetailConstants.CLOSE_ORDER_INDEX))
       }
       .barHeight($r('app.float.order_tab_bar_height'))
       .barWidth(this.currentBreakpoint === BreakpointConstants.BREAKPOINT_LG ?
@@ -68,6 +71,7 @@ export struct OrderDetailList {
       })
       .onChange((index: number) => {
         this.currentTabIndex = index;
+        this.onTabChange(index)
       })
     }
     .height(StyleConstants.FULL_HEIGHT)

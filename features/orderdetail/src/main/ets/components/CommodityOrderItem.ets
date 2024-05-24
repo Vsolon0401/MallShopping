@@ -22,7 +22,6 @@ export struct CommodityOrderItem {
   private onCommodityClick?: () => void = () => {};
 
   aboutToAppear() {
-    Logger.debug(JSON.stringify(this.orderData))
     if (this.orderData !== undefined) {
       const specificationList: ProductSpecification[] = JSON.parse(this.orderData.productAttr)
       this.specification = specificationList.reduce((acc, curSp) => {

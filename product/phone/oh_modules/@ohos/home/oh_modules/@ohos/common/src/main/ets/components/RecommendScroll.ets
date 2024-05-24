@@ -69,8 +69,9 @@ export struct RecommendScroll {
       }
       .lanes(StyleConstants.TWO_TEXT_LINE)
       .width(StyleConstants.FULL_WIDTH)
-      // .margin({ left: $r('app.float.commodity_list_margin'), right: $r('app.float.commodity_list_margin') })
+      .backgroundColor(Color.White)
       .listDirection(Axis.Vertical)
+      // .margin({ left: $r('app.float.commodity_list_margin'), right: $r('app.float.commodity_list_margin') })
     } else {
       EmptyComponent({ outerHeight: StyleConstants.FIFTY_HEIGHT, emptyText: '暂无秒杀活动' })
     }

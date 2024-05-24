@@ -18,9 +18,11 @@ import { CouponHistoryDetail } from './HistoryModel';
 import { ProductSpecification } from './ProductModel';
 
 export enum OrderType {
+  All = 'all',
   PAYMENT = 'payment',
   SHIP = 'ship',
   RECEIPT = 'receipt',
+  /** 已完成 **/
   EVALUATION = 'evaluation',
   SALE = 'sale'
 }
@@ -125,7 +127,7 @@ export class OrderDetail {
   memberId: number;
   couponId: number;
   orderSn: string;
-  createTime?: string | Date;
+  createTime?: string;
   memberUsername: string;
   totalAmount: number;
   payAmount: number;

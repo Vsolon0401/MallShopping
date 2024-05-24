@@ -7,6 +7,8 @@
     "pages/PayOrderPage",
     "pages/OrderDetailListPage",
     "pages/LoginPage",
-    "pages/SearchCommodityPage"
+    "pages/SearchCommodityPage",
+    "pages/AddressPage",
+    "pages/SettingPage"
   ]
 }

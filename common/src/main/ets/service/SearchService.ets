@@ -1,15 +1,17 @@
 
 import { Request } from '../utils/Request';
+import { EsProduct } from '../viewmodel/CategoryModel';
 export class SearchService {
 
-  //todo: 综合搜索、筛选、排序
   async searchSynthesis(params: SearchParams) {
     return Request.searchGet('/esProduct/search', {
       params: params
     })
   }
-  async fetchRecommendById() {
-    return Request.searchGet('/esProduct/recommend/{id}')
+  async fetchRecommendById(productId: number): Promise<EsProduct[]> {
+    return Request.searchGet(`/esProduct/recommend/${productId}`).then(res => {
+      return res.data.list
+    })
   }
 }
 

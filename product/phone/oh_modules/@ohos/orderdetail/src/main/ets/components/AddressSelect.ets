@@ -5,15 +5,32 @@ import { Logger } from '@ohos/common/src/main/ets/utils/Logger'
 import { UserAddress } from '@ohos/common/src/main/ets/viewmodel/AddressModel'
 import { HeaderBar } from './HeaderBar'
 import Prompt from '@system.prompt'
+import { AddressEditDialog } from './AddressEditDialog'
+import promptAction from '@ohos.promptAction'
 
 @Component
-export struct AddressSelected {
+export struct AddressSelect {
   @Consume('selectedAddress') selectedAddress: UserAddress;
   @State addressList: UserAddress[] = []
+  @State toEditAddress: UserAddress = new UserAddress();
   private onSelectAddress?: () => void;
+
+  dialogController: CustomDialogController = new CustomDialogController({
+    builder: AddressEditDialog({
+      addressInfo: $toEditAddress,
+      refresh: () => this.fetchAddressList()
+    }),
+    autoCancel: true,
+    alignment: DialogAlignment.Center,
+    customStyle: true
+  })
 
   aboutToAppear() {
     this.fetchAddressList()
+  }
+
+  aboutToDisappear() {
+    this.dialogController = null;
   }
 
   fetchAddressList() {
@@ -27,16 +44,39 @@ export struct AddressSelected {
     this.onSelectAddress()
   }
 
-  // todo:
-  async handleEdit() {
-
+  handleEdit(address: UserAddress) {
+    this.toEditAddress = address
+    this.dialogController.open()
   }
 
   async handleDelete(selected: UserAddress) {
-    const res = await addressService.delAddress(selected.id)
-    if (res.code === 200) {
-      this.fetchAddressList()
-      Prompt.showToast({ message: '删除成功' })
+    try {
+      promptAction.showDialog({
+        title: '删除地址确认！',
+        message: '此操作不可撤销哦',
+        buttons: [
+          {
+            text: '取消',
+            color: "#ff000000"
+          },
+          {
+            text: '删除',
+            color: '#f74c42'
+          }
+        ]
+      }, async (err, data) => {
+        if (data.index === 0) {
+          return;
+        } else {
+          const res = await addressService.delAddress(selected.id)
+          if (res.code === 200) {
+            this.fetchAddressList()
+            promptAction.showToast({ message: '删除成功' })
+          }
+        }
+      })
+    } catch (e) {
+      Logger.error(JSON.stringify(e))
     }
   }
 
@@ -61,6 +101,7 @@ export struct AddressSelected {
           .width($r('app.float.vp_eighteen'))
           .height($r('app.float.vp_eighteen'))
           .margin({ right: $r('app.float.vp_twelve') })
+          .onClick(() => this.handleEdit($$.address))
 
         Image($r('app.media.ic_delete'))
           .width($r('app.float.vp_eighteen'))
@@ -101,6 +142,7 @@ export struct AddressSelected {
         }
       }
       .width(StyleConstants.FULL_WIDTH)
+      .backgroundColor($r('app.color.page_background'))
     }
     .width(StyleConstants.FULL_WIDTH)
   }

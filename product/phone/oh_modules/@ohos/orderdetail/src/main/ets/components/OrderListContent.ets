@@ -36,15 +36,17 @@ import { OrderInfo, OrderItem, OrderStatus, updateOrderProps } from '@ohos/commo
 @Component
 export struct OrderListContent {
   @StorageProp('currentBreakpoint') currentBreakpoint: string = 'sm';
-  @Consume('orderList') orderInfo: OrderInfo[]
+  @Link orderInfo: OrderInfo[]
 
   async paymentHandler(orderId: number, status: number) {
     let response = null;
     switch (status) {
       case OrderStatus.PendingPayment:
         response = await orderService.payOrderSuccess(orderId, 0) // todo：选择支付方法
+        break;
       case OrderStatus.Completed:
         response = await orderService.confirmReceiveOrder(orderId)
+        break;
     }
 
     if (response.code === 200) {
@@ -76,7 +78,12 @@ export struct OrderListContent {
                   ForEach(this.orderInfo, (info: OrderInfo) => {
                     ListItem() {
                       Flex({ direction: FlexDirection.Column }) {
-                        Flex({ justifyContent: FlexAlign.End }) {
+
+                        Flex({ justifyContent: FlexAlign.SpaceBetween }) {
+                          Text(info.createTime.substring(0, 10))
+                            .fontSize($r('app.float.smaller_font_size'))
+                            .fontColor(Color.Black)
+
                           Text(info.status !== undefined ? statusEnum[info.status] : '')
                             .fontSize($r('app.float.smaller_font_size'))
                             .fontColor($r('app.color.focus_color'))
@@ -96,21 +103,18 @@ export struct OrderListContent {
                             bottom: $r('app.float.vp_twelve')
                           })
 
-                        // FIXME: ui
-                        Scroll() {
-                          ForEach(info?.orderItemList, (item: OrderItem) => {
-                            CommodityOrderItem({
-                              orderData: {
-                                productAttr: item.productAttr,
-                                productPic: item.productPic,
-                                productName: item.productName,
-                                price: item.productPrice,
-                                quantity: item.productQuantity
-                              }
-                            });
-                          }, (item: Order, index?: number) => JSON.stringify(item) + index);
-                        }
-                        .scrollable(ScrollDirection.Horizontal)
+
+                        ForEach(info?.orderItemList, (item: OrderItem) => {
+                          CommodityOrderItem({
+                            orderData: {
+                              productAttr: item.productAttr,
+                              productPic: item.productPic,
+                              productName: item.productName,
+                              price: item.productPrice,
+                              quantity: item.productQuantity
+                            }
+                          });
+                        }, (item: Order, index?: number) => JSON.stringify(item) + index);
 
                         Text($r('app.string.order_id', info.orderSn))
                           .fontSize($r('app.float.small_font_size'))
@@ -188,7 +192,7 @@ export struct OrderListContent {
                         bottom: $r('app.float.vp_sixteen')
                       })
                     }
-                  })
+                  } , (info: OrderInfo) => JSON.stringify(info))
                 }
               } else {
                 Column() {
@@ -196,31 +200,6 @@ export struct OrderListContent {
                 }
                 .width(StyleConstants.FULL_WIDTH)
               }
-              Text($r('app.string.guess_like'))
-                .fontSize($r('app.float.middle_font_size'))
-                .margin({
-                  top: $r('app.float.vp_eight'),
-                  bottom: $r('app.float.vp_twelve'),
-                  left: $r('app.float.vp_sixteen')
-                })
-                .width(StyleConstants.FULL_WIDTH)
-                .textAlign(TextAlign.Start)
-
-              // CommodityList({
-              //   commodityList: this.commodityList,
-              //   column: this.currentBreakpoint === BreakpointConstants.BREAKPOINT_SM ?
-              //   StyleConstants.DISPLAY_TWO : StyleConstants.DISPLAY_THREE,
-              //   onClickItem: (data: Commodity) => {
-              //     router.pushUrl({
-              //       url: OrderDetailConstants.COMMODITY_DETAIL_PAGE_URL,
-              //       params: {
-              //         id: data.id
-              //       }
-              //     }).catch((err: Error) => {
-              //       Logger.error(JSON.stringify(err));
-              //     });
-              //   }
-              // })
             }
           }
         }

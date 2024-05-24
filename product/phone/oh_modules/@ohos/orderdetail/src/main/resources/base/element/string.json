@@ -119,6 +119,10 @@
     {
       "name": "info_error",
       "value": "%s Fail"
+    },
+    {
+      "name": "to_be_close",
+      "value": "To Be Close"
     }
   ]
 }

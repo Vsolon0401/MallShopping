@@ -7,7 +7,7 @@ import { PageOption } from '@ohos/home/src/main/ets/viewmodel/HomeData';
 
 @Entry
 @Component
-export struct SearchCommodityPage {
+struct SearchCommodityPage {
   // 搜索值
   @State keyword: string = '';
   // 分页查询状态
@@ -21,6 +21,15 @@ export struct SearchCommodityPage {
 
   searchController = new SearchController();
   scrollController = new Scroller()
+
+  onPageShow() {
+    const params = router.getParams() as Record<string, string>
+    const searchKey = params?.searchKey
+    if (searchKey !== undefined && searchKey !== '') {
+      this.keyword = searchKey
+      this.handleSearch(searchKey)
+    }
+  }
 
   routerDetailPage<T>(productId: T) {
     router.pushUrl({
@@ -82,7 +91,6 @@ export struct SearchCommodityPage {
 
 
 
-  //todo 筛选栏
   @Builder
   FilterBar() {
     Flex({ justifyContent: FlexAlign.SpaceEvenly, alignItems: ItemAlign.Center}) {
@@ -176,7 +184,7 @@ export struct SearchCommodityPage {
     })
   }
 
-  //todo 商品列表
+
   @Builder
   ProductList() {
     Column() {

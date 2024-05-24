@@ -13,13 +13,42 @@
  * limitations under the License.
  */
 
-import { StyleConstants, BreakpointConstants, BreakPointType, CommonDataSource } from '@ohos/common';
-import { swiperImage, classifyTitle, productData, ProductDataModel, aspectRatio } from '../viewmodel/NewProductData';
+import { StyleConstants, BreakpointConstants, BreakPointType, CommonDataSource, Category } from '@ohos/common';
+import { newProductService } from '../model/NewProductService';
+import { swiperImage, classifyTitle, productData, ProductDataModel, aspectRatio, PageOption } from '../viewmodel/NewProductData';
+import promptAction from '@ohos.promptAction';
 
 @Component
 export struct NewProduct {
   @StorageProp('currentBreakpoint') currentBreakpoint: string = 'sm';
   @State titleIndex: number = 0;
+  // 猜你喜欢
+  @State recommendList: CommonDataSource<Category> = new CommonDataSource([]);
+  // 分页查询状态
+  @State pageOption: PageOption = new PageOption();
+
+  aboutToAppear() {
+    newProductService.fetchRecommendProductList(this.pageOption).then(res => {
+      this.recommendList.addData(0, res.data)
+      this.pageOption.pageNum += 1
+    })
+  }
+
+  // 上拉加载
+  async handlePullUp() {
+    const { pageNum, pageSize } = this.pageOption
+    const res = await newProductService.fetchRecommendProductList({pageNum: pageNum, pageSize: pageSize})
+    if (res.data instanceof Array && Array.isArray(res.data) && res.data.length) {
+      const index = this.recommendList.totalCount()
+      this.recommendList.addData(index, res.data)
+      this.pageOption.pageNum += 1
+    } else {
+      promptAction.showToast({
+        message: '已经到头了',
+        duration: 1000
+      })
+    }
+  }
 
   @Builder
   CustomSwiper() {
@@ -28,7 +57,7 @@ export struct NewProduct {
         Image(item)
           .width(StyleConstants.FULL_WIDTH)
           .aspectRatio(StyleConstants.IMAGE_ASPECT_RATIO)
-          .borderRadius($r('app.float.vp_sixteen'))
+          // .borderRadius($r('app.float.vp_sixteen'))
           .backgroundColor(Color.White)
       }, (item: Resource) => JSON.stringify(item))
     }
@@ -44,60 +73,18 @@ export struct NewProduct {
     .displayCount(this.currentBreakpoint === BreakpointConstants.BREAKPOINT_LG ? StyleConstants.DISPLAY_THREE :
       (this.currentBreakpoint === BreakpointConstants.BREAKPOINT_MD ?
       StyleConstants.DISPLAY_TWO : StyleConstants.DISPLAY_ONE))
-  }
-
-  @Builder
-  ClassifyTitle() {
-    Flex({
-      justifyContent: FlexAlign.SpaceAround,
-      alignItems: ItemAlign.Center
-    }) {
-      ForEach(classifyTitle, (item: Resource, index?: number) => {
-        Text(item)
-          .fontSize($r('app.float.middle_font_size'))
-          .opacity(this.titleIndex === index ? StyleConstants.FULL_OPACITY : StyleConstants.EIGHTY_OPACITY)
-          .fontWeight(this.titleIndex === index ? StyleConstants.FONT_WEIGHT_SEVEN : StyleConstants.FONT_WEIGHT_FOUR)
-          .fontColor(Color.Black)
-          .onClick(() => {
-            if (index !== undefined) {
-              this.titleIndex = index;
-            }
-          })
-      }, (item: Resource) => JSON.stringify(item))
-      Row() {
-        Image($r('app.media.ic_product_split'))
-          .width($r('app.float.vp_eighteen'))
-          .height($r('app.float.vp_sixteen'))
-          .margin({
-            left: $r('app.float.vp_two'),
-            right: $r('app.float.vp_two')
-          })
-        Text($r('app.string.title_bar_classification'))
-          .fontSize($r('app.float.middle_font_size'))
-          .fontColor(Color.Black)
-          .opacity(this.titleIndex === classifyTitle.length + 1 ?
-            StyleConstants.FULL_OPACITY : StyleConstants.EIGHTY_OPACITY)
-          .fontWeight(this.titleIndex === classifyTitle.length + 1 ?
-            StyleConstants.FONT_WEIGHT_SEVEN : StyleConstants.FONT_WEIGHT_FOUR)
-      }.onClick(() => {
-        this.titleIndex = classifyTitle.length + 1;
-      })
-    }
-    .height($r('app.float.classify_title_height'))
-    .width(StyleConstants.FULL_WIDTH)
     .margin({
-      bottom: $r('app.float.vp_sixteen'),
-      top: $r('app.float.vp_sixteen'),
+      bottom: 5
     })
   }
 
   @Builder
   ProductList() {
     List({ space: StyleConstants.TWELVE_SPACE }) {
-      LazyForEach(new CommonDataSource<ProductDataModel>(productData), (item: ProductDataModel) => {
+      LazyForEach(this.recommendList, (item: Category) => {
         ListItem() {
           Column() {
-            Image($rawfile(item.img))
+            Image(item.pic)
               .width(StyleConstants.FULL_WIDTH)
               .aspectRatio(new BreakPointType({
                 sm: aspectRatio.sm,
@@ -106,8 +93,8 @@ export struct NewProduct {
               }).getValue(this.currentBreakpoint))
               .objectFit(ImageFit.Fill)
             Column() {
-              if (item.comment) {
-                Text(item.comment)
+              if (item.brandName) {
+                Text(item.brandName)
                   .fontSize($r('app.float.smaller_font_size'))
                   .border({
                     width: $r('app.float.vp_one'),
@@ -124,25 +111,16 @@ export struct NewProduct {
                     top: $r('app.float.vp_eight')
                   })
               }
-              Text(item.des)
+              Text(item.name)
                 .fontSize($r('app.float.small_font_size'))
+                .maxLines(StyleConstants.TWO_TEXT_LINE)
+                .textOverflow({ overflow: TextOverflow.Ellipsis })
                 .margin({
                   top: $r('app.float.vp_eight'),
                   bottom: $r('app.float.vp_eight'),
                   left: $r('app.float.vp_eight')
                 })
-              Row() {
-                Image($r('app.media.ic_person'))
-                  .width($r('app.float.vp_twenty'))
-                  .height($r('app.float.vp_twenty'))
-                Text(item.user)
-                  .fontSize($r('app.float.small_font_size'))
-                  .margin({ left: $r('app.float.vp_eight') })
-              }
-              .margin({
-                left: $r('app.float.vp_ten'),
-                bottom: $r('app.float.vp_ten')
-              })
+
             }
             .width(StyleConstants.FULL_WIDTH)
             .backgroundColor(Color.White)
@@ -150,13 +128,14 @@ export struct NewProduct {
             .justifyContent(FlexAlign.Start)
             .borderRadius({ bottomLeft: $r('app.float.vp_eight'), bottomRight: $r('app.float.vp_eight') })
           }
+          .backgroundColor(Color.White)
           .borderRadius($r('app.float.vp_eight'))
         }
         .margin({
           left: $r('app.float.vp_six'),
           right: $r('app.float.vp_six')
         })
-      }, (item: ProductDataModel) => JSON.stringify(item))
+      }, (item: Category) => JSON.stringify(item))
     }
     .lanes(this.currentBreakpoint === BreakpointConstants.BREAKPOINT_SM ?
       StyleConstants.DISPLAY_TWO : StyleConstants.DISPLAY_THREE)
@@ -167,10 +146,23 @@ export struct NewProduct {
     Scroll() {
       Column() {
         this.CustomSwiper()
-        this.ClassifyTitle()
+        // Video({
+        //   src: $rawfile('ic_recommend.mp4')
+        // })
+        //   .width(StyleConstants.FULL_WIDTH)
+        //   .height(100)
+        //   .muted(true)
+        //   .autoPlay(true)
+        //   .controls(false)
+        //   .loop(true)
         this.ProductList()
       }
     }
     .scrollBar(BarState.Off)
+    .onScrollEdge((side: Edge) => {
+      if (side === Edge.Bottom) {
+        this.handlePullUp()
+      }
+    })
   }
 }

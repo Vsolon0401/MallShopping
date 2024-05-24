@@ -23,10 +23,6 @@ import router from '@ohos.router';
 @Component
 export struct Home {
   @StorageProp('currentBreakpoint') currentBreakpoint: string = 'sm';
-  // 下拉更多的分页参数配置
-  // 分页查询状态
-  @State pageOption: PageOption = new PageOption();
-
   @State titleIndex: number = 0;
   @State activityTitleIndex: number = 0;
   @State flushSaleList: any[] = [];
@@ -44,15 +40,11 @@ export struct Home {
   @State brandList: Brand[] = [];
   // 秒杀专区
   @State flashPromotion: FlashPromotion = new FlashPromotion()
-  // 猜你喜欢
-  @State recommendList: CommonDataSource<Category> = new CommonDataSource([]);
-  private localDataManger: LocalDataManager = LocalDataManager.instance();
   // waterFall的scroll控制器
   private scroller: Scroller = new Scroller();
   private onClickItem = (CategoryId: number) => {};
 
   aboutToAppear() {
-    const { pageNum, pageSize } = this.pageOption
     homeService.fetchClassify(this.titleIndex).then((res) => {
       this.classifyLevel1 = this.classifyLevel1.concat(res.data)
     })
@@ -63,27 +55,8 @@ export struct Home {
       this.brandList = res.data?.brandList || []
       this.flashPromotion = res.data?.homeFlashPromotion
     })
-    homeService.fetchRecommendProductList({pageNum: pageNum, pageSize: pageSize}).then((res) => {
-      this.recommendList.addData(0, res.data)
-      this.pageOption.pageNum += 1
-    })
   }
 
-  // 上拉加载
-  async handlePullUp() {
-    const { pageNum, pageSize } = this.pageOption
-    const res = await homeService.fetchRecommendProductList({pageNum: pageNum, pageSize: pageSize})
-    if (res.data instanceof Array && Array.isArray(res.data) && res.data.length) {
-      const index = this.recommendList.totalCount()
-      this.recommendList.addData(index, res.data)
-      this.pageOption.pageNum += 1
-    } else {
-      promptAction.showToast({
-        message: '已经到头了',
-        duration: 1000
-      })
-    }
-  }
 
   // 加载二级分类
   async handleCateClick(parentId: number) {
@@ -96,9 +69,20 @@ export struct Home {
     this.titleIndex = parentId;
   }
 
+  // 点击搜索栏进入搜索页
   routerToSearch() {
     router.pushUrl({
       url: 'pages/SearchCommodityPage'
+    }).catch((err: Error) => {
+      Logger.error(JSON.stringify(err));
+    });
+  }
+
+  // 点击品牌带参数进入搜索页
+  routerWithParamsToSearch(searchKey: string) {
+    router.pushUrl({
+      url: 'pages/SearchCommodityPage',
+      params: { searchKey: searchKey }
     }).catch((err: Error) => {
       Logger.error(JSON.stringify(err));
     });
@@ -230,6 +214,9 @@ export struct Home {
                 .lineHeight($r('app.float.commodity_desc_height'))
             }
           }
+          .onClick(() => {
+            this.routerWithParamsToSearch(item.name)
+          })
         }, (item: Classify) => JSON.stringify(item))
       }
       .width(StyleConstants.FULL_WIDTH)
@@ -238,7 +225,7 @@ export struct Home {
       .lanes(StyleConstants.FOUR_TEXT_LINE)
 
     }
-    .height('175vp')
+    .height('205vp')
     .backgroundColor(Color.White)
     .borderRadius($r('app.float.vp_sixteen'))
     .scrollable(ScrollDirection.Horizontal)
@@ -335,7 +322,8 @@ export struct Home {
   BrandZone() {
     Column() {
       BrandList({
-        brandList: $brandList
+        brandList: $brandList,
+        onClickItem: (brandName: string) => this.routerWithParamsToSearch(brandName)
       })
     }
     .width(StyleConstants.FULL_WIDTH)
@@ -367,39 +355,31 @@ export struct Home {
   }
 
   // 猜你喜欢(推荐
-  @Builder
-  RecommendList() {
-    Column() {
-      Row({ space: 5 }) {
-        Image($r('app.media.ic_love'))
-          .objectFit(ImageFit.Contain)
-          .width(25)
-
-        Text('猜你喜欢')
-          .fontColor(Color.Black)
-          .fontSize($r('app.float.middle_font_size'))
-          .fontWeight(StyleConstants.FONT_WEIGHT_FOUR)
-          .lineHeight($r('app.float.commodity_desc_height'))
-      }
-      .padding(10)
-      .margin({ top: $r('app.float.vp_six'), bottom: $r('app.float.vp_six')})
-      .width(StyleConstants.FULL_WIDTH)
-      .alignItems(VerticalAlign.Center)
-    }
-
-    // CommodityList({
-    //   commodityList: $commodityList,
-    //   column: this.currentBreakpoint === BreakpointConstants.BREAKPOINT_LG ? StyleConstants.DISPLAY_FOUR :
-    //     (this.currentBreakpoint === BreakpointConstants.BREAKPOINT_MD ?
-    //     StyleConstants.DISPLAY_THREE : StyleConstants.DISPLAY_TWO),
-    //   onClickItem: (data: Commodity): void => this.onClickItem(data)
-    // })
-
-    RecommendScroll({
-      recommendList: $recommendList,
-      onClickItem: (data: Category): void => this.onClickItem(data.id)
-    })
-  }
+  // @Builder
+  // RecommendList() {
+  //   Column() {
+  //     Row({ space: 5 }) {
+  //       Image($r('app.media.ic_love'))
+  //         .objectFit(ImageFit.Contain)
+  //         .width(25)
+  //
+  //       Text('猜你喜欢')
+  //         .fontColor(Color.Black)
+  //         .fontSize($r('app.float.middle_font_size'))
+  //         .fontWeight(StyleConstants.FONT_WEIGHT_FOUR)
+  //         .lineHeight($r('app.float.commodity_desc_height'))
+  //     }
+  //     .padding(10)
+  //     .margin({ top: $r('app.float.vp_six'), bottom: $r('app.float.vp_six')})
+  //     .width(StyleConstants.FULL_WIDTH)
+  //     .alignItems(VerticalAlign.Center)
+  //   }
+  //
+  //   RecommendScroll({
+  //     recommendList: $recommendList,
+  //     onClickItem: (data: Category): void => this.onClickItem(data.id)
+  //   })
+  // }
 
   build() {
     Stack({ alignContent: Alignment.Top }) {
@@ -427,17 +407,10 @@ export struct Home {
             } else if (this.activityTitleIndex === 3) {
               this.FlushSaleZone()
             }
-            this.RecommendList()
+
           }
         }
         .scrollBar(BarState.Off)
-        .onScrollEdge((side: Edge) => {
-          if (side === Edge.Bottom) {
-            // TODO: 补充loading动画
-            // this.scrollEdg = true
-            this.handlePullUp()
-          }
-        })
       }
       .padding({ left: $r('app.float.vp_twelve'), right: $r('app.float.vp_twelve') })
     }

@@ -8,13 +8,11 @@ import { Logger } from '../utils/Logger';
 import { formatLocalhost } from '../utils/Utils';
 
 
-// FIXME: 改成了search那的接口，需要调整数据结构
 @Component
 export struct ProductWaterFlow {
   @Link recommendList: CommonDataSource<Category>;
   private onPullUp?: () => Promise<void>;
   private onClickItem? = (Category: Category) => {};
-  // private scroller: Scroller = new Scroller();
 
 
   @Builder
@@ -87,6 +85,11 @@ export struct ProductWaterFlow {
     })
     .backgroundColor(Color.White)
     .borderRadius($r('app.float.vp_eight'))
+    .onClick(() => {
+      if (this.onClickItem !== undefined) {
+        this.onClickItem(info)
+      }
+    })
   }
 
   @Builder

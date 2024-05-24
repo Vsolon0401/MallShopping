@@ -24,8 +24,12 @@ import {
   StyleConstants,
   BreakpointConstants,
   CartItem,
-  Preferences
+  Preferences,
+  CommonDataSource,
+  EsProduct,
+  searchService
 ,
+
 } from '@ohos/common';
 import { Home } from '@ohos/home';
 import { NewProduct } from '@ohos/newproduct';
@@ -46,6 +50,7 @@ struct MainPage {
   // ->
   @Provide('userInfo') userInfo: UserInfo = new UserInfo()
   @State shoppingCartList: CartItem[] = [];
+  @State recommendList:CommonDataSource<EsProduct> = new CommonDataSource([])
   @State orderCount: OrderCount = {
     payment: 0,
     ship: 0,
@@ -58,26 +63,28 @@ struct MainPage {
 
   aboutToAppear() {
     this.breakpointSystem.register();
-    loginService.getUserInfo()
-    Preferences.get('userInfo').then(info => {
-      if (info !== undefined) {
-        Logger.debug(JSON.stringify(info))
-        this.userInfo = info as UserInfo
-      }
-    })
     this.queryOrderList();
   }
+
 
   aboutToDisappear() {
     this.breakpointSystem.unregister();
   }
 
+  queryUserInfo() {
+    loginService.getUserInfo().then(res=> {
+      this.userInfo = res.data
+    })
+  }
+
   queryShopCart() {
-    // const shoppingData = this.localDataManager.queryShopCart();
-    // this.shoppingCartList = shoppingData;
     shoppingCartService.fetchCartList().then(res => {
       this.shoppingCartList = res;
     })
+  }
+
+  fetchRecommend(productId: number) {
+    return searchService.fetchRecommendById(productId)
   }
 
   // todo: 调整不同类型click的router处理
@@ -92,17 +99,17 @@ struct MainPage {
 
   // FIXME：订单数统计
   queryOrderList() {
-    const orderList = this.localDataManager.queryOrderList();
     this.orderCount = {
-      payment: orderList.filter(item => item.status === OrderOperationStatus.UN_PAY).length,
+      payment: 0,
       ship: 0,
-      receipt: orderList.filter(item => item.status === OrderOperationStatus.DELIVERED).length,
-      evaluation: orderList.filter(item => item.status === OrderOperationStatus.RECEIPT).length,
+      receipt: 0,
+      evaluation: 0,
       sale: 0
     };
   }
 
   onPageShow() {
+    this.queryUserInfo();
     this.queryShopCart();
     this.queryOrderList();
   }

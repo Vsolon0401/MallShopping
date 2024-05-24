@@ -40,6 +40,11 @@ export class OrderDetailConstants{
   static readonly WAITING_EVALUATE_INDEX: number = 4;
 
   /**
+   * Index of waiting evaluate tab.
+   */
+  static readonly CLOSE_ORDER_INDEX: number = 5;
+
+  /**
    * String value of success.
    */
   static readonly SUCCESS: string = '成功';

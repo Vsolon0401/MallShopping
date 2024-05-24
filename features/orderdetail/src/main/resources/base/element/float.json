@@ -55,6 +55,10 @@
     {
       "name": "background_image_height",
       "value": "132vp"
+    },
+    {
+      "name": "dialog_radius",
+      "value": "32vp"
     }
   ]
 }

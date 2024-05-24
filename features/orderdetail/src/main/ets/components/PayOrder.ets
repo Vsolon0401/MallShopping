@@ -145,6 +145,10 @@ export struct PayOrder {
         .backgroundColor(Color.White)
         .height($r('app.float.button_height'))
         .width(StyleConstants.FULL_WIDTH)
+        .fontColor($r("app.color.theme_color"))
+        .margin({
+          right: $r("app.float.vp_eight")
+        })
         .onClick(() => this.handleCancel())
       if (this.orderInfo.status === OrderStatus.PendingPayment) {
         Button($r('app.string.btn_pay'))

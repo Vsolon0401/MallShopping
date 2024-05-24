@@ -25,7 +25,6 @@ export struct AddressInfo {
   private onSelectAddress?: () => void;
 
   build() {
-    if (this.selectedAddress.name !== '') {
       Flex({
         justifyContent: FlexAlign.Start,
         alignItems: ItemAlign.Center
@@ -38,34 +37,39 @@ export struct AddressInfo {
           justifyContent: FlexAlign.SpaceBetween,
           alignItems: ItemAlign.Center
         }) {
-          Column(){
-            Row() {
-              Text(this.selectedAddress?.name)
-                .fontSize($r('app.float.small_font_size'))
-                .margin({ right: $r('app.float.vp_twelve') })
-                .fontColor(Color.Black)
-              Text(this.selectedAddress?.phoneNumber)
-                .fontSize($r('app.float.small_font_size'))
+          if (this.selectedAddress.name !== '') {
+            Column(){
+              Row() {
+                Text(this.selectedAddress?.name)
+                  .fontSize($r('app.float.small_font_size'))
+                  .margin({ right: $r('app.float.vp_twelve') })
+                  .fontColor(Color.Black)
+                Text(this.selectedAddress?.phoneNumber)
+                  .fontSize($r('app.float.small_font_size'))
+                  .fontColor($r("app.color.sixty_alpha_black"))
+              }
+              .margin({ bottom: $r('app.float.vp_eight') })
+              Text(`${this.selectedAddress?.province}${this.selectedAddress?.city}${this.selectedAddress?.region} ${this.selectedAddress?.detailAddress}`)
+                .fontSize($r('app.float.smaller_font_size'))
                 .fontColor($r("app.color.sixty_alpha_black"))
             }
-            .margin({ bottom: $r('app.float.vp_eight') })
-            Text(`${this.selectedAddress?.province}${this.selectedAddress?.city}${this.selectedAddress?.region} ${this.selectedAddress?.detailAddress}`)
-              .fontSize($r('app.float.smaller_font_size'))
+            .alignItems(HorizontalAlign.Start)
+          } else {
+            Text('请选择收货地址')
+              .fontSize($r('app.float.big_font_size'))
               .fontColor($r("app.color.sixty_alpha_black"))
           }
-          .alignItems(HorizontalAlign.Start)
 
           Image($r('app.media.ic_point'))
             .height($r('app.float.vp_twelve'))
             .width($r('app.float.vp_six'))
-        }
       }
+    }
       .width(StyleConstants.FULL_WIDTH)
       .backgroundColor(Color.White)
       .borderRadius($r('app.float.vp_sixteen'))
       .margin({ bottom: $r('app.float.vp_twelve') })
       .padding($r('app.float.vp_sixteen'))
       .onClick(() => this.onSelectAddress())
-    }
   }
 }

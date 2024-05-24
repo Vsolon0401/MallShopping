@@ -14,7 +14,7 @@
     },
     {
       "name": "five_alpha_black",
-      "value": "#0d000000"
+      "value": "#07161616"
     },
     {
       "name": "ten_alpha_black",
@@ -47,6 +47,10 @@
     {
       "name": "eighty_alpha_white",
       "value": "#CCFFFFFF"
+    },
+    {
+      "name": "theme_color",
+      "value": "#f74c42"
     }
   ]
 }

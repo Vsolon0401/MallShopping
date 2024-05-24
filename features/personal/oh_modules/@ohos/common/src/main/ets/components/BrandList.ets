@@ -7,7 +7,7 @@ import { EmptyComponent } from './EmptyComponent';
 @Component
 export struct BrandList {
   @Link brandList: Brand[];
-  private onClickBrand? = (Brand: Brand) => {};
+  private onClickItem? : (brandName: string) => void;
 
 
   @Builder
@@ -28,6 +28,11 @@ export struct BrandList {
     }
     .height('80vp')
     .backgroundColor(Color.White)
+    .onClick(() => {
+      if (this.onClickItem !== undefined) {
+        this.onClickItem(brandItem.name)
+      }
+    })
   }
 
   build() {
@@ -38,11 +43,6 @@ export struct BrandList {
             this.BrandCard(item)
           }
           .margin({ left: $r('app.float.vp_two'), right: $r('app.float.vp_two')})
-          .onClick(() => {
-            if (this.onClick !== undefined) {
-              this.onClickBrand(item)
-            }
-          })
         }, (item: Brand) => JSON.stringify(item))
       }
       .width(StyleConstants.FULL_WIDTH)

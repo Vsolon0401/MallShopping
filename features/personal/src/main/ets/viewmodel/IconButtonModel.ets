@@ -13,16 +13,16 @@
  * limitations under the License.
  */
 
-import { OrderType } from '@ohos/common';
+import { OrderType, UserFunctionType } from '@ohos/common';
 
 @Observed
 export class IconButtonModel {
   icon: Resource;
   text: Resource;
-  key?: OrderType;
+  key?: OrderType | UserFunctionType;
   count?: number;
 
-  constructor(icon: Resource, text: Resource, key?: OrderType, count?: number) {
+  constructor(icon: Resource, text: Resource, key?: OrderType | UserFunctionType, count?: number) {
     this.icon = icon;
     this.text = text;
     this.key = key;

@@ -61,7 +61,6 @@ struct SplashPage {
     this.breakpointSystem.register();
     const token = await Preferences.get('token', false)
     if (token && typeof token === 'string') {
-      await loginService.getUserInfo()
       defaultUrl = PageConstants.MAIN_PAGE_URL
     }
     this.timeOutId = setTimeout(() => {

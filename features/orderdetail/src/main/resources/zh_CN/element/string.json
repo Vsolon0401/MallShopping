@@ -119,6 +119,10 @@
     {
       "name": "info_error",
       "value": "%s失败"
+    },
+    {
+      "name": "to_be_close",
+      "value": "已关闭"
     }
   ]
 }
