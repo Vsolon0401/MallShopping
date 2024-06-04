@@ -26,6 +26,7 @@ export struct NewProduct {
   @State recommendList: CommonDataSource<Category> = new CommonDataSource([]);
   // 分页查询状态
   @State pageOption: PageOption = new PageOption();
+  private onClickItem?: (CategoryId: number) => void
 
   aboutToAppear() {
     newProductService.fetchRecommendProductList(this.pageOption).then(res => {
@@ -120,8 +121,8 @@ export struct NewProduct {
                   bottom: $r('app.float.vp_eight'),
                   left: $r('app.float.vp_eight')
                 })
-
             }
+            .height(90)
             .width(StyleConstants.FULL_WIDTH)
             .backgroundColor(Color.White)
             .alignItems(HorizontalAlign.Start)
@@ -130,6 +131,11 @@ export struct NewProduct {
           }
           .backgroundColor(Color.White)
           .borderRadius($r('app.float.vp_eight'))
+          .onClick(() => { //FIXME:
+            if (this.onClickItem !== undefined) {
+              this.onClickItem(item.id)
+            }
+          })
         }
         .margin({
           left: $r('app.float.vp_six'),
@@ -146,15 +152,6 @@ export struct NewProduct {
     Scroll() {
       Column() {
         this.CustomSwiper()
-        // Video({
-        //   src: $rawfile('ic_recommend.mp4')
-        // })
-        //   .width(StyleConstants.FULL_WIDTH)
-        //   .height(100)
-        //   .muted(true)
-        //   .autoPlay(true)
-        //   .controls(false)
-        //   .loop(true)
         this.ProductList()
       }
     }

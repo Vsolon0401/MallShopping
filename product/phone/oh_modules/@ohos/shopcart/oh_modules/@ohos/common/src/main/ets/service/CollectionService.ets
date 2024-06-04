@@ -7,8 +7,8 @@ class CollectionService {
     return Request.get(`/member/productCollection/detail?productId=${productId}`)
   }
 
-  async fetchCollectionList() {
-    return Request.get(`/member/productCollection/list?pageNum=1&pageSize=5`)
+  async fetchCollectionList(pageNum: number, pageSize: number) {
+    return Request.get(`/member/productCollection/list?pageNum=${pageNum}&pageSize=${pageSize}`)
   }
 
   async addCollection(collection: Collection) {

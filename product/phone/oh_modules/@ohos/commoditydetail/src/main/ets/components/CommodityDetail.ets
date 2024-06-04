@@ -208,7 +208,7 @@ export struct CommodityDetail {
       productId: product.id,
       productName: product.name,
       productPic: product.pic,
-      productPrice: product.price,
+      productPrice: `${product.price}`,
       productSubTitle: product.subTitle,
     })
   }

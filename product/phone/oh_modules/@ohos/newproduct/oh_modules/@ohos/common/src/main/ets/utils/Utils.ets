@@ -71,7 +71,7 @@ export function formatDate(timestamp: number, format = 'yyyy-mm-dd') {
 
 export function formatLocalhost(url: string, format: string = MiniIO_URL): string {
   const target = 'http://localhost:9000'
-  if (url.includes(target)) {
+  if (url?.includes(target)) {
     return url.replace(target, format)
   }
   return url

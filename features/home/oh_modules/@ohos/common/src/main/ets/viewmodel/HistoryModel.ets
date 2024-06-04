@@ -13,7 +13,6 @@ export class CouponHistory {
   orderSn: string;
 }
 
-// todo: 类型补充
 export class CouponHistoryDetail extends CouponHistory {
   coupon: Coupon;
   productRelationList: any[];

@@ -91,6 +91,7 @@ export struct Personal {
   onUserButtonClick(key: UserFunctionType) {
     switch (key) {
       case UserFunctionType.Collection:
+        router.pushUrl({ url: 'pages/CollectionPage' })
         break;
       case UserFunctionType.Address:
         router.pushUrl({ url: 'pages/AddressPage' })

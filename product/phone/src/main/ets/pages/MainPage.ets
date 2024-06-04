@@ -87,7 +87,6 @@ struct MainPage {
     return searchService.fetchRecommendById(productId)
   }
 
-  // todo: 调整不同类型click的router处理
   routerDetailPage<T>(productId: T) {
     router.pushUrl({
       url: PageConstants.COMMODITY_DETAIL_PAGE_URL,
@@ -129,8 +128,9 @@ struct MainPage {
         .tabBar(this.BottomNavigation(buttonInfo[PageConstants.HOME_INDEX]))
 
         TabContent() {
-          //todo: 调整新品
-          NewProduct()
+          NewProduct({
+            onClickItem: <T>(data: T): void => this.routerDetailPage<T>(data)
+          })
         }
         .tabBar(this.BottomNavigation(buttonInfo[PageConstants.NEW_PRODUCT_INDEX]))
 

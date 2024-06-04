@@ -185,7 +185,6 @@ export struct Home {
       }
       .margin({ right: $r('app.float.vp_six')})
       .onClick(() => {
-        // todo: 路由跳转
         this.titleIndex = 0;
       })
     }
@@ -330,7 +329,7 @@ export struct Home {
     .margin({ top: $r('app.float.vp_twelve'), bottom: $r('app.float.vp_twelve') })
   }
 
-  // 新品推荐
+  // 推荐
   @Builder
   NewProductZone() {
     Column() {

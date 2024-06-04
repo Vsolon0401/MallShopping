@@ -1,8 +1,30 @@
+import { Request } from '../utils/Request'
+
+/**
+ * MemberReadHistory
+ */
+export interface HistoryParams {
+  id?: string;
+  memberIcon?: string;
+  memberId?: number;
+  memberNickname?: string;
+  productId?: number;
+  productName?: string;
+  productPic?: string;
+  productPrice?: string;
+  productSubTitle?: string;
+  [property: string]: any;
+}
 
 class HistoryService {
+  createReadHistory(params: HistoryParams) {
+    Request.post('/member/readHistory/create', params)
+  }
 
-  createReadHistory(params) {
-
+  fetchHistory(params) {
+    Request.get('/member/readHistory/list', {
+      params: params
+    })
   }
 }
 

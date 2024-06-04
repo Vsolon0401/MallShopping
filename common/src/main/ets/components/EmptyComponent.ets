@@ -12,10 +12,10 @@ export struct EmptyComponent {
       alignItems: ItemAlign.Center,
       direction: FlexDirection.Column
     }) {
-      Image(this.emptyText || $r('app.media.ic_empty'))
+      Image($r('app.media.ic_empty'))
         .width($r('app.float.empty_image_size'))
         .height($r('app.float.empty_image_size'))
-      Text($r('app.string.empty_text'))
+      Text(this.emptyText || $r('app.string.empty_text'))
         .fontSize($r('app.float.micro_font_size'))
         .margin({ top: $r('app.float.vp_ten') })
     }

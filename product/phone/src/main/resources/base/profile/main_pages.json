@@ -9,6 +9,7 @@
     "pages/LoginPage",
     "pages/SearchCommodityPage",
     "pages/AddressPage",
-    "pages/SettingPage"
+    "pages/SettingPage",
+    "pages/CollectionPage"
   ]
 }
