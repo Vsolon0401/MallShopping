@@ -17,12 +17,12 @@ export interface HistoryParams {
 }
 
 class HistoryService {
-  createReadHistory(params: HistoryParams) {
-    Request.post('/member/readHistory/create', params)
+  async createReadHistory(params: HistoryParams) {
+    return Request.post('/member/readHistory/create', params)
   }
 
-  fetchHistory(params) {
-    Request.get('/member/readHistory/list', {
+  async fetchHistory(params) {
+    return Request.get('/member/readHistory/list', {
       params: params
     })
   }

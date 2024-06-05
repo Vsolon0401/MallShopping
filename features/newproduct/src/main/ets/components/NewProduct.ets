@@ -26,7 +26,7 @@ export struct NewProduct {
   @State recommendList: CommonDataSource<Category> = new CommonDataSource([]);
   // 分页查询状态
   @State pageOption: PageOption = new PageOption();
-  private onClickItem?: (CategoryId: number) => void
+  private onClickItem?: (productId: number) => void
 
   aboutToAppear() {
     newProductService.fetchRecommendProductList(this.pageOption).then(res => {

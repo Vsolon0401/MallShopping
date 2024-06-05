@@ -96,7 +96,7 @@ struct MainPage {
     });
   }
 
-  // FIXME：订单数统计
+  // FIXME：先不管订单数统计
   queryOrderList() {
     this.orderCount = {
       payment: 0,
@@ -129,7 +129,7 @@ struct MainPage {
 
         TabContent() {
           NewProduct({
-            onClickItem: <T>(data: T): void => this.routerDetailPage<T>(data)
+            onClickItem: (productId: number) => this.routerDetailPage(productId)
           })
         }
         .tabBar(this.BottomNavigation(buttonInfo[PageConstants.NEW_PRODUCT_INDEX]))

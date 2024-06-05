@@ -27,6 +27,7 @@ export { CartItem, CartPromotionItem } from './src/main/ets/viewmodel/CartModel'
 export { Collection } from './src/main/ets/viewmodel/CollectionModel'
 export { ConfirmOrderType as ConfirmOrder, OrderItem, OrderInfo, PayType, OrderStatus, OrderDetail } from './src/main/ets/viewmodel/OrderModel'
 export { UserInfo, UserFunctionType } from './src/main/ets/viewmodel/UserModel'
+export { MemberHistory } from './src/main/ets/viewmodel/HistoryModel'
 /**----------------------------------------------service------------------------------------------------------ **/
 export { productService } from './src/main/ets/service/ProductService'
 export { shoppingCartService } from './src/main/ets/service/ShoppingCartService'

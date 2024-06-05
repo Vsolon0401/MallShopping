@@ -1,3 +1,4 @@
+import { Collection } from './CollectionModel';
 import { Coupon } from './ProductModel';
 export class CouponHistory {
   id?: number;
@@ -18,3 +19,5 @@ export class CouponHistoryDetail extends CouponHistory {
   productRelationList: any[];
   categoryRelationList: any[]
 }
+
+export class MemberHistory extends Collection {}

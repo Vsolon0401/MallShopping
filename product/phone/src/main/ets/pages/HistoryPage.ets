@@ -1,37 +1,22 @@
 
-import { Collection, CommonDataSource, EmptyComponent, formatLocalhost, Logger, StyleConstants } from '@ohos/common'
-import { collectionService } from '@ohos/common/src/main/ets/service/CollectionService'
-import { PageOption } from '@ohos/home/src/main/ets/viewmodel/HomeData';
+import { historyService } from '@ohos/common/src/main/ets/service/HistoryService'
+import { Logger } from '@ohos/common/src/main/ets/utils/Logger'
+import { PageOption } from '@ohos/home/src/main/ets/viewmodel/HomeData'
 import { HeaderBar } from '@ohos/orderdetail/src/main/ets/components/HeaderBar'
-import promptAction from '@ohos.promptAction';
-import router from '@ohos.router';
-import { PageConstants } from '../constants/PageConstants';
+import router from '@ohos.router'
+import { EmptyComponent, formatLocalhost, MemberHistory, StyleConstants } from '@ohos/common'
+import { PageConstants } from '../constants/PageConstants'
 
-// todo: 调整分页控制
 @Entry
 @Component
-struct CollectionPage {
-
-  @State collectionList: Collection[] = [];
-  //@State pageOption: PageOption = new PageOption(1, 5)
+struct HistoryPage {
+  @State historyList: MemberHistory[] = []
+  @State pageOption: PageOption = new PageOption()
 
   aboutToAppear() {
-    collectionService.fetchCollectionList(1,10).then(res => {
-      this.collectionList = res.data.list
+    historyService.fetchHistory(this.pageOption).then(res => {
+      this.historyList = res.data?.list || []
     })
-    Logger.debug(JSON.stringify(this.collectionList))
-  }
-
-  async handleCollectionCancel(productId: number) {
-    const res = await collectionService.delCollection(productId)
-    if (res.code = 200) {
-      await collectionService.fetchCollectionList(1,10).then(res => {
-        this.collectionList = res.data.list
-      })
-      promptAction.showToast({
-        message: '取消收藏成功'
-      })
-    }
   }
 
   routerDetailPage<T>(productId: T) {
@@ -43,8 +28,12 @@ struct CollectionPage {
     });
   }
 
+  handleMemberHistoryCancel(productId: number) {
+
+  }
+
   @Builder
-  CollectionItem(info: Collection) {
+  MemberHistoryItem(info: MemberHistory) {
     Row() {
       Image(formatLocalhost(info.productPic))
         .width($r('app.float.commodity_item_image_size'))
@@ -86,7 +75,7 @@ struct CollectionPage {
   }
 
   @Builder
-  CancelCollection(item: Collection) {
+  CancelMemberHistory(item: MemberHistory) {
     Flex({
       direction: FlexDirection.Column,
       justifyContent: FlexAlign.Center,
@@ -103,7 +92,7 @@ struct CollectionPage {
       }
       .padding({ right: $r('app.float.vp_fourteen') })
     }
-    .onClick(() => this.handleCollectionCancel(item.productId))
+    .onClick(() => this.handleMemberHistoryCancel(item.productId))
     .height(155)
     .width($r('app.float.item_delete_width'))
     .backgroundColor($r('app.color.focus_color'))
@@ -112,18 +101,18 @@ struct CollectionPage {
   }
 
   @Builder
-  CollectionList() {
+  MemberHistoryList() {
     List() {
-      ForEach(this.collectionList, (item: Collection) => {
+      ForEach(this.historyList, (item: MemberHistory) => {
         ListItem() {
-          this.CollectionItem(item)
+          this.MemberHistoryItem(item)
         }
         .margin({
           bottom: 10
         })
         .onClick(() => this.routerDetailPage(item.productId))
-        .swipeAction({ end: this.CancelCollection(item), edgeEffect: SwipeEdgeEffect.None})
-      }, (item: Collection) => JSON.stringify(item))
+        .swipeAction({ end: this.CancelMemberHistory(item), edgeEffect: SwipeEdgeEffect.None})
+      }, (item: MemberHistory) => JSON.stringify(item))
     }
     .width(StyleConstants.FULL_WIDTH)
     .margin({ left: $r('app.float.commodity_list_margin'), right: $r('app.float.commodity_list_margin') })
@@ -134,10 +123,10 @@ struct CollectionPage {
   build() {
     Column() {
       HeaderBar({ title: '收藏记录', onBack: () => router.back() })
-      if (this.collectionList?.length > 0) {
-        this.CollectionList()
+      if (this.historyList?.length > 0) {
+        this.MemberHistoryList()
       } else {
-        EmptyComponent({ emptyText: '还没有收藏任何商品' })
+        EmptyComponent({ emptyText: '暂无数据' })
       }
     }
     .backgroundColor($r('app.color.page_background'))

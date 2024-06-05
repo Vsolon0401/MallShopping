@@ -97,6 +97,7 @@ export struct Personal {
         router.pushUrl({ url: 'pages/AddressPage' })
         break;
       case UserFunctionType.History:
+        router.pushUrl({ url: 'pages/HistoryPage' })
         break;
       case UserFunctionType.Evaluate:
         break
