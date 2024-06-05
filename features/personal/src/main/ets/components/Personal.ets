@@ -28,6 +28,7 @@ export struct Personal {
   @Link @Watch('onOrderCountChange') orderCount: OrderCount;
   @State orderIconButton: IconButtonModel[] = orderButton;
   @Consume('userInfo') userInfo: UserInfo;
+  private onClickItem?: (productId: number) => void
 
   aboutToAppear() {
     this.onOrderCountChange();
@@ -283,10 +284,6 @@ export struct Personal {
       Text($r('app.string.live_more'))
         .fontSize($r('app.float.small_font_size'))
         .fontColor($r("app.color.sixty_alpha_black"))
-      Image($r('app.media.ic_right_arrow'))
-        .objectFit(ImageFit.Contain)
-        .height($r('app.float.vp_twenty_four'))
-        .width($r('app.float.vp_twelve'))
     }
     .margin($r('app.float.vp_twelve'))
     .width(StyleConstants.FULL_WIDTH)
@@ -320,14 +317,13 @@ export struct Personal {
             this.Avatar()
             this.Order()
             this.IconDock(activityButton)
-            // this.LiveTitle()
-            // todo:不做了
-            //  LiveList({
-            //   count: this.currentBreakpoint === BreakpointConstants.BREAKPOINT_LG ? StyleConstants.DISPLAY_FOUR :
-            //     (this.currentBreakpoint === BreakpointConstants.BREAKPOINT_MD ?
-            //     StyleConstants.DISPLAY_THREE : StyleConstants.DISPLAY_TWO),
-            //   liveList: liveData
-            // })
+            this.LiveTitle()
+             LiveList({
+              count: this.currentBreakpoint === BreakpointConstants.BREAKPOINT_LG ? StyleConstants.DISPLAY_FOUR :
+                (this.currentBreakpoint === BreakpointConstants.BREAKPOINT_MD ?
+                StyleConstants.DISPLAY_THREE : StyleConstants.DISPLAY_TWO),
+               onClickItem: (productId: number) => this.onClickItem(productId)
+            })
           }
         }
         .scrollBar(BarState.Off)

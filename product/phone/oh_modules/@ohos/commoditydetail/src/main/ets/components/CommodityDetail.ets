@@ -783,7 +783,8 @@ export struct CommodityDetail {
                   this.Preferential()
                   this.Specification()
                   this.SpecialService()
-                  this.UserEvaluate()
+                  // todo: 用户评价
+                  // this.UserEvaluate()
                   this.DetailList()
                 }
               }

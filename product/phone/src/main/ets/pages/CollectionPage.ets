@@ -19,7 +19,6 @@ struct CollectionPage {
     collectionService.fetchCollectionList(1,10).then(res => {
       this.collectionList = res.data.list
     })
-    Logger.debug(JSON.stringify(this.collectionList))
   }
 
   async handleCollectionCancel(productId: number) {

@@ -143,7 +143,10 @@ struct MainPage {
         .tabBar(this.BottomNavigation(buttonInfo[PageConstants.SHOP_CART_INDEX]))
 
         TabContent() {
-          Personal({ orderCount: $orderCount })
+          Personal({
+            orderCount: $orderCount,
+            onClickItem: <T>(data: T): void => this.routerDetailPage<T>(data)
+          })
         }
         .tabBar(this.BottomNavigation(buttonInfo[PageConstants.PERSONAL_INDEX]))
       }

@@ -38,11 +38,11 @@
     },
     {
       "name": "live_watch",
-      "value": "我常看的直播"
+      "value": "为你推荐的商品"
     },
     {
       "name": "live_more",
-      "value": "查看更多"
+      "value": "由浏览记录生成"
     },
     {
       "name": "pending_payment",

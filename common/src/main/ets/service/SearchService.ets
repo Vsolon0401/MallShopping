@@ -9,8 +9,8 @@ export class SearchService {
     })
   }
   async fetchRecommendById(productId: number): Promise<EsProduct[]> {
-    return Request.searchGet(`/esProduct/recommend/${productId}`).then(res => {
-      return res.data.list
+    return Request.searchGet(`/esProduct/recommend/${productId}?pageNum&pageSize`).then(res => {
+      return res.data?.list
     })
   }
 }

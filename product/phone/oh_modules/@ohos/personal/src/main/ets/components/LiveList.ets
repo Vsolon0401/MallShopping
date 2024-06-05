@@ -13,9 +13,8 @@
  * limitations under the License.
  */
 
-import { BreakPointType, EmptyComponent, StyleConstants, CommonDataSource } from '@ohos/common';
+import { BreakPointType, EmptyComponent, StyleConstants, CommonDataSource, EsProduct, searchService, historyService, MemberHistory, Logger } from '@ohos/common';
 import { PersonalConstants } from '../constants/PersonalConstants';
-import { LiveDataModel } from '../viewmodel/PersonalData';
 
 /**
  * Component of live list.
@@ -23,18 +22,44 @@ import { LiveDataModel } from '../viewmodel/PersonalData';
 @Component
 export struct LiveList {
   @StorageProp('currentBreakpoint') currentBreakpoint: string = 'md';
-  @Prop count: number = 0;
-  private liveList: LiveDataModel[] = [];
+  @Prop count: number;
+  // private productList: [] = [];
+  @State productList: EsProduct[] = []
+  private onClickItem?: (productId: number) => void
+
+  aboutToAppear() {
+    this.fetchRecommend()
+  }
+
+  async fetchRecommend() {
+    const historyData = await historyService.fetchHistory({ pageNum: 1, pageSize: 4 })
+    const historyIdList = historyData.data?.list?.map((history: MemberHistory) => history.productId)
+    if (historyIdList.length > 1) {
+      for (let index = 0; index < historyIdList.length; index++) {
+        const historyProductId = historyIdList[index];
+        const list = await searchService.fetchRecommendById(historyProductId)
+        this.productList.push(...list)
+        if (this.productList.length >= 8) {
+          break;
+        }
+      }
+    }
+  }
 
   build() {
-    if (this.liveList.length > 0) {
+    if (this.productList.length > 0) {
       List({ space: StyleConstants.TWELVE_SPACE }) {
-        LazyForEach(new CommonDataSource<LiveDataModel>(this.liveList), (item: LiveDataModel) => {
+        ForEach(this.productList, (item: EsProduct) => {
           ListItem() {
             this.LiveItem(item)
           }
           .margin({ left: $r('app.float.vp_six'), right: $r('app.float.vp_six') })
-        }, (item: LiveDataModel) => JSON.stringify(item))
+          .onClick(() => {
+            if (this.onClickItem !== undefined) {
+              this.onClickItem(item.id)
+            }
+          })
+        }, (item: EsProduct) => JSON.stringify(item))
       }
       .margin({ left: $r('app.float.commodity_list_margin'), right: $r('app.float.commodity_list_margin') })
       .lanes(this.count)
@@ -43,10 +68,10 @@ export struct LiveList {
     }
   }
 
-  @Builder LiveItem(liveItem: LiveDataModel) {
+  @Builder LiveItem(liveItem: EsProduct) {
     Column() {
       Stack({ alignContent: Alignment.TopStart }) {
-        Image($rawfile(liveItem.previewIcon))
+        Image(liveItem.pic)
           .width(StyleConstants.FULL_WIDTH)
           .objectFit(ImageFit.Fill)
           .aspectRatio(new BreakPointType({
@@ -54,55 +79,62 @@ export struct LiveList {
             md: PersonalConstants.ASPECT_RATIO_MD,
             lg: PersonalConstants.ASPECT_RATIO_LG
           }).getValue(this.currentBreakpoint))
-          .borderRadius($r('app.float.vp_sixteen'))
-        Text(liveItem.watchDesc)
-          .fontSize($r('app.float.micro_font_size'))
-          .fontColor(Color.White)
-          .backgroundColor($r('app.color.forty_alpha_black'))
-          .borderRadius($r('app.float.vp_eight'))
-          .height($r('app.float.vp_sixteen'))
-          .padding({
-            right: $r('app.float.vp_eight'),
-            left: $r('app.float.vp_twenty')
+          .borderRadius({
+            topRight: $r('app.float.vp_sixteen'),
+            topLeft: $r('app.float.vp_sixteen'),
           })
-          .margin({
-            top: $r('app.float.vp_eight'),
-            left: $r('app.float.live_desc_margin_left')
-          })
-        Text(liveItem.living ? $r('app.string.living') : $r('app.string.not_living'))
-          .fontSize($r('app.float.micro_font_size'))
-          .fontColor(Color.White)
-          .backgroundColor(liveItem.living ? Color.Red : $r("app.color.forty_alpha_black"))
-          .borderRadius($r('app.float.vp_eight'))
-          .height($r('app.float.vp_sixteen'))
-          .padding({
-            right: $r('app.float.vp_eight'),
-            left: $r('app.float.vp_eight')
-          })
-          .margin({
-            top: $r('app.float.vp_eight'),
-            left: $r('app.float.vp_eight')
-          })
+        // Text(liveItem.watchDesc)
+        //   .fontSize($r('app.float.micro_font_size'))
+        //   .fontColor(Color.White)
+        //   .backgroundColor($r('app.color.forty_alpha_black'))
+        //   .borderRadius($r('app.float.vp_eight'))
+        //   .height($r('app.float.vp_sixteen'))
+        //   .padding({
+        //     right: $r('app.float.vp_eight'),
+        //     left: $r('app.float.vp_twenty')
+        //   })
+        //   .margin({
+        //     top: $r('app.float.vp_eight'),
+        //     left: $r('app.float.live_desc_margin_left')
+        //   })
+        // Text(liveItem.living ? $r('app.string.living') : $r('app.string.not_living'))
+        //   .fontSize($r('app.float.micro_font_size'))
+        //   .fontColor(Color.White)
+        //   .backgroundColor(liveItem.living ? Color.Red : $r("app.color.forty_alpha_black"))
+        //   .borderRadius($r('app.float.vp_eight'))
+        //   .height($r('app.float.vp_sixteen'))
+        //   .padding({
+        //     right: $r('app.float.vp_eight'),
+        //     left: $r('app.float.vp_eight')
+        //   })
+        //   .margin({
+        //     top: $r('app.float.vp_eight'),
+        //     left: $r('app.float.vp_eight')
+        //   })
       }
       .width(StyleConstants.FULL_WIDTH)
 
       Row() {
-        Image($rawfile(liveItem.liverIcon))
-          .objectFit(ImageFit.Contain)
-          .width($r('app.float.vp_twenty_four'))
-          .height($r('app.float.vp_twenty_four'))
-          .margin({ left: $r('app.float.vp_four') })
+        // Image($rawfile(liveItem.liverIcon))
+        //   .objectFit(ImageFit.Contain)
+        //   .width($r('app.float.vp_twenty_four'))
+        //   .height($r('app.float.vp_twenty_four'))
+        //   .margin({ left: $r('app.float.vp_four') })
         Column() {
-          Text(liveItem.liverName)
+          Text(liveItem.name)
             .fontSize($r('app.float.small_font_size'))
             .fontWeight(StyleConstants.FONT_WEIGHT_FIVE)
             .fontColor(Color.Black)
+            .textOverflow({ overflow: TextOverflow.Ellipsis })
+            .maxLines(StyleConstants.ONE_TEXT_LINE)
             .margin({ bottom: $r('app.float.vp_four') })
 
-          Text(liveItem.liverDesc)
+          Text($r('app.string.commodity_piece', liveItem.price))
             .fontSize($r('app.float.smaller_font_size'))
             .fontWeight(StyleConstants.FONT_WEIGHT_FOUR)
-            .fontColor(Color.Black)
+            .fontColor($r('app.color.focus_color'))
+            .textOverflow({ overflow: TextOverflow.Ellipsis })
+            .maxLines(StyleConstants.ONE_TEXT_LINE)
         }
         .alignItems(HorizontalAlign.Start)
         .width(StyleConstants.FULL_WIDTH)
@@ -115,7 +147,9 @@ export struct LiveList {
       .backgroundColor(Color.White)
       .width(StyleConstants.FULL_WIDTH)
       .alignItems(VerticalAlign.Center)
-      .width(StyleConstants.FULL_WIDTH)
+      .constraintSize({
+        maxWidth: StyleConstants.FULL_WIDTH
+      })
     }
     .borderRadius($r('app.float.vp_sixteen'))
   }

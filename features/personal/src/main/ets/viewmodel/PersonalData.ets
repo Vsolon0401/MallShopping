@@ -60,7 +60,7 @@ const activityButton: IconButtonModel[] = [
   new IconButtonModel($r('app.media.ic_person_collect'), $r('app.string.official_service'), UserFunctionType.Collection), // 收藏
   new IconButtonModel($r('app.media.ic_person_address'), $r('app.string.cash'), UserFunctionType.Address), // 地址
   new IconButtonModel($r('app.media.ic_person_history'), $r('app.string.trade_in'), UserFunctionType.History), // 足迹
-  new IconButtonModel($r('app.media.ic_my_evaluation'), $r('app.string.my_evaluation'), UserFunctionType.Evaluate)
+  // new IconButtonModel($r('app.media.ic_my_evaluation'), $r('app.string.my_evaluation'), UserFunctionType.Evaluate) todo: 我的评价
 ]
 
 class LiveDataModel {

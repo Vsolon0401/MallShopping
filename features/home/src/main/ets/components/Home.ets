@@ -92,17 +92,17 @@ export struct Home {
   @Builder
   SearchTitle() {
     Column() {
-      Flex({ justifyContent: FlexAlign.SpaceBetween }) {
-        Image($r("app.media.ic_eshop_old"))
-          .height(StyleConstants.FULL_HEIGHT)
-          .aspectRatio(1)
-        Image($r('app.media.ic_scan'))
-          .height(StyleConstants.FULL_HEIGHT)
-          .aspectRatio(1)
-      }
-      .height($r('app.float.vp_twenty_four'))
-      .width(StyleConstants.FULL_WIDTH)
-      .margin({ bottom: $r('app.float.vp_eight') })
+      // Flex({ justifyContent: FlexAlign.SpaceBetween }) {
+      //   Image($r("app.media.ic_eshop_old"))
+      //     .height(StyleConstants.FULL_HEIGHT)
+      //     .aspectRatio(1)
+      //   Image($r('app.media.ic_scan'))
+      //     .height(StyleConstants.FULL_HEIGHT)
+      //     .aspectRatio(1)
+      // }
+      // .height($r('app.float.vp_twenty_four'))
+      // .width(StyleConstants.FULL_WIDTH)
+      // .margin({ bottom: $r('app.float.vp_eight') })
 
       Row() {
         Image($r('app.media.ic_search'))
