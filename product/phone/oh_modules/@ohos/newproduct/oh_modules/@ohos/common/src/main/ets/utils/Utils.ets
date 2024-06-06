@@ -17,9 +17,10 @@ import { Logger } from './Logger';
 import { StyleConstants } from '../constants/StyleConstants';
 import { Opt } from '../viewmodel/CommodityModel';
 import { ProductSpecification, SkuStock } from '../viewmodel/ProductModel';
+import { ip } from './Request';
 
 
-const MiniIO_URL: string = 'http://192.168.64.80:9000'
+const MiniIO_URL: string = `http://${ip}:9000`
 /**
  * Format date.
  * @param timestamp time

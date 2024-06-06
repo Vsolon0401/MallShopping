@@ -26,6 +26,10 @@ class HistoryService {
       params: params
     })
   }
+
+  async delHistory(ids: number) {
+    return Request.post(`/member/readHistory/delete?ids=${ids}`)
+  }
 }
 
 export const historyService = new HistoryService()

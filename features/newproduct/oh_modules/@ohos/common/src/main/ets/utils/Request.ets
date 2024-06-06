@@ -11,7 +11,7 @@ export interface BaseResponse<T> {
   code: number
 }
 
-const ip = '192.168.136.80'
+export const ip = '192.168.136.80'
 
 enum Port {
   Portal = 8085,

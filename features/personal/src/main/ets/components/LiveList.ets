@@ -24,27 +24,27 @@ export struct LiveList {
   @StorageProp('currentBreakpoint') currentBreakpoint: string = 'md';
   @Prop count: number;
   // private productList: [] = [];
-  @State productList: EsProduct[] = []
+  @Link productList: EsProduct[];
   private onClickItem?: (productId: number) => void
 
-  aboutToAppear() {
-    this.fetchRecommend()
-  }
+  // aboutToAppear() {
+  //   this.fetchRecommend()
+  // }
 
-  async fetchRecommend() {
-    const historyData = await historyService.fetchHistory({ pageNum: 1, pageSize: 4 })
-    const historyIdList = historyData.data?.list?.map((history: MemberHistory) => history.productId)
-    if (historyIdList.length > 1) {
-      for (let index = 0; index < historyIdList.length; index++) {
-        const historyProductId = historyIdList[index];
-        const list = await searchService.fetchRecommendById(historyProductId)
-        this.productList.push(...list)
-        if (this.productList.length >= 8) {
-          break;
-        }
-      }
-    }
-  }
+  // async fetchRecommend() {
+  //   const historyData = await historyService.fetchHistory({ pageNum: 1, pageSize: 4 })
+  //   const historyIdList = historyData.data?.list?.map((history: MemberHistory) => history.productId)
+  //   if (historyIdList.length > 1) {
+  //     for (let index = 0; index < historyIdList.length; index++) {
+  //       const historyProductId = historyIdList[index];
+  //       const list = await searchService.fetchRecommendById(historyProductId)
+  //       this.productList.push(...list)
+  //       if (this.productList.length >= 8) {
+  //         break;
+  //       }
+  //     }
+  //   }
+  // }
 
   build() {
     if (this.productList.length > 0) {

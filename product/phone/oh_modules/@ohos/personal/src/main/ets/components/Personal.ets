@@ -14,7 +14,7 @@
  */
 
 import router from '@ohos.router';
-import { Logger, OrderType, StyleConstants, BreakpointConstants, UserInfo, UserFunctionType } from '@ohos/common';
+import { Logger, OrderType, StyleConstants, BreakpointConstants, UserInfo, UserFunctionType, historyService, MemberHistory, searchService, EsProduct } from '@ohos/common';
 import { orderButton, memberButton, activityButton, liveData } from '../viewmodel/PersonalData';
 import { IconButton } from '../components/IconButton';
 import { LiveList } from '../components/LiveList';
@@ -28,10 +28,12 @@ export struct Personal {
   @Link @Watch('onOrderCountChange') orderCount: OrderCount;
   @State orderIconButton: IconButtonModel[] = orderButton;
   @Consume('userInfo') userInfo: UserInfo;
+  @State productList: EsProduct[] = []
   private onClickItem?: (productId: number) => void
 
   aboutToAppear() {
     this.onOrderCountChange();
+    this.fetchRecommend()
   }
 
   onOrderCountChange() {
@@ -58,6 +60,23 @@ export struct Personal {
         }
       }
     })
+  }
+
+  async fetchRecommend() {
+    const historyData = await historyService.fetchHistory({ pageNum: 1, pageSize: 4 })
+    const historyIdList = historyData.data?.list?.map((history: MemberHistory) => history.productId)
+    if (historyIdList.length > 1) {
+      const tempList: EsProduct[] = []
+      for (let index = 0; index < historyIdList.length; index++) {
+        const historyProductId = historyIdList[index];
+        const list = await searchService.fetchRecommendById(historyProductId)
+        tempList.push(...list)
+        if (tempList.length >= 8) {
+          this.productList = tempList
+          break;
+        }
+      }
+    }
   }
 
   onOrderButtonClick(key: OrderType) {
@@ -284,6 +303,12 @@ export struct Personal {
       Text($r('app.string.live_more'))
         .fontSize($r('app.float.small_font_size'))
         .fontColor($r("app.color.sixty_alpha_black"))
+        .margin({ right: $r('app.float.vp_four') })
+      Image($r('app.media.ic_refresh'))
+        .width(15)
+        .height(15)
+        .objectFit(ImageFit.Contain)
+        .onClick(() => this.fetchRecommend())
     }
     .margin($r('app.float.vp_twelve'))
     .width(StyleConstants.FULL_WIDTH)
@@ -319,7 +344,8 @@ export struct Personal {
             this.IconDock(activityButton)
             this.LiveTitle()
              LiveList({
-              count: this.currentBreakpoint === BreakpointConstants.BREAKPOINT_LG ? StyleConstants.DISPLAY_FOUR :
+               productList: $productList,
+               count: this.currentBreakpoint === BreakpointConstants.BREAKPOINT_LG ? StyleConstants.DISPLAY_FOUR :
                 (this.currentBreakpoint === BreakpointConstants.BREAKPOINT_MD ?
                 StyleConstants.DISPLAY_THREE : StyleConstants.DISPLAY_TWO),
                onClickItem: (productId: number) => this.onClickItem(productId)
