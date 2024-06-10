@@ -1,7 +1,7 @@
 import { Request, Preferences } from '@ohos/common'
-import { UserInfo } from '../viewmodel/LoginData'
 import router from '@ohos.router'
 import { PageConstants } from '../constants/PageConstants'
+import promptAction from '@ohos.promptAction'
 
 class LoginService {
 
@@ -14,17 +14,23 @@ class LoginService {
       )
       if (res.code === 200 && res.message === '注册成功') {
         return true
-      } 
+      } else {
+        promptAction.showToast({ message: res.message })
+      }
       return false
     }
   }
 
-  async login(username: string, password: string): Promise<void> {
+  async login(username: string, password: string): Promise<boolean> {
     if (username.length && password.length) {
       const res = await Request.post(`/sso/login?username=${username}&password=${password}`)
       if (typeof res.data === 'object' && res.data !== null) {
         const token = res.data.tokenHead + res.data.token
         await Preferences.put('token', token)
+        return true
+      } else {
+        promptAction.showToast({ message: res.message })
+        return false
       }
     }
   }

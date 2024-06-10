@@ -1,6 +1,20 @@
 {
   "app": {
-    "signingConfigs": [],
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "C:\\Users\\Vsolon\\.ohos\\config\\auto_debug_MultiShopping_com.example.multishopping_30086000750749739.cer",
+          "storePassword": "0000001B13DA3A2CC1E5B20AAB28F837E43ED49E91E6E80CA24CFAE63612717E5F6B3A59E8362A8EC79E5D",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001B74075185874ED957F022534C376B46B33DB4903CE4092866ABD91B3EC9F46F01453B19819DDCC9",
+          "profile": "C:\\Users\\Vsolon\\.ohos\\config\\auto_debug_MultiShopping_com.example.multishopping_30086000750749739.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\Vsolon\\.ohos\\config\\auto_debug_MultiShopping_com.example.multishopping_30086000750749739.p12"
+        }
+      }
+    ],
     "compileSdkVersion": 9,
     "compatibleSdkVersion": 9,
     "products": [

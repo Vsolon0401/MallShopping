@@ -247,7 +247,7 @@ export struct Home {
         }, (item: Resource) => JSON.stringify(item))
       } else {
         ForEach(this.advertiseList, (item: Advertise) => {
-          Image(item.pic)
+          Image(formatLocalhost(item.pic))
             .width(StyleConstants.FULL_WIDTH)
             .aspectRatio(StyleConstants.IMAGE_ASPECT_RATIO)
             .borderRadius($r('app.float.vp_sixteen'))

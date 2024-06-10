@@ -157,11 +157,13 @@ struct MainPage {
       .vertical(this.currentBreakpoint === BreakpointConstants.BREAKPOINT_LG)
       .scrollable(false)
       .onChange((index: number) => {
-        this.currentPageIndex = index;
-        if (index === PageConstants.PERSONAL_INDEX) {
-          this.queryShopCart();
-        } else if (index === PageConstants.PERSONAL_INDEX) {
-          this.queryOrderList();
+        if (index !== this.currentPageIndex) {
+          this.currentPageIndex = index;
+          if (index === PageConstants.PERSONAL_INDEX) {
+            this.queryShopCart();
+          } else if (index === PageConstants.PERSONAL_INDEX) {
+            this.queryOrderList();
+          }
         }
       })
     }

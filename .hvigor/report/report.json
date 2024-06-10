@@ -9,2541 +9,2531 @@
   "metrics": [
     {
       "type": "build_line",
-      "endTime": 1717649895573,
+      "endTime": 1718003591041,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "init",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717649895568
+      "startTime": 1718003591035
     },
     {
       "type": "build_line",
-      "endTime": 1717649895584,
+      "endTime": 1718003591107,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "init",
       "taskPath": "common",
       "workerId": -1,
-      "startTime": 1717649895583
+      "startTime": 1718003591106
     },
     {
       "type": "build_line",
-      "endTime": 1717649895588,
+      "endTime": 1718003591142,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "init",
       "taskPath": "home",
       "workerId": -1,
-      "startTime": 1717649895587
+      "startTime": 1718003591140
     },
     {
       "type": "build_line",
-      "endTime": 1717649895590,
+      "endTime": 1718003591195,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "init",
       "taskPath": "newproduct",
       "workerId": -1,
-      "startTime": 1717649895589
+      "startTime": 1718003591194
     },
     {
       "type": "build_line",
-      "endTime": 1717649895592,
+      "endTime": 1718003591228,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "init",
       "taskPath": "shopcart",
       "workerId": -1,
-      "startTime": 1717649895591
+      "startTime": 1718003591227
     },
     {
       "type": "build_line",
-      "endTime": 1717649895594,
+      "endTime": 1718003591232,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "init",
       "taskPath": "personal",
       "workerId": -1,
-      "startTime": 1717649895593
+      "startTime": 1718003591230
     },
     {
       "type": "build_line",
-      "endTime": 1717649895596,
+      "endTime": 1718003591235,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "init",
       "taskPath": "commoditydetail",
       "workerId": -1,
-      "startTime": 1717649895595
+      "startTime": 1718003591233
     },
     {
       "type": "build_line",
-      "endTime": 1717649895598,
+      "endTime": 1718003591236,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "init",
       "taskPath": "orderdetail",
       "workerId": -1,
-      "startTime": 1717649895597
+      "startTime": 1718003591235
     },
     {
       "type": "build_line",
-      "endTime": 1717649895599,
+      "endTime": 1718003591238,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "init",
       "taskPath": "MultiShopping",
       "workerId": -1,
-      "startTime": 1717649895599
+      "startTime": 1718003591237
     },
     {
       "type": "build_line",
-      "endTime": 1717650553262,
+      "endTime": 1718004800580,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@PreBuild",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717650553249
+      "startTime": 1718004800568
     },
     {
       "type": "build_line",
-      "endTime": 1717650553278,
+      "endTime": 1718004800586,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@PreBuild",
       "taskPath": "orderdetail",
       "workerId": -1,
-      "startTime": 1717650553276
+      "startTime": 1718004800583
     },
     {
       "type": "build_line",
-      "endTime": 1717650553293,
+      "endTime": 1718004800602,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@PreBuild",
       "taskPath": "common",
       "workerId": -1,
-      "startTime": 1717650553289
+      "startTime": 1718004800599
     },
     {
       "type": "build_line",
-      "endTime": 1717650553311,
+      "endTime": 1718004800613,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@PreBuild",
       "taskPath": "commoditydetail",
       "workerId": -1,
-      "startTime": 1717650553308
+      "startTime": 1718004800612
     },
     {
       "type": "build_line",
-      "endTime": 1717650553339,
+      "endTime": 1718004800637,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@PreBuild",
       "taskPath": "newproduct",
       "workerId": -1,
-      "startTime": 1717650553336
+      "startTime": 1718004800634
     },
     {
       "type": "build_line",
-      "endTime": 1717650553347,
+      "endTime": 1718004800644,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@PreBuild",
       "taskPath": "home",
       "workerId": -1,
-      "startTime": 1717650553345
+      "startTime": 1718004800642
     },
     {
       "type": "build_line",
-      "endTime": 1717650553352,
+      "endTime": 1718004800647,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@PreBuild",
       "taskPath": "personal",
       "workerId": -1,
-      "startTime": 1717650553348
+      "startTime": 1718004800645
     },
     {
       "type": "build_line",
-      "endTime": 1717650553357,
+      "endTime": 1718004800650,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@PreBuild",
       "taskPath": "shopcart",
       "workerId": -1,
-      "startTime": 1717650553352
+      "startTime": 1718004800648
     },
     {
       "type": "build_line",
-      "endTime": 1717650553365,
+      "endTime": 1718004800657,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@GenerateMetadata",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717650553358
+      "startTime": 1718004800650
     },
     {
       "type": "build_line",
-      "endTime": 1717650553368,
+      "endTime": 1718004800659,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithCmake",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717650553368
+      "startTime": 1718004800659
     },
     {
       "type": "build_line",
-      "endTime": 1717650553370,
+      "endTime": 1718004800662,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@GenerateLoaderJson",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717650553368
+      "startTime": 1718004800659
     },
     {
       "type": "build_line",
-      "endTime": 1717650553371,
+      "endTime": 1718004800662,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithCmake",
       "taskPath": "orderdetail",
       "workerId": -1,
-      "startTime": 1717650553371
+      "startTime": 1718004800662
     },
     {
       "type": "build_line",
-      "endTime": 1717650553372,
+      "endTime": 1718004800663,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithCmake",
       "taskPath": "common",
       "workerId": -1,
-      "startTime": 1717650553372
+      "startTime": 1718004800663
     },
     {
       "type": "build_line",
-      "endTime": 1717650553375,
+      "endTime": 1718004800667,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@MergeProfile",
       "taskPath": "common",
       "workerId": -1,
-      "startTime": 1717650553372
+      "startTime": 1718004800664
     },
     {
       "type": "build_line",
-      "endTime": 1717650553375,
+      "endTime": 1718004800668,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithCmake",
       "taskPath": "commoditydetail",
       "workerId": -1,
-      "startTime": 1717650553375
+      "startTime": 1718004800668
     },
     {
       "type": "build_line",
-      "endTime": 1717650553387,
+      "endTime": 1718004800670,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithCmake",
       "taskPath": "newproduct",
       "workerId": -1,
-      "startTime": 1717650553387
+      "startTime": 1718004800670
     },
     {
       "type": "build_line",
-      "endTime": 1717650553389,
+      "endTime": 1718004800686,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithCmake",
       "taskPath": "home",
       "workerId": -1,
-      "startTime": 1717650553388
+      "startTime": 1718004800686
     },
     {
       "type": "build_line",
-      "endTime": 1717650553389,
+      "endTime": 1718004800687,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithCmake",
       "taskPath": "personal",
       "workerId": -1,
-      "startTime": 1717650553389
+      "startTime": 1718004800687
     },
     {
       "type": "build_line",
-      "endTime": 1717650553402,
+      "endTime": 1718004800688,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithCmake",
       "taskPath": "shopcart",
       "workerId": -1,
-      "startTime": 1717650553402
+      "startTime": 1718004800688
     },
     {
       "type": "build_line",
-      "endTime": 1717650553404,
+      "endTime": 1718004800689,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithNinja",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717650553403
+      "startTime": 1718004800689
     },
     {
       "type": "build_line",
-      "endTime": 1717650553406,
+      "endTime": 1718004800690,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithNinja",
       "taskPath": "orderdetail",
       "workerId": -1,
-      "startTime": 1717650553405
+      "startTime": 1718004800690
     },
     {
       "type": "build_line",
-      "endTime": 1717650553407,
+      "endTime": 1718004800692,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithNinja",
       "taskPath": "common",
       "workerId": -1,
-      "startTime": 1717650553406
+      "startTime": 1718004800691
     },
     {
       "type": "build_line",
-      "endTime": 1717650553411,
+      "endTime": 1718004800697,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@MergeProfile",
       "taskPath": "home",
       "workerId": -1,
-      "startTime": 1717650553407
+      "startTime": 1718004800692
     },
     {
       "type": "build_line",
-      "endTime": 1717650553423,
+      "endTime": 1718004800701,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@MergeProfile",
       "taskPath": "newproduct",
       "workerId": -1,
-      "startTime": 1717650553411
+      "startTime": 1718004800697
     },
     {
       "type": "build_line",
-      "endTime": 1717650553427,
+      "endTime": 1718004800707,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@MergeProfile",
       "taskPath": "shopcart",
       "workerId": -1,
-      "startTime": 1717650553424
+      "startTime": 1718004800702
     },
     {
       "type": "build_line",
-      "endTime": 1717650553431,
+      "endTime": 1718004800711,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@MergeProfile",
       "taskPath": "personal",
       "workerId": -1,
-      "startTime": 1717650553428
+      "startTime": 1718004800708
     },
     {
       "type": "build_line",
-      "endTime": 1717650553436,
+      "endTime": 1718004800715,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@MergeProfile",
       "taskPath": "commoditydetail",
       "workerId": -1,
-      "startTime": 1717650553431
+      "startTime": 1718004800712
     },
     {
       "type": "build_line",
-      "endTime": 1717650553440,
+      "endTime": 1718004800719,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@MergeProfile",
       "taskPath": "orderdetail",
       "workerId": -1,
-      "startTime": 1717650553436
+      "startTime": 1718004800716
     },
     {
       "type": "build_line",
-      "endTime": 1717650553441,
+      "endTime": 1718004800720,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithNinja",
       "taskPath": "commoditydetail",
       "workerId": -1,
-      "startTime": 1717650553441
+      "startTime": 1718004800720
     },
     {
       "type": "build_line",
-      "endTime": 1717650553442,
+      "endTime": 1718004800734,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithNinja",
       "taskPath": "newproduct",
       "workerId": -1,
-      "startTime": 1717650553441
+      "startTime": 1718004800734
     },
     {
       "type": "build_line",
-      "endTime": 1717650553451,
+      "endTime": 1718004800750,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithNinja",
       "taskPath": "home",
       "workerId": -1,
-      "startTime": 1717650553450
+      "startTime": 1718004800750
     },
     {
       "type": "build_line",
-      "endTime": 1717650553452,
+      "endTime": 1718004800751,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithNinja",
       "taskPath": "personal",
       "workerId": -1,
-      "startTime": 1717650553451
+      "startTime": 1718004800750
     },
     {
       "type": "build_line",
-      "endTime": 1717650553453,
+      "endTime": 1718004800766,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithNinja",
       "taskPath": "shopcart",
       "workerId": -1,
-      "startTime": 1717650553452
+      "startTime": 1718004800765
     },
     {
       "type": "build_line",
-      "endTime": 1717650553456,
+      "endTime": 1718004800770,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@ProcessLibs",
       "taskPath": "common",
       "workerId": -1,
-      "startTime": 1717650553453
+      "startTime": 1718004800768
     },
     {
       "type": "build_line",
-      "endTime": 1717650553467,
+      "endTime": 1718004800782,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@MergeProfile",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717650553456
+      "startTime": 1718004800771
     },
     {
       "type": "build_line",
-      "endTime": 1717650553475,
+      "endTime": 1718004800785,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@ProcessLibs",
       "taskPath": "home",
       "workerId": -1,
-      "startTime": 1717650553470
+      "startTime": 1718004800784
     },
     {
       "type": "build_line",
-      "endTime": 1717650553479,
+      "endTime": 1718004800788,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@ProcessLibs",
       "taskPath": "newproduct",
       "workerId": -1,
-      "startTime": 1717650553476
+      "startTime": 1718004800786
     },
     {
       "type": "build_line",
-      "endTime": 1717650553482,
+      "endTime": 1718004800790,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@ProcessLibs",
       "taskPath": "shopcart",
       "workerId": -1,
-      "startTime": 1717650553480
+      "startTime": 1718004800789
     },
     {
       "type": "build_line",
-      "endTime": 1717650553485,
+      "endTime": 1718004800793,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@ProcessLibs",
       "taskPath": "personal",
       "workerId": -1,
-      "startTime": 1717650553483
+      "startTime": 1718004800791
     },
     {
       "type": "build_line",
-      "endTime": 1717650553487,
+      "endTime": 1718004800796,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@ProcessLibs",
       "taskPath": "commoditydetail",
       "workerId": -1,
-      "startTime": 1717650553486
+      "startTime": 1718004800793
     },
     {
       "type": "build_line",
-      "endTime": 1717650553490,
+      "endTime": 1718004800798,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@ProcessLibs",
       "taskPath": "orderdetail",
       "workerId": -1,
-      "startTime": 1717650553488
+      "startTime": 1718004800796
     },
     {
       "type": "build_line",
-      "endTime": 1717650553502,
+      "endTime": 1718004800808,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@MakePackInfo",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717650553491
+      "startTime": 1718004800799
     },
     {
       "type": "build_line",
-      "endTime": 1717650553508,
+      "endTime": 1718004800813,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@ProcessProfile",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717650553505
+      "startTime": 1718004800811
     },
     {
       "type": "build_line",
-      "endTime": 1717650553521,
+      "endTime": 1718004800823,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@ProcessLibs",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717650553508
+      "startTime": 1718004800813
     },
     {
       "type": "build_line",
-      "endTime": 1717650553528,
+      "endTime": 1718004800829,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@ProcessResource",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717650553523
+      "startTime": 1718004800825
     },
     {
       "type": "build_line",
-      "endTime": 1717650553771,
+      "endTime": 1718004801003,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@CompileResource",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717650553529
+      "startTime": 1718004800829
     },
     {
       "type": "build_line",
-      "endTime": 1717650553877,
+      "endTime": 1718004801075,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@CompileJS",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717650553852
+      "startTime": 1718004801056
     },
     {
       "type": "build_line",
-      "endTime": 1717650575291,
+      "endTime": 1718004816002,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@CompileArkTS",
       "taskPath": "phone",
       "workerId": 2,
-      "startTime": 1717650553851
+      "startTime": 1718004801055
     },
     {
       "type": "default",
-      "endTime": 1717650575292,
+      "endTime": 1718004816002,
       "status": "closed",
       "children": [
         {
           "type": "build_line",
-          "endTime": 1717650575291,
+          "endTime": 1718004816002,
           "status": "closed",
           "children": [],
           "name": "overallTime",
           "taskName": "default@CompileArkTS",
           "taskPath": "phone",
           "workerId": 2,
-          "startTime": 1717650553851
+          "startTime": 1718004801055
         }
       ],
       "name": "overallTime",
       "taskName": "default@CompileArkTS",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717650553772
+      "startTime": 1718004801003
     },
     {
       "type": "build_line",
-      "endTime": 1717650578513,
+      "endTime": 1718004818649,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@PackageHap",
+      "taskPath": "phone",
+      "workerId": 0,
+      "startTime": 1718004816055
+    },
+    {
+      "type": "default",
+      "endTime": 1718004818649,
+      "status": "closed",
+      "children": [
+        {
+          "type": "build_line",
+          "endTime": 1718004818649,
+          "status": "closed",
+          "children": [],
+          "name": "overallTime",
+          "taskName": "default@PackageHap",
+          "taskPath": "phone",
+          "workerId": 0,
+          "startTime": 1718004816055
+        }
+      ],
+      "name": "overallTime",
+      "taskName": "default@PackageHap",
+      "taskPath": "phone",
+      "workerId": -1,
+      "startTime": 1718004816009
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004823516,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@SignHap",
+      "taskPath": "phone",
+      "workerId": -1,
+      "startTime": 1718004818652
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004823517,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "assembleHap",
+      "taskPath": "phone",
+      "workerId": -1,
+      "startTime": 1718004823517
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993345,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@PreBuild",
+      "taskPath": "phone",
+      "workerId": -1,
+      "startTime": 1718004993340
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993352,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@PreBuild",
+      "taskPath": "orderdetail",
+      "workerId": -1,
+      "startTime": 1718004993351
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993356,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@PreBuild",
+      "taskPath": "common",
+      "workerId": -1,
+      "startTime": 1718004993354
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993360,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@PreBuild",
+      "taskPath": "commoditydetail",
+      "workerId": -1,
+      "startTime": 1718004993358
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993363,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@PreBuild",
+      "taskPath": "newproduct",
+      "workerId": -1,
+      "startTime": 1718004993361
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993366,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@PreBuild",
+      "taskPath": "home",
+      "workerId": -1,
+      "startTime": 1718004993364
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993369,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@PreBuild",
+      "taskPath": "personal",
+      "workerId": -1,
+      "startTime": 1718004993368
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993373,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@PreBuild",
+      "taskPath": "shopcart",
+      "workerId": -1,
+      "startTime": 1718004993371
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993381,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@GenerateMetadata",
+      "taskPath": "phone",
+      "workerId": -1,
+      "startTime": 1718004993375
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993393,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@BuildNativeWithCmake",
+      "taskPath": "phone",
+      "workerId": -1,
+      "startTime": 1718004993393
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993405,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@GenerateLoaderJson",
+      "taskPath": "phone",
+      "workerId": -1,
+      "startTime": 1718004993404
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993411,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@BuildNativeWithCmake",
+      "taskPath": "orderdetail",
+      "workerId": -1,
+      "startTime": 1718004993411
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993412,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@BuildNativeWithCmake",
+      "taskPath": "common",
+      "workerId": -1,
+      "startTime": 1718004993412
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993415,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@MergeProfile",
+      "taskPath": "common",
+      "workerId": -1,
+      "startTime": 1718004993413
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993415,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@BuildNativeWithCmake",
+      "taskPath": "commoditydetail",
+      "workerId": -1,
+      "startTime": 1718004993415
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993421,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@BuildNativeWithCmake",
+      "taskPath": "newproduct",
+      "workerId": -1,
+      "startTime": 1718004993421
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993437,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@BuildNativeWithCmake",
+      "taskPath": "home",
+      "workerId": -1,
+      "startTime": 1718004993437
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993453,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@BuildNativeWithCmake",
+      "taskPath": "personal",
+      "workerId": -1,
+      "startTime": 1718004993453
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993469,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@BuildNativeWithCmake",
+      "taskPath": "shopcart",
+      "workerId": -1,
+      "startTime": 1718004993469
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993485,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@BuildNativeWithNinja",
+      "taskPath": "phone",
+      "workerId": -1,
+      "startTime": 1718004993484
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993486,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@BuildNativeWithNinja",
+      "taskPath": "orderdetail",
+      "workerId": -1,
+      "startTime": 1718004993485
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993486,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@BuildNativeWithNinja",
+      "taskPath": "common",
+      "workerId": -1,
+      "startTime": 1718004993486
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993491,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@MergeProfile",
+      "taskPath": "home",
+      "workerId": -1,
+      "startTime": 1718004993487
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993496,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@MergeProfile",
+      "taskPath": "newproduct",
+      "workerId": -1,
+      "startTime": 1718004993492
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993500,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@MergeProfile",
+      "taskPath": "shopcart",
+      "workerId": -1,
+      "startTime": 1718004993496
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993505,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@MergeProfile",
+      "taskPath": "personal",
+      "workerId": -1,
+      "startTime": 1718004993501
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993508,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@MergeProfile",
+      "taskPath": "commoditydetail",
+      "workerId": -1,
+      "startTime": 1718004993505
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993512,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@MergeProfile",
+      "taskPath": "orderdetail",
+      "workerId": -1,
+      "startTime": 1718004993509
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993513,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@BuildNativeWithNinja",
+      "taskPath": "commoditydetail",
+      "workerId": -1,
+      "startTime": 1718004993513
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993514,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@BuildNativeWithNinja",
+      "taskPath": "newproduct",
+      "workerId": -1,
+      "startTime": 1718004993514
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993517,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@BuildNativeWithNinja",
+      "taskPath": "home",
+      "workerId": -1,
+      "startTime": 1718004993517
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993518,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@BuildNativeWithNinja",
+      "taskPath": "personal",
+      "workerId": -1,
+      "startTime": 1718004993518
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993519,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@BuildNativeWithNinja",
+      "taskPath": "shopcart",
+      "workerId": -1,
+      "startTime": 1718004993519
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993521,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@ProcessLibs",
+      "taskPath": "common",
+      "workerId": -1,
+      "startTime": 1718004993520
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993534,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@MergeProfile",
+      "taskPath": "phone",
+      "workerId": -1,
+      "startTime": 1718004993522
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993536,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@ProcessLibs",
+      "taskPath": "home",
+      "workerId": -1,
+      "startTime": 1718004993535
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993538,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@ProcessLibs",
+      "taskPath": "newproduct",
+      "workerId": -1,
+      "startTime": 1718004993537
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993540,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@ProcessLibs",
+      "taskPath": "shopcart",
+      "workerId": -1,
+      "startTime": 1718004993539
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993542,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@ProcessLibs",
+      "taskPath": "personal",
+      "workerId": -1,
+      "startTime": 1718004993540
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993545,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@ProcessLibs",
+      "taskPath": "commoditydetail",
+      "workerId": -1,
+      "startTime": 1718004993543
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993547,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@ProcessLibs",
+      "taskPath": "orderdetail",
+      "workerId": -1,
+      "startTime": 1718004993546
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993556,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@MakePackInfo",
+      "taskPath": "phone",
+      "workerId": -1,
+      "startTime": 1718004993547
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993560,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@ProcessProfile",
+      "taskPath": "phone",
+      "workerId": -1,
+      "startTime": 1718004993558
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993572,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@ProcessLibs",
+      "taskPath": "phone",
+      "workerId": -1,
+      "startTime": 1718004993561
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993581,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@ProcessResource",
+      "taskPath": "phone",
+      "workerId": -1,
+      "startTime": 1718004993578
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993683,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@CompileResource",
+      "taskPath": "phone",
+      "workerId": -1,
+      "startTime": 1718004993581
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718004993735,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@CompileJS",
+      "taskPath": "phone",
+      "workerId": -1,
+      "startTime": 1718004993718
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718005004627,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@CompileArkTS",
       "taskPath": "phone",
       "workerId": 2,
-      "startTime": 1717650575484
+      "startTime": 1718004993718
     },
     {
       "type": "default",
-      "endTime": 1717650578513,
+      "endTime": 1718005004627,
       "status": "closed",
       "children": [
         {
           "type": "build_line",
-          "endTime": 1717650578513,
+          "endTime": 1718005004627,
           "status": "closed",
           "children": [],
           "name": "overallTime",
-          "taskName": "default@PackageHap",
+          "taskName": "default@CompileArkTS",
           "taskPath": "phone",
           "workerId": 2,
-          "startTime": 1717650575484
+          "startTime": 1718004993718
+        }
+      ],
+      "name": "overallTime",
+      "taskName": "default@CompileArkTS",
+      "taskPath": "phone",
+      "workerId": -1,
+      "startTime": 1718004993684
+    },
+    {
+      "type": "build_line",
+      "endTime": 1718005005470,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "default@PackageHap",
+      "taskPath": "phone",
+      "workerId": 0,
+      "startTime": 1718005004666
+    },
+    {
+      "type": "default",
+      "endTime": 1718005005470,
+      "status": "closed",
+      "children": [
+        {
+          "type": "build_line",
+          "endTime": 1718005005470,
+          "status": "closed",
+          "children": [],
+          "name": "overallTime",
+          "taskName": "default@PackageHap",
+          "taskPath": "phone",
+          "workerId": 0,
+          "startTime": 1718005004666
         }
       ],
       "name": "overallTime",
       "taskName": "default@PackageHap",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717650575303
+      "startTime": 1718005004632
     },
     {
       "type": "build_line",
-      "endTime": 1717650578517,
+      "endTime": 1718005009600,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@SignHap",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717650578515
+      "startTime": 1718005005472
     },
     {
       "type": "build_line",
-      "endTime": 1717650578518,
+      "endTime": 1718005009601,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "assembleHap",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717650578518
+      "startTime": 1718005009601
     },
     {
       "type": "build_line",
-      "endTime": 1717651471955,
+      "endTime": 1718006260798,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@PreBuild",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717651471953
+      "startTime": 1718006260792
     },
     {
       "type": "build_line",
-      "endTime": 1717651471962,
+      "endTime": 1718006260805,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@PreBuild",
       "taskPath": "orderdetail",
       "workerId": -1,
-      "startTime": 1717651471960
+      "startTime": 1718006260802
     },
     {
       "type": "build_line",
-      "endTime": 1717651471969,
+      "endTime": 1718006260811,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@PreBuild",
       "taskPath": "common",
       "workerId": -1,
-      "startTime": 1717651471967
+      "startTime": 1718006260808
     },
     {
       "type": "build_line",
-      "endTime": 1717651471973,
+      "endTime": 1718006260816,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@PreBuild",
       "taskPath": "commoditydetail",
       "workerId": -1,
-      "startTime": 1717651471971
+      "startTime": 1718006260814
     },
     {
       "type": "build_line",
-      "endTime": 1717651471977,
+      "endTime": 1718006260820,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@PreBuild",
       "taskPath": "newproduct",
       "workerId": -1,
-      "startTime": 1717651471975
+      "startTime": 1718006260818
     },
     {
       "type": "build_line",
-      "endTime": 1717651471981,
+      "endTime": 1718006260823,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@PreBuild",
       "taskPath": "home",
       "workerId": -1,
-      "startTime": 1717651471979
+      "startTime": 1718006260821
     },
     {
       "type": "build_line",
-      "endTime": 1717651471985,
+      "endTime": 1718006260827,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@PreBuild",
       "taskPath": "personal",
       "workerId": -1,
-      "startTime": 1717651471982
+      "startTime": 1718006260826
     },
     {
       "type": "build_line",
-      "endTime": 1717651471988,
+      "endTime": 1718006260831,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@PreBuild",
       "taskPath": "shopcart",
       "workerId": -1,
-      "startTime": 1717651471986
+      "startTime": 1718006260830
     },
     {
       "type": "build_line",
-      "endTime": 1717651471998,
+      "endTime": 1718006260839,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@GenerateMetadata",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717651471989
+      "startTime": 1718006260833
     },
     {
       "type": "build_line",
-      "endTime": 1717651472003,
+      "endTime": 1718006260852,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithCmake",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717651472003
+      "startTime": 1718006260852
     },
     {
       "type": "build_line",
-      "endTime": 1717651472019,
+      "endTime": 1718006260876,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@GenerateLoaderJson",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717651472013
+      "startTime": 1718006260875
     },
     {
       "type": "build_line",
-      "endTime": 1717651472031,
+      "endTime": 1718006260883,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithCmake",
       "taskPath": "orderdetail",
       "workerId": -1,
-      "startTime": 1717651472031
+      "startTime": 1718006260883
     },
     {
       "type": "build_line",
-      "endTime": 1717651472036,
+      "endTime": 1718006260884,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithCmake",
       "taskPath": "common",
       "workerId": -1,
-      "startTime": 1717651472036
+      "startTime": 1718006260884
     },
     {
       "type": "build_line",
-      "endTime": 1717651472039,
+      "endTime": 1718006260887,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@MergeProfile",
       "taskPath": "common",
       "workerId": -1,
-      "startTime": 1717651472036
+      "startTime": 1718006260885
     },
     {
       "type": "build_line",
-      "endTime": 1717651472040,
+      "endTime": 1718006260888,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithCmake",
       "taskPath": "commoditydetail",
       "workerId": -1,
-      "startTime": 1717651472040
+      "startTime": 1718006260888
     },
     {
       "type": "build_line",
-      "endTime": 1717651472041,
+      "endTime": 1718006260889,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithCmake",
       "taskPath": "newproduct",
       "workerId": -1,
-      "startTime": 1717651472041
+      "startTime": 1718006260889
     },
     {
       "type": "build_line",
-      "endTime": 1717651472042,
+      "endTime": 1718006260889,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithCmake",
       "taskPath": "home",
       "workerId": -1,
-      "startTime": 1717651472042
+      "startTime": 1718006260889
     },
     {
       "type": "build_line",
-      "endTime": 1717651472043,
+      "endTime": 1718006260903,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithCmake",
       "taskPath": "personal",
       "workerId": -1,
-      "startTime": 1717651472043
+      "startTime": 1718006260903
     },
     {
       "type": "build_line",
-      "endTime": 1717651472059,
+      "endTime": 1718006260919,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithCmake",
       "taskPath": "shopcart",
       "workerId": -1,
-      "startTime": 1717651472058
+      "startTime": 1718006260919
     },
     {
       "type": "build_line",
-      "endTime": 1717651472076,
+      "endTime": 1718006260920,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithNinja",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717651472075
+      "startTime": 1718006260920
     },
     {
       "type": "build_line",
-      "endTime": 1717651472077,
+      "endTime": 1718006260921,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithNinja",
       "taskPath": "orderdetail",
       "workerId": -1,
-      "startTime": 1717651472076
+      "startTime": 1718006260921
     },
     {
       "type": "build_line",
-      "endTime": 1717651472078,
+      "endTime": 1718006260922,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithNinja",
       "taskPath": "common",
       "workerId": -1,
-      "startTime": 1717651472078
+      "startTime": 1718006260921
     },
     {
       "type": "build_line",
-      "endTime": 1717651472084,
+      "endTime": 1718006260925,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@MergeProfile",
       "taskPath": "home",
       "workerId": -1,
-      "startTime": 1717651472079
+      "startTime": 1718006260922
     },
     {
       "type": "build_line",
-      "endTime": 1717651472089,
+      "endTime": 1718006260929,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@MergeProfile",
       "taskPath": "newproduct",
       "workerId": -1,
-      "startTime": 1717651472085
+      "startTime": 1718006260926
     },
     {
       "type": "build_line",
-      "endTime": 1717651472094,
+      "endTime": 1718006260933,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@MergeProfile",
       "taskPath": "shopcart",
       "workerId": -1,
-      "startTime": 1717651472090
+      "startTime": 1718006260930
     },
     {
       "type": "build_line",
-      "endTime": 1717651472098,
+      "endTime": 1718006260938,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@MergeProfile",
       "taskPath": "personal",
       "workerId": -1,
-      "startTime": 1717651472094
+      "startTime": 1718006260933
     },
     {
       "type": "build_line",
-      "endTime": 1717651472104,
+      "endTime": 1718006260941,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@MergeProfile",
       "taskPath": "commoditydetail",
       "workerId": -1,
-      "startTime": 1717651472101
+      "startTime": 1718006260938
     },
     {
       "type": "build_line",
-      "endTime": 1717651472109,
+      "endTime": 1718006260945,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@MergeProfile",
       "taskPath": "orderdetail",
       "workerId": -1,
-      "startTime": 1717651472105
+      "startTime": 1718006260942
     },
     {
       "type": "build_line",
-      "endTime": 1717651472110,
+      "endTime": 1718006260946,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithNinja",
       "taskPath": "commoditydetail",
       "workerId": -1,
-      "startTime": 1717651472109
+      "startTime": 1718006260945
     },
     {
       "type": "build_line",
-      "endTime": 1717651472111,
+      "endTime": 1718006260947,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithNinja",
       "taskPath": "newproduct",
       "workerId": -1,
-      "startTime": 1717651472110
+      "startTime": 1718006260946
     },
     {
       "type": "build_line",
-      "endTime": 1717651472112,
+      "endTime": 1718006260948,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithNinja",
       "taskPath": "home",
       "workerId": -1,
-      "startTime": 1717651472111
+      "startTime": 1718006260947
     },
     {
       "type": "build_line",
-      "endTime": 1717651472113,
+      "endTime": 1718006260949,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithNinja",
       "taskPath": "personal",
       "workerId": -1,
-      "startTime": 1717651472112
+      "startTime": 1718006260948
     },
     {
       "type": "build_line",
-      "endTime": 1717651472114,
+      "endTime": 1718006260949,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithNinja",
       "taskPath": "shopcart",
       "workerId": -1,
-      "startTime": 1717651472113
+      "startTime": 1718006260949
     },
     {
       "type": "build_line",
-      "endTime": 1717651472116,
+      "endTime": 1718006260967,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@ProcessLibs",
       "taskPath": "common",
       "workerId": -1,
-      "startTime": 1717651472114
+      "startTime": 1718006260965
     },
     {
       "type": "build_line",
-      "endTime": 1717651472129,
+      "endTime": 1718006260977,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@MergeProfile",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717651472116
+      "startTime": 1718006260968
     },
     {
       "type": "build_line",
-      "endTime": 1717651472133,
+      "endTime": 1718006260980,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@ProcessLibs",
       "taskPath": "home",
       "workerId": -1,
-      "startTime": 1717651472131
+      "startTime": 1718006260979
     },
     {
       "type": "build_line",
-      "endTime": 1717651472135,
+      "endTime": 1718006260981,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@ProcessLibs",
       "taskPath": "newproduct",
       "workerId": -1,
-      "startTime": 1717651472133
+      "startTime": 1718006260980
     },
     {
       "type": "build_line",
-      "endTime": 1717651472139,
+      "endTime": 1718006260984,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@ProcessLibs",
       "taskPath": "shopcart",
       "workerId": -1,
-      "startTime": 1717651472135
+      "startTime": 1718006260982
     },
     {
       "type": "build_line",
-      "endTime": 1717651472141,
+      "endTime": 1718006260986,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@ProcessLibs",
       "taskPath": "personal",
       "workerId": -1,
-      "startTime": 1717651472140
+      "startTime": 1718006260985
     },
     {
       "type": "build_line",
-      "endTime": 1717651472146,
+      "endTime": 1718006260988,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@ProcessLibs",
       "taskPath": "commoditydetail",
       "workerId": -1,
-      "startTime": 1717651472144
+      "startTime": 1718006260987
     },
     {
       "type": "build_line",
-      "endTime": 1717651472149,
+      "endTime": 1718006260992,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@ProcessLibs",
       "taskPath": "orderdetail",
       "workerId": -1,
-      "startTime": 1717651472147
+      "startTime": 1718006260991
     },
     {
       "type": "build_line",
-      "endTime": 1717651472164,
+      "endTime": 1718006261000,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@MakePackInfo",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717651472150
+      "startTime": 1718006260992
     },
     {
       "type": "build_line",
-      "endTime": 1717651472171,
+      "endTime": 1718006261004,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@ProcessProfile",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717651472168
+      "startTime": 1718006261002
     },
     {
       "type": "build_line",
-      "endTime": 1717651472191,
+      "endTime": 1718006261020,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@ProcessLibs",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717651472171
+      "startTime": 1718006261005
     },
     {
       "type": "build_line",
-      "endTime": 1717651472201,
+      "endTime": 1718006261027,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@ProcessResource",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717651472194
+      "startTime": 1718006261022
     },
     {
       "type": "build_line",
-      "endTime": 1717651472444,
+      "endTime": 1718006261194,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@CompileResource",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717651472202
+      "startTime": 1718006261028
     },
     {
       "type": "build_line",
-      "endTime": 1717651472524,
+      "endTime": 1718006261239,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@CompileJS",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717651472504
+      "startTime": 1718006261220
     },
     {
       "type": "build_line",
-      "endTime": 1717651489703,
+      "endTime": 1718006275339,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@CompileArkTS",
       "taskPath": "phone",
-      "workerId": 0,
-      "startTime": 1717651472504
+      "workerId": 1,
+      "startTime": 1718006261220
     },
     {
       "type": "default",
-      "endTime": 1717651489703,
+      "endTime": 1718006275339,
       "status": "closed",
       "children": [
         {
           "type": "build_line",
-          "endTime": 1717651489703,
+          "endTime": 1718006275339,
           "status": "closed",
           "children": [],
           "name": "overallTime",
           "taskName": "default@CompileArkTS",
           "taskPath": "phone",
-          "workerId": 0,
-          "startTime": 1717651472504
+          "workerId": 1,
+          "startTime": 1718006261220
         }
       ],
       "name": "overallTime",
       "taskName": "default@CompileArkTS",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717651472445
+      "startTime": 1718006261194
     },
     {
       "type": "build_line",
-      "endTime": 1717651492313,
+      "endTime": 1718006276314,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@PackageHap",
       "taskPath": "phone",
-      "workerId": 1,
-      "startTime": 1717651489755
+      "workerId": 0,
+      "startTime": 1718006275381
     },
     {
       "type": "default",
-      "endTime": 1717651492313,
+      "endTime": 1718006276314,
       "status": "closed",
       "children": [
         {
           "type": "build_line",
-          "endTime": 1717651492313,
+          "endTime": 1718006276314,
           "status": "closed",
           "children": [],
           "name": "overallTime",
           "taskName": "default@PackageHap",
           "taskPath": "phone",
-          "workerId": 1,
-          "startTime": 1717651489755
+          "workerId": 0,
+          "startTime": 1718006275381
         }
       ],
       "name": "overallTime",
       "taskName": "default@PackageHap",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717651489709
+      "startTime": 1718006275345
     },
     {
       "type": "build_line",
-      "endTime": 1717651492317,
+      "endTime": 1718006280695,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@SignHap",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717651492315
+      "startTime": 1718006276315
     },
     {
       "type": "build_line",
-      "endTime": 1717651492318,
+      "endTime": 1718006280696,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "assembleHap",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717651492318
+      "startTime": 1718006280696
     },
     {
       "type": "build_line",
-      "endTime": 1717651822863,
+      "endTime": 1718008116911,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@PreBuild",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717651822860
+      "startTime": 1718008116908
     },
     {
       "type": "build_line",
-      "endTime": 1717651822867,
+      "endTime": 1718008116919,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@PreBuild",
       "taskPath": "orderdetail",
       "workerId": -1,
-      "startTime": 1717651822865
+      "startTime": 1718008116915
     },
     {
       "type": "build_line",
-      "endTime": 1717651822873,
+      "endTime": 1718008116925,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@PreBuild",
       "taskPath": "common",
       "workerId": -1,
-      "startTime": 1717651822871
+      "startTime": 1718008116923
     },
     {
       "type": "build_line",
-      "endTime": 1717651822884,
+      "endTime": 1718008116928,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@PreBuild",
       "taskPath": "commoditydetail",
       "workerId": -1,
-      "startTime": 1717651822874
+      "startTime": 1718008116926
     },
     {
       "type": "build_line",
-      "endTime": 1717651822898,
+      "endTime": 1718008116932,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@PreBuild",
       "taskPath": "newproduct",
       "workerId": -1,
-      "startTime": 1717651822890
+      "startTime": 1718008116929
     },
     {
       "type": "build_line",
-      "endTime": 1717651822904,
+      "endTime": 1718008116936,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@PreBuild",
       "taskPath": "home",
       "workerId": -1,
-      "startTime": 1717651822901
+      "startTime": 1718008116933
     },
     {
       "type": "build_line",
-      "endTime": 1717651822909,
+      "endTime": 1718008116939,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@PreBuild",
       "taskPath": "personal",
       "workerId": -1,
-      "startTime": 1717651822905
+      "startTime": 1718008116937
     },
     {
       "type": "build_line",
-      "endTime": 1717651822912,
+      "endTime": 1718008116943,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@PreBuild",
       "taskPath": "shopcart",
       "workerId": -1,
-      "startTime": 1717651822909
+      "startTime": 1718008116941
     },
     {
       "type": "build_line",
-      "endTime": 1717651822922,
+      "endTime": 1718008116953,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@GenerateMetadata",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717651822914
+      "startTime": 1718008116945
     },
     {
       "type": "build_line",
-      "endTime": 1717651822927,
+      "endTime": 1718008116962,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithCmake",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717651822927
+      "startTime": 1718008116962
     },
     {
       "type": "build_line",
-      "endTime": 1717651822929,
+      "endTime": 1718008116979,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@GenerateLoaderJson",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717651822927
+      "startTime": 1718008116977
     },
     {
       "type": "build_line",
-      "endTime": 1717651822930,
+      "endTime": 1718008116985,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithCmake",
       "taskPath": "orderdetail",
       "workerId": -1,
-      "startTime": 1717651822930
+      "startTime": 1718008116985
     },
     {
       "type": "build_line",
-      "endTime": 1717651822931,
+      "endTime": 1718008116987,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithCmake",
       "taskPath": "common",
       "workerId": -1,
-      "startTime": 1717651822931
+      "startTime": 1718008116987
     },
     {
       "type": "build_line",
-      "endTime": 1717651822938,
+      "endTime": 1718008116990,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@MergeProfile",
       "taskPath": "common",
       "workerId": -1,
-      "startTime": 1717651822935
+      "startTime": 1718008116988
     },
     {
       "type": "build_line",
-      "endTime": 1717651822953,
+      "endTime": 1718008116991,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithCmake",
       "taskPath": "commoditydetail",
       "workerId": -1,
-      "startTime": 1717651822953
+      "startTime": 1718008116991
     },
     {
       "type": "build_line",
-      "endTime": 1717651822968,
+      "endTime": 1718008116992,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithCmake",
       "taskPath": "newproduct",
       "workerId": -1,
-      "startTime": 1717651822968
+      "startTime": 1718008116992
     },
     {
       "type": "build_line",
-      "endTime": 1717651822973,
+      "endTime": 1718008116993,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithCmake",
       "taskPath": "home",
       "workerId": -1,
-      "startTime": 1717651822973
+      "startTime": 1718008116993
     },
     {
       "type": "build_line",
-      "endTime": 1717651822974,
+      "endTime": 1718008116994,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithCmake",
       "taskPath": "personal",
       "workerId": -1,
-      "startTime": 1717651822974
+      "startTime": 1718008116994
     },
     {
       "type": "build_line",
-      "endTime": 1717651822974,
+      "endTime": 1718008116996,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithCmake",
       "taskPath": "shopcart",
       "workerId": -1,
-      "startTime": 1717651822974
+      "startTime": 1718008116995
     },
     {
       "type": "build_line",
-      "endTime": 1717651822975,
+      "endTime": 1718008116997,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithNinja",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717651822975
+      "startTime": 1718008116996
     },
     {
       "type": "build_line",
-      "endTime": 1717651822977,
+      "endTime": 1718008116999,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithNinja",
       "taskPath": "orderdetail",
       "workerId": -1,
-      "startTime": 1717651822976
+      "startTime": 1718008116998
     },
     {
       "type": "build_line",
-      "endTime": 1717651822978,
+      "endTime": 1718008117000,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithNinja",
       "taskPath": "common",
       "workerId": -1,
-      "startTime": 1717651822978
+      "startTime": 1718008116999
     },
     {
       "type": "build_line",
-      "endTime": 1717651822982,
+      "endTime": 1718008117004,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@MergeProfile",
       "taskPath": "home",
       "workerId": -1,
-      "startTime": 1717651822979
+      "startTime": 1718008117001
     },
     {
       "type": "build_line",
-      "endTime": 1717651822987,
+      "endTime": 1718008117008,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@MergeProfile",
       "taskPath": "newproduct",
       "workerId": -1,
-      "startTime": 1717651822983
+      "startTime": 1718008117005
     },
     {
       "type": "build_line",
-      "endTime": 1717651822992,
+      "endTime": 1718008117012,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@MergeProfile",
       "taskPath": "shopcart",
       "workerId": -1,
-      "startTime": 1717651822987
+      "startTime": 1718008117009
     },
     {
       "type": "build_line",
-      "endTime": 1717651822998,
+      "endTime": 1718008117016,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@MergeProfile",
       "taskPath": "personal",
       "workerId": -1,
-      "startTime": 1717651822993
+      "startTime": 1718008117013
     },
     {
       "type": "build_line",
-      "endTime": 1717651823002,
+      "endTime": 1718008117020,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@MergeProfile",
       "taskPath": "commoditydetail",
       "workerId": -1,
-      "startTime": 1717651822999
+      "startTime": 1718008117017
     },
     {
       "type": "build_line",
-      "endTime": 1717651823007,
+      "endTime": 1718008117023,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@MergeProfile",
       "taskPath": "orderdetail",
       "workerId": -1,
-      "startTime": 1717651823003
+      "startTime": 1718008117021
     },
     {
       "type": "build_line",
-      "endTime": 1717651823009,
+      "endTime": 1718008117027,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithNinja",
       "taskPath": "commoditydetail",
       "workerId": -1,
-      "startTime": 1717651823009
+      "startTime": 1718008117026
     },
     {
       "type": "build_line",
-      "endTime": 1717651823010,
+      "endTime": 1718008117028,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithNinja",
       "taskPath": "newproduct",
       "workerId": -1,
-      "startTime": 1717651823010
+      "startTime": 1718008117027
     },
     {
       "type": "build_line",
-      "endTime": 1717651823011,
+      "endTime": 1718008117030,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithNinja",
       "taskPath": "home",
       "workerId": -1,
-      "startTime": 1717651823010
+      "startTime": 1718008117029
     },
     {
       "type": "build_line",
-      "endTime": 1717651823014,
+      "endTime": 1718008117032,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithNinja",
       "taskPath": "personal",
       "workerId": -1,
-      "startTime": 1717651823013
+      "startTime": 1718008117031
     },
     {
       "type": "build_line",
-      "endTime": 1717651823016,
+      "endTime": 1718008117033,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@BuildNativeWithNinja",
       "taskPath": "shopcart",
       "workerId": -1,
-      "startTime": 1717651823016
+      "startTime": 1718008117033
     },
     {
       "type": "build_line",
-      "endTime": 1717651823029,
+      "endTime": 1718008117035,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@ProcessLibs",
       "taskPath": "common",
       "workerId": -1,
-      "startTime": 1717651823028
+      "startTime": 1718008117034
     },
     {
       "type": "build_line",
-      "endTime": 1717651823043,
+      "endTime": 1718008117045,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@MergeProfile",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717651823030
+      "startTime": 1718008117036
     },
     {
       "type": "build_line",
-      "endTime": 1717651823048,
+      "endTime": 1718008117048,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@ProcessLibs",
       "taskPath": "home",
       "workerId": -1,
-      "startTime": 1717651823045
+      "startTime": 1718008117047
     },
     {
       "type": "build_line",
-      "endTime": 1717651823050,
+      "endTime": 1718008117050,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@ProcessLibs",
       "taskPath": "newproduct",
       "workerId": -1,
-      "startTime": 1717651823049
+      "startTime": 1718008117049
     },
     {
       "type": "build_line",
-      "endTime": 1717651823052,
+      "endTime": 1718008117052,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@ProcessLibs",
       "taskPath": "shopcart",
       "workerId": -1,
-      "startTime": 1717651823051
+      "startTime": 1718008117051
     },
     {
       "type": "build_line",
-      "endTime": 1717651823055,
+      "endTime": 1718008117054,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@ProcessLibs",
       "taskPath": "personal",
       "workerId": -1,
-      "startTime": 1717651823053
+      "startTime": 1718008117053
     },
     {
       "type": "build_line",
-      "endTime": 1717651823058,
+      "endTime": 1718008117056,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@ProcessLibs",
       "taskPath": "commoditydetail",
       "workerId": -1,
-      "startTime": 1717651823056
+      "startTime": 1718008117054
     },
     {
       "type": "build_line",
-      "endTime": 1717651823064,
+      "endTime": 1718008117057,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@ProcessLibs",
       "taskPath": "orderdetail",
       "workerId": -1,
-      "startTime": 1717651823060
+      "startTime": 1718008117056
     },
     {
       "type": "build_line",
-      "endTime": 1717651823086,
+      "endTime": 1718008117065,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@MakePackInfo",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717651823065
+      "startTime": 1718008117058
     },
     {
       "type": "build_line",
-      "endTime": 1717651823094,
+      "endTime": 1718008117069,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@ProcessProfile",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717651823091
+      "startTime": 1718008117067
     },
     {
       "type": "build_line",
-      "endTime": 1717651823112,
+      "endTime": 1718008117080,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@ProcessLibs",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717651823094
+      "startTime": 1718008117069
     },
     {
       "type": "build_line",
-      "endTime": 1717651823125,
+      "endTime": 1718008117085,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@ProcessResource",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717651823120
+      "startTime": 1718008117082
     },
     {
       "type": "build_line",
-      "endTime": 1717651823321,
+      "endTime": 1718008117234,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@CompileResource",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717651823126
+      "startTime": 1718008117086
     },
     {
       "type": "build_line",
-      "endTime": 1717651823466,
+      "endTime": 1718008117352,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@CompileJS",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717651823448
+      "startTime": 1718008117336
     },
     {
       "type": "build_line",
-      "endTime": 1717651836111,
+      "endTime": 1718008129007,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@CompileArkTS",
       "taskPath": "phone",
-      "workerId": 0,
-      "startTime": 1717651823543
+      "workerId": 1,
+      "startTime": 1718008117336
     },
     {
       "type": "default",
-      "endTime": 1717651836111,
+      "endTime": 1718008129007,
       "status": "closed",
       "children": [
         {
           "type": "build_line",
-          "endTime": 1717651836111,
+          "endTime": 1718008129007,
           "status": "closed",
           "children": [],
           "name": "overallTime",
           "taskName": "default@CompileArkTS",
           "taskPath": "phone",
-          "workerId": 0,
-          "startTime": 1717651823543
+          "workerId": 1,
+          "startTime": 1718008117336
         }
       ],
       "name": "overallTime",
       "taskName": "default@CompileArkTS",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717651823321
+      "startTime": 1718008117235
     },
     {
       "type": "build_line",
-      "endTime": 1717651837347,
+      "endTime": 1718008130059,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@PackageHap",
       "taskPath": "phone",
-      "workerId": 1,
-      "startTime": 1717651836175
+      "workerId": 0,
+      "startTime": 1718008129052
     },
     {
       "type": "default",
-      "endTime": 1717651837347,
+      "endTime": 1718008130059,
       "status": "closed",
       "children": [
         {
           "type": "build_line",
-          "endTime": 1717651837347,
+          "endTime": 1718008130059,
           "status": "closed",
           "children": [],
           "name": "overallTime",
           "taskName": "default@PackageHap",
           "taskPath": "phone",
-          "workerId": 1,
-          "startTime": 1717651836175
+          "workerId": 0,
+          "startTime": 1718008129052
         }
       ],
       "name": "overallTime",
       "taskName": "default@PackageHap",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717651836125
+      "startTime": 1718008129015
     },
     {
       "type": "build_line",
-      "endTime": 1717651837351,
+      "endTime": 1718008134938,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "default@SignHap",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717651837350
+      "startTime": 1718008130061
     },
     {
       "type": "build_line",
-      "endTime": 1717651837352,
+      "endTime": 1718008134939,
       "status": "closed",
       "children": [],
       "name": "overallTime",
       "taskName": "assembleHap",
       "taskPath": "phone",
       "workerId": -1,
-      "startTime": 1717651837352
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652860184,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@PreBuild",
-      "taskPath": "phone",
-      "workerId": -1,
-      "startTime": 1717652860179
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652860188,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@PreBuild",
-      "taskPath": "orderdetail",
-      "workerId": -1,
-      "startTime": 1717652860186
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652860193,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@PreBuild",
-      "taskPath": "common",
-      "workerId": -1,
-      "startTime": 1717652860191
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652860197,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@PreBuild",
-      "taskPath": "commoditydetail",
-      "workerId": -1,
-      "startTime": 1717652860195
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652860204,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@PreBuild",
-      "taskPath": "newproduct",
-      "workerId": -1,
-      "startTime": 1717652860199
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652860209,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@PreBuild",
-      "taskPath": "home",
-      "workerId": -1,
-      "startTime": 1717652860206
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652860216,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@PreBuild",
-      "taskPath": "personal",
-      "workerId": -1,
-      "startTime": 1717652860211
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652860222,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@PreBuild",
-      "taskPath": "shopcart",
-      "workerId": -1,
-      "startTime": 1717652860217
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652860240,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@GenerateMetadata",
-      "taskPath": "phone",
-      "workerId": -1,
-      "startTime": 1717652860225
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652860247,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@BuildNativeWithCmake",
-      "taskPath": "phone",
-      "workerId": -1,
-      "startTime": 1717652860247
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652860250,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@GenerateLoaderJson",
-      "taskPath": "phone",
-      "workerId": -1,
-      "startTime": 1717652860248
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652860251,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@BuildNativeWithCmake",
-      "taskPath": "orderdetail",
-      "workerId": -1,
-      "startTime": 1717652860251
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652860252,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@BuildNativeWithCmake",
-      "taskPath": "common",
-      "workerId": -1,
-      "startTime": 1717652860252
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652860256,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@MergeProfile",
-      "taskPath": "common",
-      "workerId": -1,
-      "startTime": 1717652860253
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652860257,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@BuildNativeWithCmake",
-      "taskPath": "commoditydetail",
-      "workerId": -1,
-      "startTime": 1717652860257
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652860259,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@BuildNativeWithCmake",
-      "taskPath": "newproduct",
-      "workerId": -1,
-      "startTime": 1717652860258
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652860260,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@BuildNativeWithCmake",
-      "taskPath": "home",
-      "workerId": -1,
-      "startTime": 1717652860260
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652860261,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@BuildNativeWithCmake",
-      "taskPath": "personal",
-      "workerId": -1,
-      "startTime": 1717652860261
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652860263,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@BuildNativeWithCmake",
-      "taskPath": "shopcart",
-      "workerId": -1,
-      "startTime": 1717652860263
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652860265,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@BuildNativeWithNinja",
-      "taskPath": "phone",
-      "workerId": -1,
-      "startTime": 1717652860264
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652860268,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@BuildNativeWithNinja",
-      "taskPath": "orderdetail",
-      "workerId": -1,
-      "startTime": 1717652860266
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652860270,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@BuildNativeWithNinja",
-      "taskPath": "common",
-      "workerId": -1,
-      "startTime": 1717652860269
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652860279,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@MergeProfile",
-      "taskPath": "home",
-      "workerId": -1,
-      "startTime": 1717652860270
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652860283,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@MergeProfile",
-      "taskPath": "newproduct",
-      "workerId": -1,
-      "startTime": 1717652860280
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652860297,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@MergeProfile",
-      "taskPath": "shopcart",
-      "workerId": -1,
-      "startTime": 1717652860293
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652860315,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@MergeProfile",
-      "taskPath": "personal",
-      "workerId": -1,
-      "startTime": 1717652860311
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652860327,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@MergeProfile",
-      "taskPath": "commoditydetail",
-      "workerId": -1,
-      "startTime": 1717652860321
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652860333,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@MergeProfile",
-      "taskPath": "orderdetail",
-      "workerId": -1,
-      "startTime": 1717652860329
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652860334,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@BuildNativeWithNinja",
-      "taskPath": "commoditydetail",
-      "workerId": -1,
-      "startTime": 1717652860333
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652860336,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@BuildNativeWithNinja",
-      "taskPath": "newproduct",
-      "workerId": -1,
-      "startTime": 1717652860335
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652860338,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@BuildNativeWithNinja",
-      "taskPath": "home",
-      "workerId": -1,
-      "startTime": 1717652860337
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652860342,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@BuildNativeWithNinja",
-      "taskPath": "personal",
-      "workerId": -1,
-      "startTime": 1717652860339
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652860344,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@BuildNativeWithNinja",
-      "taskPath": "shopcart",
-      "workerId": -1,
-      "startTime": 1717652860343
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652860347,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@ProcessLibs",
-      "taskPath": "common",
-      "workerId": -1,
-      "startTime": 1717652860345
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652860356,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@MergeProfile",
-      "taskPath": "phone",
-      "workerId": -1,
-      "startTime": 1717652860347
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652860360,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@ProcessLibs",
-      "taskPath": "home",
-      "workerId": -1,
-      "startTime": 1717652860359
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652860363,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@ProcessLibs",
-      "taskPath": "newproduct",
-      "workerId": -1,
-      "startTime": 1717652860361
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652860365,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@ProcessLibs",
-      "taskPath": "shopcart",
-      "workerId": -1,
-      "startTime": 1717652860363
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652860367,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@ProcessLibs",
-      "taskPath": "personal",
-      "workerId": -1,
-      "startTime": 1717652860365
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652860370,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@ProcessLibs",
-      "taskPath": "commoditydetail",
-      "workerId": -1,
-      "startTime": 1717652860367
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652860372,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@ProcessLibs",
-      "taskPath": "orderdetail",
-      "workerId": -1,
-      "startTime": 1717652860371
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652860381,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@MakePackInfo",
-      "taskPath": "phone",
-      "workerId": -1,
-      "startTime": 1717652860373
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652860386,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@ProcessProfile",
-      "taskPath": "phone",
-      "workerId": -1,
-      "startTime": 1717652860383
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652860395,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@ProcessLibs",
-      "taskPath": "phone",
-      "workerId": -1,
-      "startTime": 1717652860386
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652860402,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@ProcessResource",
-      "taskPath": "phone",
-      "workerId": -1,
-      "startTime": 1717652860397
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652861915,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@CompileResource",
-      "taskPath": "phone",
-      "workerId": -1,
-      "startTime": 1717652860403
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652861967,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@CompileJS",
-      "taskPath": "phone",
-      "workerId": -1,
-      "startTime": 1717652861954
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652910194,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@CompileArkTS",
-      "taskPath": "phone",
-      "workerId": 0,
-      "startTime": 1717652862050
-    },
-    {
-      "type": "default",
-      "endTime": 1717652910194,
-      "status": "closed",
-      "children": [
-        {
-          "type": "build_line",
-          "endTime": 1717652910194,
-          "status": "closed",
-          "children": [],
-          "name": "overallTime",
-          "taskName": "default@CompileArkTS",
-          "taskPath": "phone",
-          "workerId": 0,
-          "startTime": 1717652862050
-        }
-      ],
-      "name": "overallTime",
-      "taskName": "default@CompileArkTS",
-      "taskPath": "phone",
-      "workerId": -1,
-      "startTime": 1717652861915
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652911460,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@PackageHap",
-      "taskPath": "phone",
-      "workerId": 1,
-      "startTime": 1717652910221
-    },
-    {
-      "type": "default",
-      "endTime": 1717652911460,
-      "status": "closed",
-      "children": [
-        {
-          "type": "build_line",
-          "endTime": 1717652911460,
-          "status": "closed",
-          "children": [],
-          "name": "overallTime",
-          "taskName": "default@PackageHap",
-          "taskPath": "phone",
-          "workerId": 1,
-          "startTime": 1717652910221
-        }
-      ],
-      "name": "overallTime",
-      "taskName": "default@PackageHap",
-      "taskPath": "phone",
-      "workerId": -1,
-      "startTime": 1717652910203
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652911463,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "default@SignHap",
-      "taskPath": "phone",
-      "workerId": -1,
-      "startTime": 1717652911461
-    },
-    {
-      "type": "build_line",
-      "endTime": 1717652911463,
-      "status": "closed",
-      "children": [],
-      "name": "overallTime",
-      "taskName": "assembleHap",
-      "taskPath": "phone",
-      "workerId": -1,
-      "startTime": 1717652911463
+      "startTime": 1718008134939
     }
   ],
-  "workLog": [
-    {
-      "type": "work",
-      "time": "[2024-06-06T13:48:30.177]",
-      "workerId": 0,
-      "content": "[2024-06-06T13:48:30.177] > hvigor \u001b[32m\u001b[33mWARN: \u001b[33mArkTS:WARN File: C:/Users/Vsolon/DevEcoStudioProjects/MultiShopping/features/personal/src/main/ets/components/Personal.ets:265:20\n The regular property 'iconButton' cannot be assigned to the @ObjectLink property 'props'.\u001b[39m\r\n\u001b[33mWARN: \u001b[33mArkTS:WARN File: C:/Users/Vsolon/DevEcoStudioProjects/MultiShopping/features/personal/src/main/ets/components/Personal.ets:285:18\n The regular property 'iconButton' cannot be assigned to the @ObjectLink property 'props'.\u001b[39m\r\n\u001b[39m\n",
-      "taskPath": "phone",
-      "taskName": "default@CompileArkTS",
-      "taskCompletePath": "phone:default@CompileArkTS"
-    }
-  ]
+  "workLog": []
 }

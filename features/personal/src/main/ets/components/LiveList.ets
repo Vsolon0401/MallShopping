@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { BreakPointType, EmptyComponent, StyleConstants, CommonDataSource, EsProduct, searchService, historyService, MemberHistory, Logger } from '@ohos/common';
+import { BreakPointType, EmptyComponent, StyleConstants, CommonDataSource, EsProduct, searchService, historyService, MemberHistory, Logger, formatLocalhost } from '@ohos/common';
 import { PersonalConstants } from '../constants/PersonalConstants';
 
 /**
@@ -71,7 +71,7 @@ export struct LiveList {
   @Builder LiveItem(liveItem: EsProduct) {
     Column() {
       Stack({ alignContent: Alignment.TopStart }) {
-        Image(liveItem.pic)
+        Image(formatLocalhost(liveItem.pic))
           .width(StyleConstants.FULL_WIDTH)
           .objectFit(ImageFit.Fill)
           .aspectRatio(new BreakPointType({

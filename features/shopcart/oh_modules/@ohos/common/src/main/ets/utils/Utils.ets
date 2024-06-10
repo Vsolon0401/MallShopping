@@ -77,6 +77,14 @@ export function formatLocalhost(url: string, format: string = MiniIO_URL): strin
   }
   return url
 }
+
+export function formatRichHTMLText(richText: string, format: string = MiniIO_URL): string {
+  const target = 'http://localhost:9000'
+  while (richText?.includes(target)) {
+    richText = richText.replace(target, format)
+  }
+  return richText
+}
 /**
  * Get id.
  *

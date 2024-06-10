@@ -15,7 +15,7 @@
 
 import promptAction from '@ohos.promptAction';
 import router from '@ohos.router';
-import { addressService, CartItem, collectionService, CommodityInfo, getSkuStock, historyService, Order, ProductSpecification, shoppingCartService } from '@ohos/common';
+import { addressService, CartItem, collectionService, CommodityInfo, formatLocalhost, formatRichHTMLText, getSkuStock, historyService, Order, ProductSpecification, shoppingCartService } from '@ohos/common';
 import { FinishType, ProductService } from '../viewmodel/TypeModel';
 import { SpecificationDialog } from './SpecificationDialog';
 import { barData, userEvaluate, moreEvaluate, serviceList, Evaluate, BarData, BarType } from '../viewmodel/CommodityDetailData';
@@ -332,9 +332,24 @@ export struct CommodityDetail {
   @Builder CustomSwiper(payload: string[]) {
     Stack({ alignContent: Alignment.BottomEnd }) {
       Swiper() {
-        ForEach(payload, (item: string) => {
+        if (payload.length > 0) {
+          ForEach(payload, (item: string) => {
+            Flex({ justifyContent: FlexAlign.Center }) {
+              Image(formatLocalhost(item))
+                .height(StyleConstants.FULL_HEIGHT)
+                .aspectRatio(1)
+                .objectFit(ImageFit.Cover)
+            }
+            .margin({
+              left: $r('app.float.swiper_image_margin'),
+              right: $r('app.float.swiper_image_margin'),
+              top: $r('app.float.vp_twenty'),
+              bottom: $r('app.float.vp_twenty')
+            })
+          }, (item: string) => JSON.stringify(item))
+        } else {
           Flex({ justifyContent: FlexAlign.Center }) {
-            Image(item)
+            Image($r("app.media.product004"))
               .height(StyleConstants.FULL_HEIGHT)
               .aspectRatio(1)
               .objectFit(ImageFit.Cover)
@@ -345,7 +360,8 @@ export struct CommodityDetail {
             top: $r('app.float.vp_twenty'),
             bottom: $r('app.float.vp_twenty')
           })
-        }, (item: string) => JSON.stringify(item))
+        }
+
       }
       .onChange((index: number) => this.swiperIndex = index)
       .indicator(false)
@@ -396,7 +412,7 @@ export struct CommodityDetail {
       .margin({ top: $r('app.float.vp_four') })
 
       Flex({ justifyContent: FlexAlign.SpaceBetween }) {
-        ForEach(barData.filter(barItem => barItem.type !== this.favorite), (item: BarData) => {
+        ForEach(barData.filter(barItem => barItem.type !== this.favorite), (item: BarData) => { //FIXME:
           Row() {
             Image(item.icon !== undefined ? item.icon : '')
               .height($r('app.float.vp_fourteen'))
@@ -672,14 +688,8 @@ export struct CommodityDetail {
       direction: FlexDirection.Column,
       alignItems: ItemAlign.Center
     }) {
-      RichText(this.info.product.detailMobileHtml) // FIXME: 富文本加载
+      RichText(formatRichHTMLText(this.info.product.detailMobileHtml))
         .width(StyleConstants.FULL_WIDTH)
-      // ForEach(images, (image: string) => {
-      //   Image($rawfile(image))
-      //     .width(StyleConstants.FULL_WIDTH)
-      //     .constraintSize({ maxWidth: $r('app.float.detail_image_max_width') })
-      //     .objectFit(ImageFit.Cover)
-      // }, (image: string) => JSON.stringify(image))
     }
     .width(StyleConstants.FULL_WIDTH)
     .backgroundStyle()
@@ -780,7 +790,7 @@ export struct CommodityDetail {
               Column() {
                 if (this.info) {
                   this.TitleBar(this.info)
-                  this.Preferential()
+                  // this.Preferential()
                   this.Specification()
                   this.SpecialService()
                   // todo: 用户评价

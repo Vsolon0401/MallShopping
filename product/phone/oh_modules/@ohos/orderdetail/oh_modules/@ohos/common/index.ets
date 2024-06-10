@@ -38,7 +38,7 @@ export { addressService } from './src/main/ets/service/AddressService'
 export { searchService } from './src/main/ets/service/SearchService'
 /**----------------------------------------------utils------------------------------------------------------ **/
 export { Request } from './src/main/ets/utils/Request'
-export { formatDate, getID, formatLocalhost, getSkuStock } from './src/main/ets/utils/Utils';
+export { formatDate, getID, formatLocalhost, getSkuStock, formatRichHTMLText } from './src/main/ets/utils/Utils';
 export { CommonDataSource } from './src/main/ets/utils/CommonDataSource';
 export { Preferences, PreferencesUtils } from './src/main/ets/utils/Preferences'
 export { GlobalContext } from './src/main/ets/utils/GlobalContext'

@@ -14,10 +14,9 @@
  */
 
 import router from '@ohos.router';
-import { LocalDataManager, Commodity, productService, CommodityInfo, Logger, historyService, collectionService, ProductAttribute, ProductSpecification, SkuSpecification, SkuStock } from '@ohos/common';
+import { productService, CommodityInfo } from '@ohos/common';
 import { CommodityDetail } from '@ohos/commoditydetail';
-import { ProductService } from '@ohos/commoditydetail/src/main/ets/viewmodel/TypeModel';
-import { CommodityConstants } from '@ohos/commoditydetail/src/main/ets/constants/CommodityConstants';
+
 
 @Entry
 @Component
@@ -31,13 +30,18 @@ struct CommodityDetailPage {
     let params = router.getParams() as Record<string, Object>;
     this.commodityId = params.data as string;
     productService.fetchProductDetail(params.data as number).then((res) => {
-      this.info = res.data
+      const detailInfo = res.data
+      this.info = detailInfo
       // 商品图片
-      res.data.product.albumPics.split(',').forEach(item => {
-        if (item !== null && item != '') {
-          this.productImgList.push(item)
-        }
-      })
+      if (detailInfo.product.albumPics?.length > 1) {
+        detailInfo.product.albumPics.split(',').forEach(item => {
+          if (item !== null && item != '') {
+            this.productImgList.push(item)
+          }
+        })
+      } else {
+        this.productImgList.push(detailInfo.pic)
+      }
     })
   }
 

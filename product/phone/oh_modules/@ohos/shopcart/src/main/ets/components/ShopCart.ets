@@ -15,7 +15,7 @@
 
 import router from '@ohos.router';
 import { ShopCartConstants } from '../constants/ShopCartConstants';
-import {Logger,CounterProduct,EmptyComponent,StyleConstants,BreakpointConstants,CartItem,shoppingCartService, searchService, ProductWaterFlow, EsProduct, CommonDataSource} from '@ohos/common';
+import {Logger,CounterProduct,EmptyComponent,StyleConstants,BreakpointConstants,CartItem,shoppingCartService, searchService, ProductWaterFlow, EsProduct, CommonDataSource, formatLocalhost} from '@ohos/common';
 import { SelectProducts, UpdateShopProps } from '@ohos/common/src/main/ets/viewmodel/ProductModel';
 import promptAction from '@ohos.promptAction';
 
@@ -174,7 +174,7 @@ export struct ShopCart {
           this.selectProducts.splice(index, 1, tempData)
           this.countSumPrice()
         })
-      Image(item.productPic)
+      Image(formatLocalhost(item.productPic))
         .height($r('app.float.card_image_size'))
         .width($r('app.float.card_image_size'))
         .objectFit(ImageFit.Cover)

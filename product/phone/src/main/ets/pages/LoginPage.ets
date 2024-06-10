@@ -52,7 +52,7 @@ struct LoginPage {
       }
     } else {
       promptAction.showToast({
-        message: `${username}:${phone}:${authCode}:${password}`,
+        message: '请输入验证码',
         duration: 1500
       })
     }
@@ -60,18 +60,20 @@ struct LoginPage {
 
   async handleLogin() {
     const { username, password } = this.userInfo
-    await loginService.login(username, password)
-    const loginInfo = await loginService.getUserInfo()
-    if (loginInfo.code === 200) {
-      promptAction.showToast({
-        message: '登录成功',
-        duration: 800,
-      })
-      this.timeoutId = setTimeout(() => {
-        router.replaceUrl({
-          url: PageConstants.MAIN_PAGE_URL,
+    const loginStatus = await loginService.login(username, password)
+    if (loginStatus) {
+      const loginInfo = await loginService.getUserInfo()
+      if (loginInfo.code === 200) {
+        promptAction.showToast({
+          message: '登录成功',
+          duration: 800,
         })
-      }, PageConstants.DELAY_TIME)
+        this.timeoutId = setTimeout(() => {
+          router.replaceUrl({
+            url: PageConstants.MAIN_PAGE_URL,
+          })
+        }, PageConstants.DELAY_TIME)
+      }
     }
   }
 

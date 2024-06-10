@@ -18,14 +18,14 @@ export class UserInfo {
   // 个性签名
   personalizedSignature: string = '';
   // 用户来源
-  sourceType: number = NaN;
+  sourceType: number = 0;
   // 积分
-  integration: number = NaN;
+  integration: number = 0;
   // 成长值
-  growth: number = NaN;
+  growth: number = 0;
   // 剩余抽奖次数
-  luckeyCount: number = NaN;
+  luckeyCount: number = 0;
   // 历史积分数量
-  historyIntegration: number = NaN;
+  historyIntegration: number = 0;
 
 }

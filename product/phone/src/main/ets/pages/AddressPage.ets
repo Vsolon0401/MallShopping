@@ -12,10 +12,22 @@ struct AddressPage {
   @State addressList: UserAddress[] = []
   @State toEditAddress: UserAddress = new UserAddress();
 
-  dialogController: CustomDialogController = new CustomDialogController({
+  editDialogController: CustomDialogController = new CustomDialogController({
     builder: AddressEditDialog({
+      dialogType: 'edit',
       addressInfo: $toEditAddress,
-      refresh: () => this.fetchAddressList()
+      refresh: () => this.fetchAddressList(),
+    }),
+    autoCancel: true,
+    alignment: DialogAlignment.Center,
+    customStyle: true
+  })
+
+  addDialogController: CustomDialogController = new CustomDialogController({
+    builder: AddressEditDialog({
+      dialogType: 'add',
+      addressInfo: $toEditAddress,
+      refresh: () => this.fetchAddressList(),
     }),
     autoCancel: true,
     alignment: DialogAlignment.Center,
@@ -34,11 +46,11 @@ struct AddressPage {
 
   handleEdit(address: UserAddress) {
     this.toEditAddress = address;
-    this.dialogController.open()
+    this.editDialogController.open()
   }
 
   handleAdd() {
-    this.dialogController.open()
+    this.addDialogController.open()
   }
 
   async handleSetDefaultAddress(userAddress: UserAddress, isOn: boolean) {

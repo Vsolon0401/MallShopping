@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { StyleConstants, BreakpointConstants, BreakPointType, CommonDataSource, Category } from '@ohos/common';
+import { StyleConstants, BreakpointConstants, BreakPointType, CommonDataSource, Category, formatLocalhost } from '@ohos/common';
 import { newProductService } from '../model/NewProductService';
 import { swiperImage, classifyTitle, productData, ProductDataModel, aspectRatio, PageOption } from '../viewmodel/NewProductData';
 import promptAction from '@ohos.promptAction';
@@ -85,7 +85,7 @@ export struct NewProduct {
       LazyForEach(this.recommendList, (item: Category) => {
         ListItem() {
           Column() {
-            Image(item.pic)
+            Image(formatLocalhost(item.pic))
               .width(StyleConstants.FULL_WIDTH)
               .aspectRatio(new BreakPointType({
                 sm: aspectRatio.sm,
